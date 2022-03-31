@@ -31,7 +31,6 @@ var pokeEntry = [];
 // set up empty pokemon object to push name, type and data thru later
 var pokemonObj = {};
 
-
 // connect to Pokemon API
 
 // first call to pokéAPI: fetch data for all pokémon
@@ -49,10 +48,6 @@ function getPokeApi() {
             }
         })
         .then(function (allPokemonData) {
-            // console.log returned results to view all creatures
-            // console.log("1. all pokemon data:");
-            // console.log(allPokemonData);
-
             let pokemon = allPokemonData.results;
 
             // initial array to hold specific pokemon
@@ -60,17 +55,13 @@ function getPokeApi() {
                 pokemon[401], // bug type: kricketune
                 pokemon[570] // dark type: zoroark
             ];
-            
-            // view the selected pokemon array
-            // console.log("2. selected pokemon array:");
-            // console.log(selectedPokemon);
 
             // loop thru each pokemon in array to get required info
             selectedPokemon.forEach(function(pokemon) {
                 // pass on info to get the pokemon name
                 getPokeName(pokemon.name);
-                // pass on url data to next function
-                getPokeData(pokemon.url);
+                // pass on url data to function for grabbing type
+                getPokeType(pokemon.url);
             });
         })
         .catch(function (error) {
@@ -87,14 +78,9 @@ function getPokeName(name) {
     console.log(pokeName);
 }
 
-// get the url of the pokemon (for further data extrapolation)
-function getPokeData(pokemonUrl) {
-    // console.log("3. get poke data function:");
-    // console.log(pokemonUrl);
-
-    console.log("4. pokemon url");
-    console.log(pokemonUrl);
-
+// get the pokemon's type through second fetch call
+function getPokeType(pokemonUrl) {
+    // fetch data using pokemon.url
     fetch(pokemonUrl)
         .then(function (response) {
             if (!response.ok) {
@@ -103,8 +89,22 @@ function getPokeData(pokemonUrl) {
                 return response.json();
             }
         })
-        .then(function(data) {
-            console.log(data);
+        .then(function(pokeData) {
+            // first console.log to make sure our data has been correctly pulled
+            console.log("url data: ");
+            console.log(pokeData);
+
+            // for readability, make a variable 'type' and assign it the fetched data
+            var type = pokeData.types[0].type.name;
+            // console log for good measure
+            console.log("type");
+            console.log(type);
+
+            // push the type to the pokeType array
+            pokeType.push(type);
+            console.log("type as array");
+            console.log(pokeType);
+
         })
         .catch(function (error) {
             console.log(error);
