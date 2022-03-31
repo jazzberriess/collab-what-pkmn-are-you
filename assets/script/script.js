@@ -1,7 +1,12 @@
+// POKEMON API functions
 
-function grabPokeData() {
+// connect to Pokemon API
 
-    var pokemonApiUrl = "https://pokeapi.co/api/v2/pokemon/";
+// first call to pokéAPI: fetch data for all pokémon
+function getPokeApi() {
+
+    // add query 'limit=1126' to retrieve every pokémon (else it will retrieve 20 results at a time)
+    var pokemonApiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=1126";
 
     fetch(pokemonApiUrl)
         .then(function (response) {
@@ -11,12 +16,11 @@ function grabPokeData() {
                 return response.json();
             }
         })
-        .then(function (data) {
-            console.log(data);
+        .then(function (allPokemonData) {
+            // console.log returned results to view all creatures
+            console.log(allPokemonData);
         })
         .catch(function (error) {
             console.log(error);
         });
 }
-
-grabPokeData();
