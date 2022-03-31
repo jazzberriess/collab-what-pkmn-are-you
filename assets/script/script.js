@@ -48,7 +48,7 @@ async function getArtistGenre() {
     //FOR THE LOVE OF EVERYTHING CHANGE THIS STRING TO USERINPUT.VALUE
 
     let artistInput = "shakira";
-    let spotifyArtistRequest = "https://api.spotify.com/v1/search?type=artist&q=" + artistInput;
+    let spotifyArtistRequest = "https://api.spotify.com/v1/search?type=artist&q=" + artistInput + "&limit=5";
 
     let artistReq = await fetch(spotifyArtistRequest, {
         method: "GET",
