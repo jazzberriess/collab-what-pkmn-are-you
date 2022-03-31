@@ -50,8 +50,8 @@ function getPokeApi() {
         })
         .then(function (allPokemonData) {
             // console.log returned results to view all creatures
-            console.log("1. all pokemon data:");
-            console.log(allPokemonData);
+            // console.log("1. all pokemon data:");
+            // console.log(allPokemonData);
 
             let pokemon = allPokemonData.results;
 
@@ -60,9 +60,10 @@ function getPokeApi() {
                 pokemon[401], // bug type: kricketune
                 pokemon[570] // dark type: zoroark
             ];
+            
             // view the selected pokemon array
-            console.log("2. selected pokemon array:");
-            console.log(selectedPokemon);
+            // console.log("2. selected pokemon array:");
+            // console.log(selectedPokemon);
 
             // loop thru each pokemon in array to get required info
             selectedPokemon.forEach(function(pokemon) {
@@ -71,7 +72,6 @@ function getPokeApi() {
                 // pass on url data to next function
                 getPokeData(pokemon.url);
             });
-
         })
         .catch(function (error) {
             console.log(error);
@@ -89,8 +89,8 @@ function getPokeName(name) {
 
 // get the url of the pokemon (for further data extrapolation)
 function getPokeData(pokemonUrl) {
-    console.log("3. get poke data function:");
-    console.log(pokemonUrl);
+    // console.log("3. get poke data function:");
+    // console.log(pokemonUrl);
 
     console.log("4. pokemon url");
     console.log(pokemonUrl);
@@ -109,7 +109,6 @@ function getPokeData(pokemonUrl) {
         .catch(function (error) {
             console.log(error);
         })
-
 }
 
 
