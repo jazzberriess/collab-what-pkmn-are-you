@@ -139,7 +139,8 @@ function getArtistData(accessToken) {
 var pokeName = [];  // for the pokemon name
 var pokeType = [];  // for the pokemon typing
 var pokeArtwork = []; // for the pokemon's official artwork url
-var pokeEntry = []; // for the pokemon's species description
+var speciesArray = []; // to store pokemon species data
+var pokeEntry = []; // for the pokemon's flavour text
 
 // set up empty pokemon object to push name, type and data thru later
 var pokemonObj = {};
@@ -261,7 +262,7 @@ function fetchPokeSpecies(pokemonUrl) {
             // pass art url on
             getPokeArt(artUrl);
 
-            // grab species data url
+            // grab each species' data url
             var species = urlData.species.url;
             // pass it on to get flavour text
             fetchPokeFlavourText(species);
@@ -288,15 +289,8 @@ function fetchPokeFlavourText(species) {
             }
         })
         .then(function (speciesData) {
-            console.log("species data");
-            console.log(speciesData);
-
-            var flavourTexts = speciesData.flavor_text_entries;
-            var allFlavourTexts = [];
-
-            
-
-            // getPokeEntry(allFlavourTexts);
+            // push each species data into the species data array
+            speciesArray.push(speciesData);
         })
         .catch(function (error) {
             console.log(error);
@@ -304,23 +298,15 @@ function fetchPokeFlavourText(species) {
 
 }
 
-// function getPokeEntry(allflavourtexts) {
-//     console.log(allflavourtexts);
-
-//     let name = "silvally";
-
-//     switch (name) {
-//         case "kricketune":
-//             console.log(allflavourtexts[0].flavor_text);
-//             break;
-//         default:
-//             console.log(allflavourtexts)
-//     }
-
-// }
-
 
 getPokeApi();
+
+// testing
+console.log("pokemon name:");
+console.log(pokeName);
+
+console.log("species data: ");
+console.log(speciesArray);
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", getSpotifyToken)
