@@ -139,7 +139,6 @@ function getArtistData(accessToken) {
 var pokeName = [];  // for the pokemon name
 var pokeType = [];  // for the pokemon typing
 var pokeArtwork = []; // for the pokemon's official artwork url
-var speciesArray = []; // to store pokemon species data
 var pokeEntry = []; // for the pokemon's flavour text
 
 // set up empty pokemon object to push name, type and data thru later
@@ -149,7 +148,6 @@ var pokemonObj = {};
 
 // first call to pokéAPI: fetch data for all pokémon
 function getPokeApi() {
-
     // add query 'limit=1126' to retrieve every pokémon (else it will retrieve 20 results at a time)
     var pokemonApiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=1126";
 
@@ -289,8 +287,8 @@ function fetchPokeFlavourText(species) {
             }
         })
         .then(function (speciesData) {
-            // push each species data into the species data array
-            speciesArray.push(speciesData);
+            // pass on all species data to next function
+            assignPokeEntry(speciesData);
         })
         .catch(function (error) {
             console.log(error);
@@ -298,15 +296,81 @@ function fetchPokeFlavourText(species) {
 
 }
 
+/* IMPORTANT NOTE: because there are a lot of different flavour text entries available for each pokemon (and a number of them are in languages other than English), and because not all entries assigned to the first index of flavour_text_entries are in English, it's important to be able to select the specific flavour text we want */
+
+// pick the specific flavour text to use for each pokemon
+function assignPokeEntry(speciesdata) {
+    // target the name of pokemon to enable switch case usage
+    let name = speciesdata.name;
+    // console.log(speciesdata);
+    console.log(name);
+
+    switch (name) {
+        // cases 1-5
+        case "kricketune":
+            console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            break;
+        case "zoroark":
+            console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            break;
+        case "latios":
+            console.log(speciesdata.flavor_text_entries[2].flavor_text);
+            break;
+        case "mareep":
+            console.log(speciesdata.flavor_text_entries[5].flavor_text);
+            break;
+        case "sylveon":
+            console.log(speciesdata.flavor_text_entries[6].flavor_text);
+            break;
+        // cases 6-10
+        case "urshifu":
+            console.log(speciesdata.flavor_text_entries[7].flavor_text);
+            break;
+        case "torracat":
+            console.log(speciesdata.flavor_text_entries[58].flavor_text);
+            break;
+        case "pidgeotto":
+            console.log(speciesdata.flavor_text_entries[14].flavor_text);
+            break;
+        case "banette":
+            console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            break;
+        case "roserade":
+            console.log(speciesdata.flavor_text_entries[1].flavor_text);
+            break;
+        // cases 11-15
+        case "piloswine":
+            console.log(speciesdata.flavor_text_entries[6].flavor_text);
+            break;
+        case "bergmite":
+            console.log(speciesdata.flavor_text_entries[39].flavor_text);
+            break;
+        case "lickitung":
+            console.log(speciesdata.flavor_text_entries[9].flavor_text);
+            break;
+        case "skuntank":
+            console.log(speciesdata.flavor_text_entries[0].flavor_text);
+            break;
+        case "hatterene":
+            console.log(speciesdata.flavor_text_entries[7].flavor_text);
+            break;
+        // cases 16-18
+        case "gigalith":
+            console.log(speciesdata.flavor_text_entries[1].flavor_text);
+            break;
+        case "aggron":
+            console.log(speciesdata.flavor_text_entries[2].flavor_text);
+            break;
+        case "primarina":
+            console.log(speciesdata.flavor_text_entries[37].flavor_text);
+            break;
+        // case 19 (the 'random' type as default)
+        default:
+            console.log(speciesdata.flavor_text_entries[7].flavor_text);
+    }
+}
 
 getPokeApi();
-
-// testing
-console.log("pokemon name:");
-console.log(pokeName);
-
-console.log("species data: ");
-console.log(speciesArray);
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", getSpotifyToken)
