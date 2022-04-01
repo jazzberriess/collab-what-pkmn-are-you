@@ -306,67 +306,105 @@ function assignPokeEntry(speciesdata) {
     console.log(name);
 
     switch (name) {
-        // cases 1-5
         case "kricketune":
-            console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[3].flavor_text);
+            console.log(pokeEntry);
             break;
         case "zoroark":
-            console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[3].flavor_text);
+            console.log(pokeEntry);
             break;
         case "latios":
-            console.log(speciesdata.flavor_text_entries[2].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[2].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[2].flavor_text);
+            console.log(pokeEntry);
             break;
         case "mareep":
-            console.log(speciesdata.flavor_text_entries[5].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[5].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[5].flavor_text);
+            console.log(pokeEntry);
             break;
         case "sylveon":
-            console.log(speciesdata.flavor_text_entries[6].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[6].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[6].flavor_text);
+            console.log(pokeEntry);
             break;
-        // cases 6-10
+
         case "urshifu":
-            console.log(speciesdata.flavor_text_entries[7].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[7].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[7].flavor_text);
+            console.log(pokeEntry);
             break;
         case "torracat":
-            console.log(speciesdata.flavor_text_entries[58].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[58].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[58].flavor_text);
+            console.log(pokeEntry);
             break;
         case "pidgeotto":
-            console.log(speciesdata.flavor_text_entries[14].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[14].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[14].flavor_text);
+            console.log(pokeEntry);
             break;
         case "banette":
-            console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[3].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[3].flavor_text);
+            console.log(pokeEntry);
             break;
         case "roserade":
-            console.log(speciesdata.flavor_text_entries[1].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[1].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[1].flavor_text);
+            console.log(pokeEntry);
             break;
-        // cases 11-15
+
         case "piloswine":
-            console.log(speciesdata.flavor_text_entries[6].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[6].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[6].flavor_text);
+            console.log(pokeEntry);
             break;
         case "bergmite":
-            console.log(speciesdata.flavor_text_entries[39].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[39].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[39].flavor_text);
+            console.log(pokeEntry);
             break;
         case "lickitung":
-            console.log(speciesdata.flavor_text_entries[9].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[9].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[9].flavor_text);
+            console.log(pokeEntry);
             break;
         case "skuntank":
-            console.log(speciesdata.flavor_text_entries[0].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[0].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[0].flavor_text);
+            console.log(pokeEntry);
             break;
         case "hatterene":
-            console.log(speciesdata.flavor_text_entries[7].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[7].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[7].flavor_text);
+            console.log(pokeEntry);
             break;
-        // cases 16-18
+
         case "gigalith":
-            console.log(speciesdata.flavor_text_entries[1].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[1].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[1].flavor_text);
+            console.log(pokeEntry);
             break;
         case "aggron":
-            console.log(speciesdata.flavor_text_entries[2].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[2].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[2].flavor_text);
+            console.log(pokeEntry);
             break;
         case "primarina":
-            console.log(speciesdata.flavor_text_entries[37].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[37].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[37].flavor_text);
+            console.log(pokeEntry);
             break;
-        // case 19 (the 'random' type as default)
+
         default:
-            console.log(speciesdata.flavor_text_entries[7].flavor_text);
+            // console.log(speciesdata.flavor_text_entries[7].flavor_text);
+            pokeEntry.push(speciesdata.flavor_text_entries[7].flavor_text);
+            console.log(pokeEntry);
+            break;
     }
 }
 
