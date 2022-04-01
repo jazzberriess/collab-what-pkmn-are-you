@@ -291,8 +291,8 @@ function fetchPokeFlavourText(species) {
             console.log("species data");
             console.log(speciesData);
 
-            // var flavourTexts = speciesData.flavor_text_entries;
-            // var allFlavourTexts = [];
+            var flavourTexts = speciesData.flavor_text_entries;
+            var allFlavourTexts = [];
 
             
 
