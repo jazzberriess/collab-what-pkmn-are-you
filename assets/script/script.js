@@ -2,11 +2,7 @@
 
 //setting global varaibles for the SpotifyAPI so we can access the retrieved json data in various functions
 
-let savedArtistData = [];
 
-let tokenData = [];
-
-let token = "";
 
 let artistGenre = "";
 
@@ -34,20 +30,22 @@ async function getToken() {
         body: "grant_type=client_credentials",
     })
 
-    tokenData = await spotifyApiReq.json();
+    let tokenData = await spotifyApiReq.json();
     console.log(tokenData.access_token);
-    token = tokenData.access_token;
-    return getArtistGenre();
+    let token = tokenData.access_token;
+    return getArtistGenre(token);
 
 };
 
 //SPOTIFY API function to get artist details
 
-async function getArtistGenre() {
+async function getArtistGenre(token) {
+
+    let savedArtistData = [];
 
     //FOR THE LOVE OF EVERYTHING CHANGE THIS STRING TO USERINPUT.VALUE
 
-    let artistInput = "shakira";
+    let artistInput = "britney spears";
     let spotifyArtistRequest = "https://api.spotify.com/v1/search?type=artist&q=" + artistInput + "&limit=5";
 
     let artistReq = await fetch(spotifyArtistRequest, {
@@ -61,6 +59,8 @@ async function getArtistGenre() {
     savedArtistData = await artistReq.json();
     console.log(savedArtistData);
     artistGenre = savedArtistData.artists.items[0].genres[0];
+
+    generatePkmn();
 }
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
@@ -158,7 +158,7 @@ function getPokeType(pokemonUrl) {
                 return response.json();
             }
         })
-        .then(function(pokeData) {
+        .then(function (pokeData) {
             // first console.log to make sure our data has been correctly pulled
             console.log("url data: ");
             console.log(pokeData);
@@ -181,3 +181,15 @@ function getPokeType(pokemonUrl) {
 
 
 getPokeApi();
+
+//GENERATE YOUR POKEMON function
+
+function generatePkmn() {
+
+    if (artistGenre.includes("pop")) {
+        console.log("The artist Genre is " + artistGenre + " and the pokemon is " + pokeType[1]);
+    } else {
+        console.log("The artist genre is " + artistGenre);
+    }
+
+}
