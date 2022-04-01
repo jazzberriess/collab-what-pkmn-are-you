@@ -112,28 +112,7 @@ function getArtistData(accessToken) {
 
 // POKEMON API functions
 
-// these variables may not end up being needed
-// var typesObj = {
-//     "bug": [],
-//     "dark": [],
-//     "dragon": [],
-//     "electric": [],
-//     "fairy": [],
-//     "fighting": [],
-//     "fire": [],
-//     "flying": [],
-//     "ghost": [],
-//     "grass": [],
-//     "ground": [],
-//     "ice": [],
-//     "normal": [],
-//     "poison": [],
-//     "psychic": [],
-//     "rock": [],
-//     "steel": [],
-//     "water": [],
-//     "random": []
-// }
+
 
 // arrays to store pokemon data separately
 var pokeName = [];  // for the pokemon name
@@ -141,11 +120,641 @@ var pokeType = [];  // for the pokemon typing
 var pokeArtwork = []; // for the pokemon's official artwork url
 var pokeEntry = []; // for the pokemon's flavour text
 
+var pokeId = [];
+
+
+var typeInfo = {
+    "bug": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "dark": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "dragon": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "electric": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "fairy": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "fighting": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "fire": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "flying": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "ghost": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "grass": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "ground": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "ice": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "normal": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "poison": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "psychic": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "rock": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "steel": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "water": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
+    "random": { "name": {}, "id": {}, "artwork": {}, "entry": {} }
+}
+
+// var typeInfo = {
+//     "bug": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "dark": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "dragon": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "electric": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "fairy": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "fighting": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "fire": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "flying": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "ghost": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "grass": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "ground": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "ice": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "normal": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "poison": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "psychic": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "rock": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "steel": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "water": { "name": {}, "id": {}, "type": {}, "entry": {} },
+//     "random": { "name": {}, "id": {}, "type": {}, "entry": {} }
+// }
+
+// // these variables may not end up being needed
+// var typesObj = {
+//     "bug": [pokeName[0], pokeId[0], pokeType[0], pokeArtwork[0]],
+//     "dark": [pokeName[1], pokeId[1], pokeType[1], pokeArtwork[1]],
+//     "dragon": [pokeName[2], pokeId[2], pokeType[2], pokeArtwork[2]],
+//     "electric": [pokeName[3], pokeId[3], pokeType[3], pokeArtwork[3]],
+//     "fairy": [pokeName[4], pokeId[4], pokeType[4], pokeArtwork[4]],
+//     "fighting": [pokeName[5], pokeId[5], pokeType[5], pokeArtwork[5]],
+//     "fire": [pokeName[6], pokeId[6], pokeType[6], pokeArtwork[6]],
+//     "flying": [pokeName[7], pokeId[7], pokeType[7], pokeArtwork[7]],
+//     "ghost": [pokeName[8], pokeId[8], pokeType[8], pokeArtwork[8]],
+//     "grass": [pokeName[9], pokeId[9], pokeType[9], pokeArtwork[9]],
+//     "ground": [pokeName[10], pokeId[10], pokeType[10], pokeArtwork[10]],
+//     "ice": [pokeName[11], pokeId[11], pokeType[11], pokeArtwork[11]],
+//     "normal": [pokeName[12], pokeId[12], pokeType[12], pokeArtwork[12]],
+//     "poison": [pokeName[13], pokeId[13], pokeType[13], pokeArtwork[13]],
+//     "psychic": [pokeName[14], pokeId[14], pokeType[14], pokeArtwork[14]],
+//     "rock": [pokeName[15], pokeId[15], pokeType[15], pokeArtwork[15]],
+//     "steel": [pokeName[16], pokeId[16], pokeType[16], pokeArtwork[16]],
+//     "water": [pokeName[17], pokeId[17], pokeType[17], pokeArtwork[17]],
+//     "random": [pokeName[18], pokeId[18], pokeType[18], pokeArtwork[18]]
+// }
+
 // set up empty pokemon object to push name, type and data thru later
-var pokemonObj = {};
+// var pokemonObj = {};
 
 // CONNECT TO pokéAPI
 
+
+function getPokeApi() {
+    // add query 'limit=1126' to retrieve every pokémon (else it will retrieve 20 results at a time)
+    var pokemonApiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=1126";
+
+    fetch(pokemonApiUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            } else {
+                return response.json();
+            }
+        })
+        .then(function (allPokemonData) {
+            let pokemon = allPokemonData.results;
+
+            // initial array to hold specific pokemon
+            let selectedPokemon = [
+                pokemon[401], // bug type: kricketune
+                pokemon[570], // dark type: zoroark
+                pokemon[380], // dragon type: latios
+                pokemon[178], // electric type: mareep
+                pokemon[699], // fairy type: sylveon
+                pokemon[891], // fighting type: urshifu
+                pokemon[725], // fire type: torracat
+                pokemon[16], // flying type: pidgeotto
+                pokemon[353], // ghost type: banette
+                pokemon[406], // grass type: roserade
+                pokemon[220], // ground type: piloswine
+                pokemon[711], // ice type: bergmite
+                pokemon[107], // normal type: lickitung
+                pokemon[434], // poison type: skuntank
+                pokemon[857], // psychic type: hatterene
+                pokemon[525], // rock type: gigalith
+                pokemon[305], // steel type: aggron
+                pokemon[729], // water type: primarina
+                pokemon[772], // random choice: silvally
+            ];
+
+            selectedPokemon.forEach(function (pokemon) {
+                getPokemonInfo(pokemon.url);
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+function getPokemonInfo(url) {
+    // console.log(url);
+    fetch(url)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            } else {
+                return response.json();
+            }
+        })
+        .then(function (data) {
+            // console.log(data);
+
+            var name = data.name;
+            getPokemonName(typeInfo, name);
+
+            var id = data.id;
+            getPokemonId(typeInfo, name, id);
+
+            // var type = data.types[0].type.name;
+            // getPokemonType(typeInfo, name, type);
+
+            var artwork = "";
+            var artLocation = data.sprites.other["official-artwork"].front_default;
+            artwork += artLocation;
+            getPokemonArt(typeInfo, name, artwork);
+
+            var species = data.species.url;
+            getPokemonSpecies(typeInfo, name, species);
+
+            console.log("get pokemon info: ");
+            console.log(typeInfo);
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+function getPokemonName(typeobj, name) {
+    let pokemon = name;
+
+    switch (pokemon) {
+        case "kricketune":
+            typeobj.bug.name = name;
+            // console.log(typeobj);
+            break;
+        case "zoroark":
+            typeobj.dark.name = name;
+            // console.log(typeobj);
+            break;
+        case "latios":
+            typeobj.dragon.name = name;
+            // console.log(typeobj);
+            break;
+        case "mareep":
+            typeobj.electric.name = name;
+            // console.log(typeobj);
+            break;
+        case "sylveon":
+            typeobj.fairy.name = name;
+            // console.log(typeobj);
+            break;
+
+        case "urshifu-single-strike":
+            let urshifu = name.split("-")[0];
+            typeobj.fighting.name = urshifu;
+            // console.log(typeobj);
+            break;
+        case "torracat":
+            typeobj.fire.name = name;
+            // console.log(typeobj);
+            break;
+        case "pidgeotto":
+            typeobj.flying.name = name;
+            // console.log(typeobj);
+            break;
+        case "banette":
+            typeobj.ghost.name = name;
+            // console.log(typeobj);
+            break;
+        case "roserade":
+            typeobj.grass.name = name;
+            // console.log(typeobj);
+            break;
+
+        case "piloswine":
+            typeobj.ground.name = name;
+            // console.log(typeobj);
+            break;
+        case "bergmite":
+            typeobj.ice.name = name;
+            // console.log(typeobj);
+            break;
+        case "lickitung":
+            typeobj.normal.name = name;
+            // console.log(typeobj);
+            break;
+        case "skuntank":
+            typeobj.poison.name = name;
+            // console.log(typeobj);
+            break;
+        case "hatterene":
+            typeobj.psychic.name = name;
+            // console.log(typeobj);
+            break;
+
+        case "gigalith":
+            typeobj.rock.name = name;
+            // console.log(typeobj);
+            break;
+        case "aggron":
+            typeobj.steel.name = name;
+            // console.log(typeobj);
+            break;
+        case "primarina":
+            typeobj.water.name = name;
+            // console.log(typeobj);
+            break;
+        case "silvally":
+            typeobj.random.name = name;
+            // console.log(typeobj);
+            break;
+        default: 
+            console.log("default break: nothing");
+            break;
+    }
+}
+
+function getPokemonId(typeobj, name, id) {
+    let pokemon = name;
+
+    switch (pokemon) {
+        case "kricketune":
+            typeobj.bug.id = id;
+            // console.log(typeobj);
+            break;
+        case "zoroark":
+            typeobj.dark.id = id;
+            // console.log(typeobj);
+            break;
+        case "latios":
+            typeobj.dragon.id = id;
+            // console.log(typeobj);
+            break;
+        case "mareep":
+            typeobj.electric.id = id;
+            // console.log(typeobj);
+            break;
+        case "sylveon":
+            typeobj.fairy.id = id;
+            // console.log(typeobj);
+            break;
+
+        case "urshifu-single-strike":
+            typeobj.fighting.id = id;
+            // console.log(typeobj);
+            break;
+        case "torracat":
+            typeobj.fire.id = id;
+            // console.log(typeobj);
+            break;
+        case "pidgeotto":
+            typeobj.flying.id = id;
+            // console.log(typeobj);
+            break;
+        case "banette":
+            typeobj.ghost.id = id;
+            // console.log(typeobj);
+            break;
+        case "roserade":
+            typeobj.grass.id = id;
+            // console.log(typeobj);
+            break;
+
+        case "piloswine":
+            typeobj.ground.id = id;
+            // console.log(typeobj);
+            break;
+        case "bergmite":
+            typeobj.ice.id = id;
+            // console.log(typeobj);
+            break;
+        case "lickitung":
+            typeobj.normal.id = id;
+            // console.log(typeobj);
+            break;
+        case "skuntank":
+            typeobj.poison.id = id;
+            // console.log(typeobj);
+            break;
+        case "hatterene":
+            typeobj.psychic.id = id;
+            // console.log(typeobj);
+            break;
+
+        case "gigalith":
+            typeobj.rock.id = id;
+            // console.log(typeobj);
+            break;
+        case "aggron":
+            typeobj.steel.id = id;
+            // console.log(typeobj);
+            break;
+        case "primarina":
+            typeobj.water.id = id;
+            // console.log(typeobj);
+            break;
+        case "silvally": 
+            typeobj.random.id = id;
+            // console.log(typeobj);
+            break;
+        default:
+            console.log("default break: nothing");
+            break;
+    }
+}
+
+// function getPokemonType here (don't actually need it)
+/*
+function getPokemonType(typeobj, name, type) {
+    let pokemon = name;
+
+    switch (pokemon) {
+        case "kricketune":
+            typeobj.bug.type = type;
+            console.log(typeobj);
+            break;
+        case "zoroark":
+            typeobj.dark.type = type;
+            console.log(typeobj);
+            break;
+        case "latios":
+            typeobj.dragon.type = type;
+            console.log(typeobj);
+            break;
+        case "mareep":
+            typeobj.electric.type = type;
+            console.log(typeobj);
+            break;
+        case "sylveon":
+            typeobj.fairy.type = type;
+            console.log(typeobj);
+            break;
+
+        case "urshifu-single-strike":
+            typeobj.fighting.type = type;
+            console.log(typeobj);
+            break;
+        case "torracat":
+            typeobj.fire.type = type;
+            console.log(typeobj);
+            break;
+        case "ptypegeotto":
+            typeobj.flying.type = type;
+            console.log(typeobj);
+            break;
+        case "banette":
+            typeobj.ghost.type = type;
+            console.log(typeobj);
+            break;
+        case "roserade":
+            typeobj.grass.type = type;
+            console.log(typeobj);
+            break;
+
+        case "piloswine":
+            typeobj.ground.type = type;
+            console.log(typeobj);
+            break;
+        case "bergmite":
+            typeobj.ice.type = type;
+            console.log(typeobj);
+            break;
+        case "lickitung":
+            typeobj.normal.type = type;
+            console.log(typeobj);
+            break;
+        case "skuntank":
+            typeobj.poison.type = type;
+            console.log(typeobj);
+            break;
+        case "hatterene":
+            typeobj.psychic.type = type;
+            console.log(typeobj);
+            break;
+
+        case "gigalith":
+            typeobj.rock.type = type;
+            console.log(typeobj);
+            break;
+        case "aggron":
+            typeobj.steel.type = type;
+            console.log(typeobj);
+            break;
+        case "primarina":
+            typeobj.water.type = type;
+            console.log(typeobj);
+            break;
+        case "silvally": 
+            typeobj.random.type = type;
+            console.log(typeobj);
+            break;
+        default:
+            console.log("default break: nothing");
+            break;
+    }
+}
+*/
+
+function getPokemonArt(typeobj, name, artwork) {
+    let pokemon = name;
+
+    switch (pokemon) {
+        case "kricketune":
+            typeobj.bug.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "zoroark":
+            typeobj.dark.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "latios":
+            typeobj.dragon.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "mareep":
+            typeobj.electric.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "sylveon":
+            typeobj.fairy.artwork = artwork;
+            // console.log(typeobj);
+            break;
+
+        case "urshifu-single-strike":
+            typeobj.fighting.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "torracat":
+            typeobj.fire.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "partworkgeotto":
+            typeobj.flying.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "banette":
+            typeobj.ghost.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "roserade":
+            typeobj.grass.artwork = artwork;
+            // console.log(typeobj);
+            break;
+
+        case "piloswine":
+            typeobj.ground.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "bergmite":
+            typeobj.ice.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "lickitung":
+            typeobj.normal.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "skuntank":
+            typeobj.poison.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "hatterene":
+            typeobj.psychic.artwork = artwork;
+            // console.log(typeobj);
+            break;
+
+        case "gigalith":
+            typeobj.rock.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "aggron":
+            typeobj.steel.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "primarina":
+            typeobj.water.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        case "silvally": 
+            typeobj.random.artwork = artwork;
+            // console.log(typeobj);
+            break;
+        default:
+            console.log("default break: nothing");
+            break;
+    }
+}
+
+function getPokemonSpecies(typeobj, name, species) {
+    // console.log(url);
+    fetch(species)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            } else {
+                return response.json();
+            }
+        })
+        .then(function (speciesdata) {
+            // console.log(speciesdata);
+            getEntry(typeobj, name, speciesdata);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+function getEntry(typeobj, name, speciesdata) {
+    let entry = speciesdata.flavor_text_entries;
+    let pokemon = name;
+
+    switch (pokemon) {
+        case "kricketune":
+            typeobj.bug.entry = entry[3].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "zoroark":
+            typeobj.dark.entry = entry[3].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "latios":
+            typeobj.dragon.entry = entry[2].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "mareep":
+            typeobj.electric.entry = entry[5].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "sylveon":
+            typeobj.fairy.entry = entry[6].flavor_text;
+            // console.log(typeobj);
+            break;
+
+        case "urshifu-single-strike":
+            typeobj.fighting.entry = entry[7].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "torracat":
+            typeobj.fire.entry = entry[58].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "pentrygeotto":
+            typeobj.flying.entry = entry[14].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "banette":
+            typeobj.ghost.entry = entry[3].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "roserade":
+            typeobj.grass.entry = entry[1].flavor_text;
+            // console.log(typeobj);
+            break;
+
+        case "piloswine":
+            typeobj.ground.entry = entry[6].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "bergmite":
+            typeobj.ice.entry = entry[39].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "lickitung":
+            typeobj.normal.entry = entry[9].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "skuntank":
+            typeobj.poison.entry = entry[0].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "hatterene":
+            typeobj.psychic.entry = entry[7].flavor_text;
+            // console.log(typeobj);
+            break;
+
+        case "gigalith":
+            typeobj.rock.entry = entry[1].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "aggron":
+            typeobj.steel.entry = entry[2].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "primarina":
+            typeobj.water.entry = entry[37].flavor_text;
+            // console.log(typeobj);
+            break;
+        case "silvally": 
+            typeobj.random.entry = entry[7].flavor_text;
+            // console.log(typeobj);
+            break;
+        default:
+            console.log("default break: nothing");
+            break;
+    }
+}
+
+getPokeApi();
+
+
+/* 
 // first call to pokéAPI: fetch data for all pokémon
 function getPokeApi() {
     // add query 'limit=1126' to retrieve every pokémon (else it will retrieve 20 results at a time)
@@ -274,6 +883,7 @@ function fetchPokeSpecies(pokemonUrl) {
 function getPokeArt(arturl) {
     // get the artwork url and push it to pokeArtwork array
     pokeArtwork.push(arturl);
+    console.log(arturl);
 }
 
 // to get the pokemon's pokedex entry (species flavour text)
@@ -296,119 +906,48 @@ function fetchPokeFlavourText(species) {
 
 }
 
-/* IMPORTANT NOTE: because there are a lot of different flavour text entries available for each pokemon (and a number of them are in languages other than English), and because not all entries assigned to the first index of flavour_text_entries are in English, it's important to be able to select the specific flavour text we want */
+// IMPORTANT NOTE: because there are a lot of different flavour text entries available for each pokemon (and a number of them are in languages other than English), and because not all entries assigned to the first index of flavour_text_entries are in English, it's important to be able to select the specific flavour text we want
 
 // pick the specific flavour text to use for each pokemon
 function assignPokeEntry(speciesdata) {
     // target the name of pokemon to enable switch case usage
     let name = speciesdata.name;
-    // console.log(speciesdata);
-    console.log(name);
+    // let unorderedPokeEntry = [];
+    // let index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
-    switch (name) {
-        case "kricketune":
-            // console.log(speciesdata.flavor_text_entries[3].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[3].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "zoroark":
-            // console.log(speciesdata.flavor_text_entries[3].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[3].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "latios":
-            // console.log(speciesdata.flavor_text_entries[2].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[2].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "mareep":
-            // console.log(speciesdata.flavor_text_entries[5].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[5].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "sylveon":
-            // console.log(speciesdata.flavor_text_entries[6].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[6].flavor_text);
-            console.log(pokeEntry);
-            break;
+    
+    //     if (name.includes("kricketune")) {
+    //         unorderedPokeEntry[1].push("kricketune " + speciesdata.flavor_text_entries[3].flavor_text);
+    //     }
 
-        case "urshifu":
-            // console.log(speciesdata.flavor_text_entries[7].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[7].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "torracat":
-            // console.log(speciesdata.flavor_text_entries[58].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[58].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "pidgeotto":
-            // console.log(speciesdata.flavor_text_entries[14].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[14].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "banette":
-            // console.log(speciesdata.flavor_text_entries[3].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[3].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "roserade":
-            // console.log(speciesdata.flavor_text_entries[1].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[1].flavor_text);
-            console.log(pokeEntry);
-            break;
+    //     if (name.includes("zoroark")) {
+    //         unorderedPokeEntry[2].push(speciesdata.flavor_text_entries[3].flavor_text);
+    //     }
 
-        case "piloswine":
-            // console.log(speciesdata.flavor_text_entries[6].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[6].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "bergmite":
-            // console.log(speciesdata.flavor_text_entries[39].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[39].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "lickitung":
-            // console.log(speciesdata.flavor_text_entries[9].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[9].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "skuntank":
-            // console.log(speciesdata.flavor_text_entries[0].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[0].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "hatterene":
-            // console.log(speciesdata.flavor_text_entries[7].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[7].flavor_text);
-            console.log(pokeEntry);
-            break;
+    //     if (name.includes("latios")) {
+    //         unorderedPokeEntry[3].push(speciesdata.flavor_text_entries[2].flavor_text);
+    //     }
 
-        case "gigalith":
-            // console.log(speciesdata.flavor_text_entries[1].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[1].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "aggron":
-            // console.log(speciesdata.flavor_text_entries[2].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[2].flavor_text);
-            console.log(pokeEntry);
-            break;
-        case "primarina":
-            // console.log(speciesdata.flavor_text_entries[37].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[37].flavor_text);
-            console.log(pokeEntry);
-            break;
+    //     if (name.includes("mareep")) {
+    //         unorderedPokeEntry[4].push(speciesdata.flavor_text_entries[5].flavor_text);
+    //     }
 
-        default:
-            // console.log(speciesdata.flavor_text_entries[7].flavor_text);
-            pokeEntry.push(speciesdata.flavor_text_entries[7].flavor_text);
-            console.log(pokeEntry);
-            break;
-    }
+    //     if (name.includes("sylveon")) {
+    //         unorderedPokeEntry[5].push(speciesdata.flavor_text_entries[6].flavor_text);
+    //     }
+
+    //     if (name.includes("urshifu")) {
+    //         unorderedPokeEntry[6].push(speciesdata.flavor_text_entries[7].flavor_text);
+    //     }
+
+    //     console.log(unorderedPokeEntry);
+    //     return unorderedPokeEntry;
+    // }
 }
 
 getPokeApi();
+
+*/
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", getSpotifyToken)
