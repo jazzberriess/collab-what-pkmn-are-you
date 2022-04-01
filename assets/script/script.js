@@ -150,7 +150,7 @@ function getPokeApi() {
                 // pass on url data to function for grabbing type
                 getPokeType(pokemon.url);
                 // pass on url to function for grabbing species data
-                getPokeSpecies(pokemon.url);
+                fetchPokeSpecies(pokemon.url);
             });
         })
         .catch(function (error) {
@@ -162,6 +162,16 @@ function getPokeApi() {
 function getPokeName(name) {
     // grab the pokemon name and push it to pokeName array
     pokeName.push(name);
+
+    // making it so Urshifu's name is only "Urshifu" and not "Urshifu-single-strike"
+    if (name.includes("urshifu")) {
+        // grab name that includes "urshifu", split it by "-" and target index 0 ("urshifu")
+        var urshifu = name.split("-")[0];
+        // delete "urshifu-single-strike" from the name array
+        pokeName.pop();
+        // add just "urshifu" back into the name array
+        pokeName.push(urshifu);
+    }
 }
 
 // get the pokemon's type through second fetch call
@@ -175,10 +185,9 @@ function getPokeType(pokemonUrl) {
                 return response.json();
             }
         })
-        .then(function(pokeData) {
+        .then(function(urlData) {
             // for readability, make a variable 'type' and assign it the fetched data
-            var type = pokeData.types[0].type.name;
-
+            var type = urlData.types[0].type.name;
             // push the type to the pokeType array
             pokeType.push(type);
         })
@@ -187,7 +196,8 @@ function getPokeType(pokemonUrl) {
         });
 }
 
-function getPokeSpecies(pokemonUrl) {
+// get pokemon species data which will include official artwork url and another link to retrieve flavour text
+function fetchPokeSpecies(pokemonUrl) {
     // fetch data using pokemon.url
     fetch(pokemonUrl)
         .then(function (response) {
@@ -197,18 +207,21 @@ function getPokeSpecies(pokemonUrl) {
                 return response.json();
             }
         })
-        .then(function (pokeData) {
+        .then(function (urlData) {
+            // set an empty string
+            var artUrl = "";
             // grab url for official artwork
-            var officialArt = pokeData.sprites.other["official-artwork"].front_default;
-            // turn it into a string using template literals (template strings)
-            var artUrl = `"${officialArt}"`;
+            var officialArt = urlData.sprites.other["official-artwork"].front_default;
+            // add the retrieved url to the empty string
+            artUrl += officialArt;
+
             // pass art url on
             getPokeArt(artUrl);
 
             // grab species data url
-            var species = pokeData.species.url;
+            var species = urlData.species.url;
             // pass it on to get flavour text
-            getPokeFlavourText(species);
+            fetchPokeFlavourText(species);
         })
         .catch(function (error) {
             console.log(error);
@@ -217,13 +230,51 @@ function getPokeSpecies(pokemonUrl) {
 
 // to get the official artwork img url
 function getPokeArt(arturl) {
-    console.log(arturl);
+    // get the artwork url and push it to pokeArtwork array
+    pokeArtwork.push(arturl);
 }
 
 // to get the pokemon's pokedex entry (species flavour text)
-function getPokeFlavourText(species) {
-    console.log(species);
+function fetchPokeFlavourText(species) {
+    fetch(species)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            } else {
+                return response.json();
+            }
+        })
+        .then(function (speciesData) {
+            console.log("species data");
+            console.log(speciesData);
+
+            // var flavourTexts = speciesData.flavor_text_entries;
+            // var allFlavourTexts = [];
+
+            
+
+            // getPokeEntry(allFlavourTexts);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
 }
+
+// function getPokeEntry(allflavourtexts) {
+//     console.log(allflavourtexts);
+
+//     let name = "silvally";
+
+//     switch (name) {
+//         case "kricketune":
+//             console.log(allflavourtexts[0].flavor_text);
+//             break;
+//         default:
+//             console.log(allflavourtexts)
+//     }
+
+// }
 
 
 getPokeApi();
