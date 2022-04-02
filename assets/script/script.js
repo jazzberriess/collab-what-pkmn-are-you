@@ -112,17 +112,7 @@ function getArtistData(accessToken) {
 
 // POKEMON API functions
 
-
-
-// arrays to store pokemon data separately
-var pokeName = [];  // for the pokemon name
-var pokeType = [];  // for the pokemon typing
-var pokeArtwork = []; // for the pokemon's official artwork url
-var pokeEntry = []; // for the pokemon's flavour text
-
-var pokeId = [];
-
-
+// full type list
 var typeInfo = {
     "bug": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
     "dark": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
@@ -144,54 +134,6 @@ var typeInfo = {
     "water": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
     "random": { "name": {}, "id": {}, "artwork": {}, "entry": {} }
 }
-
-// var typeInfo = {
-//     "bug": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "dark": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "dragon": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "electric": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "fairy": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "fighting": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "fire": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "flying": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "ghost": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "grass": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "ground": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "ice": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "normal": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "poison": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "psychic": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "rock": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "steel": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "water": { "name": {}, "id": {}, "type": {}, "entry": {} },
-//     "random": { "name": {}, "id": {}, "type": {}, "entry": {} }
-// }
-
-// // these variables may not end up being needed
-// var typesObj = {
-//     "bug": [pokeName[0], pokeId[0], pokeType[0], pokeArtwork[0]],
-//     "dark": [pokeName[1], pokeId[1], pokeType[1], pokeArtwork[1]],
-//     "dragon": [pokeName[2], pokeId[2], pokeType[2], pokeArtwork[2]],
-//     "electric": [pokeName[3], pokeId[3], pokeType[3], pokeArtwork[3]],
-//     "fairy": [pokeName[4], pokeId[4], pokeType[4], pokeArtwork[4]],
-//     "fighting": [pokeName[5], pokeId[5], pokeType[5], pokeArtwork[5]],
-//     "fire": [pokeName[6], pokeId[6], pokeType[6], pokeArtwork[6]],
-//     "flying": [pokeName[7], pokeId[7], pokeType[7], pokeArtwork[7]],
-//     "ghost": [pokeName[8], pokeId[8], pokeType[8], pokeArtwork[8]],
-//     "grass": [pokeName[9], pokeId[9], pokeType[9], pokeArtwork[9]],
-//     "ground": [pokeName[10], pokeId[10], pokeType[10], pokeArtwork[10]],
-//     "ice": [pokeName[11], pokeId[11], pokeType[11], pokeArtwork[11]],
-//     "normal": [pokeName[12], pokeId[12], pokeType[12], pokeArtwork[12]],
-//     "poison": [pokeName[13], pokeId[13], pokeType[13], pokeArtwork[13]],
-//     "psychic": [pokeName[14], pokeId[14], pokeType[14], pokeArtwork[14]],
-//     "rock": [pokeName[15], pokeId[15], pokeType[15], pokeArtwork[15]],
-//     "steel": [pokeName[16], pokeId[16], pokeType[16], pokeArtwork[16]],
-//     "water": [pokeName[17], pokeId[17], pokeType[17], pokeArtwork[17]],
-//     "random": [pokeName[18], pokeId[18], pokeType[18], pokeArtwork[18]]
-// }
-
-// set up empty pokemon object to push name, type and data thru later
-// var pokemonObj = {};
 
 // CONNECT TO pokéAPI
 
