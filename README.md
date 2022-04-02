@@ -10,3 +10,11 @@ Utilises APIs to  discover what type of Pokémon you are based on musical prefer
 * Glenn Digal
 * Christi Scappatura
 * Sushan Yue
+
+## Resources used by Christi
+
+*(Spotify webAPI Authorisation Guides: Client Credentials Flow)[https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/]
+* (Spotify webAPI Authorisation Guides: How to use the access Token)
+
+* (MDN Docs - Array.includes())[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes]
+* (Stackoverflow - How to get a random key value)[https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object]
