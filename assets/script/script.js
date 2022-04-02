@@ -2,6 +2,7 @@
 
 //setting global varaibles for the SpotifyAPI so we can access the retrieved json data in other functions
 
+let savedArtistData = [];
 
 let artistGenre = "";
 
@@ -57,6 +58,7 @@ function getSpotifyToken() {
         .catch(function (error) {
             console.log(error);
         });
+
 }
 
 //SPOTIFY API function to obtain artist details based on user input
@@ -64,7 +66,7 @@ function getSpotifyToken() {
 function getArtistData(accessToken) {
 
     //FOR THE LOVE OF EVERYTHING CHANGE THIS STRING TO USERINPUT.VALUE
-    let artistInput = "ludovico einaudi";
+    let artistInput = "mozart";
 
     //URL for the artist search via the spotify API - limit the search query to five results
     let spotifyArtistSearch = "https://api.spotify.com/v1/search?type=artist&q=" + artistInput + "&limit=5";
@@ -98,8 +100,10 @@ function getArtistData(accessToken) {
             console.log(savedArtistData);
 
             //save the artistGenre details to an empty global object to use in future functions
-            artistGenre = savedArtistData.artists.items[0].genres;
+            artistGenre = savedArtistData.artists.items[0].genres[0];
             console.log(artistGenre);
+
+            generatePkmn();
         })
 
         //catch any errors and console log them
@@ -273,15 +277,67 @@ getPokeApi();
 
 function generatePkmn() {
 
+
     if (artistGenre.includes("pop")) {
-        console.log("The artist Genre is " + artistGenre + " and the pokemon is " + pokeType[1]);
+        console.log("the pokemon is " + "FAIRY");
+
+    } else if (artistGenre.includes("country")) {
+        console.log("the pokemon is " + "GRASS");
+
+    } else if (artistGenre.includes("jazz")) {
+        console.log("the pokemon is " + "FIRE");
+
+    } else if (artistGenre.includes("ambient")) {
+        console.log("the pokemon is " + "WATER");
+
+    } else if (artistGenre.includes("easy")) {
+        console.log("the pokemon is " + "NORMAL");
+
+    } else if (artistGenre.includes("orchestra")) {
+        console.log("the pokemon is " + "FLYING");
+
+    } else if (artistGenre.includes("blues")) {
+        console.log("the pokemon is " + "BUG");
+
+    } else if (artistGenre.includes("rock")) {
+        console.log("the pokemon is " + "ROCK");
+
+    } else if (artistGenre.includes("folk")) {
+        console.log("the pokemon is " + "GROUND");
+
+    } else if (artistGenre.includes("punk")) {
+        console.log("the pokemon is " + "POISON");
+
+    } else if (artistGenre.includes("dance")) {
+        console.log("the pokemon is " + "ELECTRIC");
+
+    } else if (artistGenre.includes("R&B") || artistGenre.includes("rhythm") || artistGenre.includes("hip hop")) {
+        console.log("the pokemon is " + "FIGHTING");
+
+    } else if (artistGenre.includes("new age")) {
+        console.log("the pokemon is " + "PSYCHIC");
+
+    } else if (artistGenre.includes("soul") || artistGenre.includes("religious")) {
+        console.log("the pokemon is " + "GHOST");
+
+    } else if (artistGenre.includes("chill-out") || artistGenre.includes("lo-fi")) {
+        console.log("the pokemon is " + "ICE");
+
+    } else if (artistGenre.includes("classical")) {
+        console.log("the pokemon is " + "DRAGON");
+
+    } else if (artistGenre.includes("metal")) {
+        console.log("the pokemon is " + "STEEL");
+
+    } else if (artistGenre.includes("punk")) {
+        console.log("the pokemon is " + "DARK");
+
     } else {
-        console.log("The artist genre is " + artistGenre);
+        console.log("the pokemon is " + "RANDOM");
+
     }
 
 }
-
-getPokeApi();
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", getSpotifyToken)
