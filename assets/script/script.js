@@ -831,10 +831,6 @@ function saveResults() {
 
 }
 
-function retrieveResults() {
-
-}
-
 
 // initialise the page
 function init() {
