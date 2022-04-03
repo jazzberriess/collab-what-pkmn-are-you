@@ -3,7 +3,7 @@ A collaborative project to discover kind of Pokémon you are based on music pref
 
 ## About
 
-Utilises the [Spotify Web API](https://developer.spotify.com/documentation/web-api/) and the [Poké API](https://pokeapi.co/) to discover what type of Pokémon you are based on musical preferences. The user inputs a musician/artist and the app generates your Pokémon based on the artist's genre. Details about the Pokémon will emerge after you click the submit button, which pairs the genre of your artist with a corresponding Pokémon type (or random Pokémon in some instances, such as no genre listed).
+Utilises the [Spotify Web API](https://developer.spotify.com/documentation/web-api/) and [pokéAPI](https://pokeapi.co/) to discover what type of Pokémon you are based on musical preferences. The user inputs a musician/artist and the app generates your Pokémon based on the artist's genre. Details about the Pokémon will emerge after you click the submit button, which pairs the genre of your artist with a corresponding Pokémon type (or random Pokémon in some instances, such as no genre listed).
 
 ## User Story
 
@@ -54,5 +54,3 @@ Check out the [GitHub repo](https://github.com/jazzberriess/collab-what-pkmn-are
 * [MDN Docs](https://developer.mozilla.org/en-US/docs/Web)
 
 * [Stackoverflow](https://stackoverflow.com/)
-
-* Class notes and recorded class sessions from week 6
