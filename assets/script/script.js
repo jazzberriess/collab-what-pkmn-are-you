@@ -465,7 +465,6 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
     }
 }
 
-getPokeApi();
 
 //GENERATE YOUR POKEMON function
 
@@ -617,6 +616,14 @@ function matchArtistToPokemon(event) {
     }
 
 }
+
+// initialise the page
+function init() {
+    getPokeApi;
+}
+
+// start the app
+init();
 
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
