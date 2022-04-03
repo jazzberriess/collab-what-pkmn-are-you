@@ -365,7 +365,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.bug.artwork = artwork;
             typeobj.bug.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.bug.ability = capitaliseFirstLetter(ability[1].ability.name);
-            // console.log(typeobj.bug);
+            console.log(typeobj.bug.ability);
             break;
 
         // for the case of 'zoroark'
@@ -376,6 +376,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.dark.artwork = artwork;
             typeobj.dark.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.dark.ability = capitaliseFirstLetter(ability[0].ability.name);
+            console.log(typeobj.dark.ability);
             break;
 
         // and so on
@@ -385,6 +386,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.dragon.artwork = artwork;
             typeobj.dragon.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.dragon.ability = capitaliseFirstLetter(ability[0].ability.name);
+            console.log(typeobj.dragon.ability);
             break;
 
         case "mareep":
@@ -393,6 +395,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.electric.artwork = artwork;
             typeobj.electric.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.electric.ability = capitaliseFirstLetter(ability[0].ability.name);
+            console.log(typeobj.electric.ability);
             break;
 
         case "sylveon":
@@ -400,12 +403,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.fairy.id = id;
             typeobj.fairy.artwork = artwork;
             typeobj.fairy.type = capitaliseFirstLetter(type[0].type.name);
-            // sylveon's ability is retrieved as "cute-charm"; split the name up into two parts
-            let cutecharm = ability[0].ability.name;
-            let cute = cutecharm.split("-")[0];
-            let charm = cutecharm.split("-")[1];
-            // join the ability back together and capitalise each word
-            typeobj.fairy.ability = `${capitaliseFirstLetter(cute)} ${capitaliseFirstLetter(charm)}`;
+            // sylveon's ability is retrieved as "cute-charm"; prettify it
+            typeobj.fairy.ability = prettify(ability[0].ability.name);
+            console.log(typeobj.fairy.ability);
             break;
 
         // for urshifu's name, need to do some clipping
@@ -417,12 +417,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.fighting.id = id;
             typeobj.fighting.artwork = artwork;
             typeobj.fighting.type = capitaliseFirstLetter(type[0].type.name);
-            // urshifu's ability is retrieved as "unseen-fist"; split the name up into two parts
-            let unseenfist = ability[0].ability.name;
-            let unseen = unseenfist.split("-")[0];
-            let fist = unseenfist.split("-")[1];
-            // join the ability back together and capitalise each word
-            typeobj.fighting.ability = `${capitaliseFirstLetter(unseen)} ${capitaliseFirstLetter(fist)}`;
+            // urshifu's ability is retrieved as "unseen-fist"; prettify it
+            typeobj.fighting.ability = prettify(ability[0].ability.name);
+            console.log(typeobj.fighting.ability);
             break;
 
         case "torracat":
@@ -430,7 +427,8 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.fire.id = id;
             typeobj.fire.artwork = artwork;
             typeobj.fire.type = capitaliseFirstLetter(type[0].type.name);
-            typeobj.fire.ability = capitaliseFirstLetter(ability[1].ability.name);
+            typeobj.fire.ability = capitaliseFirstLetter(ability[0].ability.name);
+            console.log(typeobj.fire.ability);
             break;
 
         case "pidgeotto":
@@ -438,12 +436,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.flying.id = id;
             typeobj.flying.artwork = artwork;
             typeobj.flying.type = capitaliseFirstLetter(type[1].type.name);
-            // pidgeotto's ability is retrieved as "keen-eye"; split the name up into two parts
-            let keeneye = ability[0].ability.name;
-            let keen = keeneye.split("-")[0];
-            let eye = keeneye.split("-")[1];
-            // join the ability back together and capitalise each word
-            typeobj.flying.ability = `${capitaliseFirstLetter(keen)} ${capitaliseFirstLetter(eye)}`;
+            // pidgeotto's ability is retrieved as "keen-eye"; prettify it
+            typeobj.flying.ability = prettify(ability[0].ability.name);
+            console.log(typeobj.flying.ability);
             break;
 
         case "banette":
@@ -451,7 +446,8 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.ghost.id = id;
             typeobj.ghost.artwork = artwork;
             typeobj.ghost.type = capitaliseFirstLetter(type[0].type.name);
-            typeobj.ghost.ability = capitaliseFirstLetter(ability[1].ability.name);
+            typeobj.ghost.ability = capitaliseFirstLetter(ability[0].ability.name);
+            console.log(typeobj.ghost.ability);
             break;
 
         case "lilligant":
@@ -459,12 +455,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.grass.id = id;
             typeobj.grass.artwork = artwork;
             typeobj.grass.type = capitaliseFirstLetter(type[0].type.name);
-            // lilligant's ability is retrieved as "own-tempo"; split the name up into two parts
-            let owntempo = ability[1].ability.name;
-            let own = owntempo.split("-")[0];
-            let tempo = owntempo.split("-")[1];
-            // join the ability back together and capitalise each word
-            typeobj.grass.ability = `${capitaliseFirstLetter(own)} ${capitaliseFirstLetter(tempo)}`;
+            // lilligant's ability is retrieved as "own-tempo"; prettify it
+            typeobj.grass.ability = prettify(ability[1].ability.name);
+            console.log(typeobj.grass.ability);
             break;
 
         case "piloswine":
@@ -472,7 +465,8 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.ground.id = id;
             typeobj.ground.artwork = artwork;
             typeobj.ground.type = capitaliseFirstLetter(type[1].type.name);
-            typeobj.ground.ability = capitaliseFirstLetter(ability[1].ability.name);
+            typeobj.ground.ability = capitaliseFirstLetter(ability[0].ability.name);
+            console.log(typeobj.ground.ability);
             break;
 
         case "bergmite":
@@ -480,6 +474,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.ice.id = id;
             typeobj.ice.artwork = artwork;
             typeobj.ice.type = capitaliseFirstLetter(type[0].type.name);
+            // bergmite's ability is retrieved as "ice-body"; prettify it
             typeobj.ice.ability = prettify(ability[1].ability.name);
             console.log(typeobj.ice.ability);
             break;
@@ -489,21 +484,28 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.normal.id = id;
             typeobj.normal.artwork = artwork;
             typeobj.normal.type = capitaliseFirstLetter(type[0].type.name);
-            typeobj.normal.ability = capitaliseFirstLetter(ability[1].ability.name);
+            // lickitung's ability is retrieved as "cloud-nine"; prettify it
+            typeobj.normal.ability = prettify(ability[2].ability.name);
+            console.log(typeobj.normal.ability);
             break;
+
         case "skuntank":
             typeobj.poison.name = capitaliseFirstLetter(name);
             typeobj.poison.id = id;
             typeobj.poison.artwork = artwork;
             typeobj.poison.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.poison.ability = capitaliseFirstLetter(ability[1].ability.name);
+            console.log(typeobj.poison.ability);
             break;
+
         case "hatterene":
             typeobj.psychic.name = capitaliseFirstLetter(name);
             typeobj.psychic.id = id;
             typeobj.psychic.artwork = artwork;
             typeobj.psychic.type = capitaliseFirstLetter(type[0].type.name);
-            typeobj.psychic.ability = capitaliseFirstLetter(ability[1].ability.name);
+            // hatterene's ability is retrieved as "magic-bounce"; prettify it
+            typeobj.psychic.ability = prettify(ability[2].ability.name);
+            console.log(typeobj.psychic.ability);
             break;
 
         case "gigalith":
@@ -511,31 +513,40 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.rock.id = id;
             typeobj.rock.artwork = artwork;
             typeobj.rock.type = capitaliseFirstLetter(type[0].type.name);
-            typeobj.rock.ability = capitaliseFirstLetter(ability[1].ability.name);
+            typeobj.rock.ability = capitaliseFirstLetter(ability[0].ability.name);
+            console.log(typeobj.rock.ability);
             break;
+
         case "aggron":
             typeobj.steel.name = capitaliseFirstLetter(name);
             typeobj.steel.id = id;
             typeobj.steel.artwork = artwork;
             typeobj.steel.type = capitaliseFirstLetter(type[0].type.name);
-            typeobj.steel.ability = capitaliseFirstLetter(ability[1].ability.name);
+            // aggron's ability is retrieved as "rock-head"; prettify it
+            typeobj.steel.ability = prettify(ability[1].ability.name);
+            console.log(typeobj.steel.ability);
             break;
+
         case "primarina":
             typeobj.water.name = capitaliseFirstLetter(name);
             typeobj.water.id = id;
             typeobj.water.artwork = artwork;
             typeobj.water.type = capitaliseFirstLetter(type[0].type.name);
-            typeobj.water.ability = capitaliseFirstLetter(ability[1].ability.name);
+            // primarina's ability is retrieved as "liquid-voice"; prettify it
+            typeobj.water.ability = prettify(ability[1].ability.name);
+            console.log(typeobj.water.ability);
             break;
+
         /* silvally as a case is commented out for now (the default case should be silvally) */
         // case "silvally": 
         //     typeobj.random.name = capitaliseFirstLetter(name);
         //     typeobj.random.id = id;
         //     typeobj.random.artwork = artwork;
         //     typeobj.random.type = capitaliseFirstLetter(type[0].type.name);
-        //     typeobj.random.ability = capitaliseFirstLetter(ability[1].ability.name);
-        //     // console.log(typeobj);
+        //     typeobj.random.ability = prettify(ability[0].ability.name);
+        //     console.log(typeobj.random.ability);
         //     break;
+
         default:
             // set the default pokemon name to "silvally"
             pokemon = "silvally";
@@ -544,7 +555,8 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.random.id = id;
             typeobj.random.artwork = artwork;
             typeobj.random.type = capitaliseFirstLetter(type[0].type.name);
-            typeobj.random.ability = capitaliseFirstLetter(ability[1].ability.name);
+            typeobj.random.ability = prettify(ability[0].ability.name);
+            console.log(typeobj.random.ability);
             // console.log("default break at fill-details function");
             break;
     }
@@ -558,12 +570,17 @@ function capitaliseFirstLetter(str) {
 
 // format a two-word ability (phrase) with the first letter of each word capitalised
 function prettify(ability) {
-    // eg ability = "ice-body":
-    // split the phrase into "ice" (partA) and "body" (partB)
+    // eg. ability = "ice-body": split the phrase into "ice" (partA) and "body" (partB)
     let partA = ability.split("-")[0];
+
+    // special condition for silvally's ability "RKS System": all partA must be capitalised
+    if (ability.includes("rks")) {
+        partA = partA.toUpperCase(); // ie. Rks = RKS
+    }
+
     let partB = ability.split("-")[1];
 
-    // join the phrase back together and capitalise each word "Ice Body"
+    // join the phrase back together and capitalise each word eg. "Ice Body"
     let prettified = `${capitaliseFirstLetter(partA)} ${capitaliseFirstLetter(partB)}`;
     return prettified;
 }
