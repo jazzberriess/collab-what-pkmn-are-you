@@ -39,8 +39,8 @@ let userInput = document.getElementById("user-input");
 
 let artistInput = "";
 
-    //variable to store the generated pokemon data in so we can then create the elements to display the information
-    let yourPkmn = "";
+//variable to store the generated pokemon data in so we can then create the elements to display the information
+let yourPkmn = "";
 
 let tempDisplay = document.getElementById("results-display");
 
@@ -161,8 +161,8 @@ function getArtistData(accessToken) {
 
 // POKEMON API functions
 
-// full type list
-// { key: name, id, artwork, entry, type, ability }
+/* full type list
+{ key: name, id, artwork, entry, type, ability } */
 var typeInfo = {
     "bug": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
     "dark": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
@@ -769,7 +769,7 @@ function randomisePokemon() {
     yourPkmn = typeInfo[types[randomise]];
     console.log("the pokemon is " + JSON.stringify(yourPkmn));
 
-    appendElements(yourPkmn);
+    appendElements();
 
 }
 
@@ -809,7 +809,7 @@ function matchArtistToPokemon(event) {
 
 }
 
-
+// save to local storage
 function saveResults() {
     // make result object
     var match = {
@@ -827,11 +827,45 @@ function saveResults() {
 
     // add the match to allresults
     allresults.push(match);
-
     // set to local storage
     localStorage.setItem("Results", JSON.stringify(allresults));
-
 }
+
+// retrieve from local storage
+function retrieveResults() {
+    let localData = JSON.parse(localStorage.getItem("Results"));
+    // console.log(localData);
+
+    // clear the results-display area
+    tempDisplay.innerHTML = "";
+
+    // make an ordered list to hold the results
+    let resultsList = document.createElement("ol");
+    tempDisplay.appendChild(resultsList);
+
+    // if there is no data in local storage
+    if (!localData) {
+        let empty = document.createElement("li");
+        empty.textContent = "Nothing here.";
+        resultsList.appendChild(empty);
+        tempDisplay.appendChild(resultsList);
+
+    } else {
+        // run through each item in local storage
+        for (let i = 0; i < localData.length; i++) {
+            // make a list item and add text referencing artist name, pokemon type, and pokemon name
+            let line = document.createElement("li");
+            line.textContent = `Choosing ${localData[i].artist} means you are the ${localData[i].type} type Pokémon, ${localData[i].pokemon}!`;
+
+            // append the elements to each other
+            resultsList.appendChild(line)
+            tempDisplay.appendChild(resultsList);
+        }
+    }
+}
+
+// uncomment this to see the results show up on refresh
+// retrieveResults();
 
 
 // initialise the page
@@ -845,17 +879,3 @@ init();
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", matchArtistToPokemon)
-
-
-/*
-==========
-NOTES FOR THIS BRANCH:
-
--- moved `let yourPkmn = "";` into the global scope (at top of page)
--- commented out 'adult standards' genre for testing random output (use louis armstrong)
--- removed yourPkmn from grass appendElements(__) for testing (use enya) 
-
-
--- merged with main so at the top, modal js is in there
-
-*/
