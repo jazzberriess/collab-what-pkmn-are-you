@@ -10,6 +10,8 @@ let userInput = document.getElementById("user-input");
 
 let artistInput = "";
 
+let tempDisplay = document.getElementById("results-display");
+
 //CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
 let artistBtn = document.getElementById("temporary-start-button");
 
@@ -109,11 +111,18 @@ function getArtistData(accessToken) {
             console.log(artistGenre);
 
             generatePkmn();
+
         })
 
         //catch any errors and console log them
         .catch(function (error) {
             console.log(error);
+
+            //display please try again message to user
+            let errorText = document.createElement("p");
+            errorText.textContent = "Sorry! We couldn't find that artist. Try again."
+            tempDisplay.appendChild(errorText);
+
         });
 
 }
@@ -475,7 +484,10 @@ function generatePkmn() {
     let yourPkmn = "";
 
     //massive if/else statement to cover various generes and decide which type pokemon they are
-    if (artistGenre.includes("pop")) {
+    if (!artistGenre) {
+        randomisePokemon();
+
+    } else if (artistGenre.includes("pop")) {
         yourPkmn = typeInfo.fairy;
         console.log("the pokemon is " + JSON.stringify(typeInfo.fairy));
         appendElements(yourPkmn);
@@ -567,23 +579,27 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
     } else {
-        //this question and answer on stackoverflow gave me this solution and I am eternally graateful: https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object
-        typeInfoKeys = Object.keys(typeInfo);
-        typeInfoLength = typeInfoKeys.length;
-        randomType = Math.floor(Math.random() * typeInfoLength);
-        yourPkmn = typeInfo[typeInfoKeys[randomType]];
-        console.log("the pokemon is " + JSON.stringify(yourPkmn));
-        appendElements(yourPkmn);
+        randomisePokemon();
 
     }
-
 };
 
+function randomisePokemon(yourPkmn) {
+
+    //retrieve a random key value pair from an object: https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object
+
+    types = Object.keys(typeInfo);
+    randomise = Math.floor(Math.random() * types.length);
+    yourPkmn = typeInfo[types[randomise]];
+    console.log("the pokemon is " + JSON.stringify(yourPkmn));
+
+    appendElements(yourPkmn);
+
+}
+
+// place holder append elements so we could see the javascript in action
+
 function appendElements(yourPkmn) {
-
-    console.log("append");
-
-    let tempDisplay = document.getElementById("results-display");
 
     let yourPkmnDisplay = document.createElement("div");
     yourPkmnDisplay.innerHTML = yourPkmn.name;
@@ -599,7 +615,6 @@ function appendElements(yourPkmn) {
     yourPkmnDisplay.appendChild(yourPkmnInfo);
 
 }
-
 
 //place holder script so we could ensure the functionality for userInput form was working
 
