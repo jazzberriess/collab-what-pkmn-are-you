@@ -6,6 +6,10 @@ let savedArtistData = [];
 
 let artistGenre = "";
 
+let userInput = document.getElementById("user-input");
+
+let artistInput = "";
+
 //CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
 let artistBtn = document.getElementById("temporary-start-button");
 
@@ -67,7 +71,7 @@ function getSpotifyToken() {
 function getArtistData(accessToken) {
 
     //FOR THE LOVE OF EVERYTHING CHANGE THIS STRING TO USERINPUT.VALUE
-    let artistInput = "justin bieber";
+    artistInput = userInput.value;
 
     //URL for the artist search via the spotify API - limit the search query to five results
     let spotifyArtistSearch = "https://api.spotify.com/v1/search?type=artist&q=" + artistInput + "&limit=5";
@@ -474,27 +478,27 @@ function generatePkmn() {
     if (artistGenre.includes("pop")) {
         yourPkmn = typeInfo.fairy;
         console.log("the pokemon is " + JSON.stringify(typeInfo.fairy));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("folk") || artistGenre.includes("celtic")) {
         yourPkmn = typeInfo.grass;
         console.log("the pokemon is " + JSON.stringify(typeInfo.grass));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("jazz")) {
         yourPkmn = typeInfo.fire;
         console.log("the pokemon is " + JSON.stringify(typeInfo.fire));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("ambient")) {
         yourPkmn = typeInfo.water;
         console.log("the pokemon is " + JSON.stringify(typeInfo.water));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
-    } else if (artistGenre.includes("easy")) {
+    } else if (artistGenre.includes("easy") || artistGenre.includes("adult standards")) {
         yourPkmn = typeInfo.normal;
         console.log("the pokemon is " + JSON.stringify(typeInfo.normal));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("orchestra")) {
         yourPkmn = typeInfo.flying;
@@ -504,63 +508,63 @@ function generatePkmn() {
     } else if (artistGenre.includes("blues")) {
         yourPkmn = typeInfo.bug;
         console.log("the pokemon is " + JSON.stringify(typeInfo.bug));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("rock")) {
         yourPkmn = typeInfo.rock;
         console.log("the pokemon is " + JSON.stringify(typeInfo.rock));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("country")) {
         yourPkmn = typeInfo.ground;
         console.log("the pokemon is " + JSON.stringify(typeInfo.ground));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
-    } else if (artistGenre.includes("punk")) {
+    } else if (artistGenre.includes("punk") || artistGenre.includes("rap")) {
         yourPkmn = typeInfo.poison;
         console.log("the pokemon is " + JSON.stringify(typeInfo.poison));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("dance")) {
         yourPkmn = typeInfo.electric;
         console.log("the pokemon is " + JSON.stringify(typeInfo.electric));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("R&B") || artistGenre.includes("rhythm") || artistGenre.includes("hip hop")) {
         yourPkmn = typeInfo.fighting;
         console.log("the pokemon is " + JSON.stringify(typeInfo.fighting));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("new age")) {
         yourPkmn = typeInfo.psychic;
         console.log("the pokemon is " + JSON.stringify(typeInfo.psychic));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("soul") || artistGenre.includes("religious")) {
         yourPkmn = typeInfo.ghost;
         console.log("the pokemon is " + JSON.stringify(typeInfo.ghost));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("chill-out") || artistGenre.includes("lo-fi")) {
         yourPkmn = typeInfo.ice;
         console.log("the pokemon is " + JSON.stringify(typeInfo.ice));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("classical")) {
         yourPkmn = typeInfo.dragon;
         console.log("the pokemon is " + JSON.stringify(typeInfo.dragon));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
 
     } else if (artistGenre.includes("metal")) {
         yourPkmn = typeInfo.steel;
         console.log("the pokemon is " + JSON.stringify(typeInfo.steel));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else if (artistGenre.includes("punk")) {
         yourPkmn = typeInfo.dark;
         console.log("the pokemon is " + JSON.stringify(typeInfo.dark));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
     } else {
         //this question and answer on stackoverflow gave me this solution and I am eternally graateful: https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object
@@ -569,12 +573,52 @@ function generatePkmn() {
         randomType = Math.floor(Math.random() * typeInfoLength);
         yourPkmn = typeInfo[typeInfoKeys[randomType]];
         console.log("the pokemon is " + JSON.stringify(yourPkmn));
-        // appendElements(yourPkmn);
+        appendElements(yourPkmn);
 
+    }
+
+};
+
+function appendElements(yourPkmn) {
+
+    console.log("append");
+
+    let tempDisplay = document.getElementById("results-display");
+
+    let yourPkmnDisplay = document.createElement("div");
+    yourPkmnDisplay.innerHTML = yourPkmn.name;
+
+    let yourPkmnImage = document.createElement("img");
+    yourPkmnImage.setAttribute("src", yourPkmn.artwork);
+    yourPkmnDisplay.appendChild(yourPkmnImage);
+
+    let yourPkmnInfo = document.createElement('div');
+    yourPkmnInfo.innerHTML = yourPkmn.entry;
+
+    tempDisplay.appendChild(yourPkmnDisplay);
+    yourPkmnDisplay.appendChild(yourPkmnInfo);
+
+}
+
+
+//place holder script so we could ensure the functionality for userInput form was working
+
+// button submit 
+function matchArtistToPokemon(event) {
+    event.preventDefault();
+
+    //FOR THE LOVE OF EVERYTHING CHANGE THIS STRING TO USERINPUT.VALUE
+    artistInput = userInput.value.trim();
+
+    if (!artistInput) {
+        alert("WRITE AN ARTIST");
+    } else {
+        getSpotifyToken();
     }
 
 }
 
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
-artistBtn.addEventListener("click", getSpotifyToken)
+artistBtn.addEventListener("click", matchArtistToPokemon)
+
