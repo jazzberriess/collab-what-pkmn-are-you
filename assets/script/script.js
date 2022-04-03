@@ -183,16 +183,17 @@ function getPokeApi() {
                 pokemon[772], // random choice: silvally
             ];
 
-            // for each of the above items, grab the pokemon url and pass it on
-            selectedPokemon.forEach(function (pokemon) {
-                getPokemonInfo(pokemon.url);
-            });
+            // using for loop, send each pokemon info on
+            for (var i = 0; i < selectedPokemon.length; i++) {
+                getPokemonInfo(selectedPokemon[i].url);
+            }
         })
         .catch(function (error) {
             console.log(error);
         });
 }
 
+// get the pokemon url
 function getPokemonInfo(url) {
     // console.log(url);
     fetch(url)
@@ -221,12 +222,6 @@ function getPokemonInfo(url) {
             // pass specified variables on to populate 'typeInfo' object
             fillPokemonDetails(typeInfo, name, id, artwork);
             getPokemonSpecies(typeInfo, species);
-
-            // console.log(typeInfo);
-
-            // POKEMON LOGIC FUNCTION SHOULD PROBABLY BE ADDED HERE and typeInfo object passed to it
-            // eg. determinePokeArtistMatch(typeInfo);
-
         })
         .catch(function (error) {
             console.log(error);
