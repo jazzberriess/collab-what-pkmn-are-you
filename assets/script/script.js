@@ -104,7 +104,7 @@ function getArtistData(accessToken) {
 
             //save the returned artistData to an empty global object to use in future functions
             savedArtistData = artistData;
-            // console.log(savedArtistData);
+            console.log(savedArtistData);
 
             //save the artistGenre details to an empty global object to use in future functions
             artistGenre = savedArtistData.artists.items[0].genres[0];
@@ -403,11 +403,11 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
             typeobj.ghost.id = id;
             typeobj.ghost.artwork = artwork;
             break;
-            case "lilligant":
-                typeobj.grass.name = capitaliseFirstLetter(name);
-                typeobj.grass.id = id;
-                typeobj.grass.artwork = artwork;
-                break;
+        case "lilligant":
+            typeobj.grass.name = capitaliseFirstLetter(name);
+            typeobj.grass.id = id;
+            typeobj.grass.artwork = artwork;
+            break;
 
         case "piloswine":
             typeobj.ground.name = capitaliseFirstLetter(name);
@@ -488,31 +488,31 @@ function generatePkmn() {
         randomisePokemon();
 
         //BUG TYPE
-    } else if (artistGenre.includes("blues")) {
+    } else if (artistGenre.includes("blues") || artistGenre.includes("reggae")) {
         yourPkmn = typeInfo.bug;
         console.log("the pokemon is " + JSON.stringify(typeInfo.bug));
         appendElements(yourPkmn);
 
         //DARK TYPE
-    } else if (artistGenre.includes("punk")) {
+    } else if (artistGenre.includes("punk") || artistGenre.includes("emo")) {
         yourPkmn = typeInfo.dark;
         console.log("the pokemon is " + JSON.stringify(typeInfo.dark));
         appendElements(yourPkmn);
 
         //DRAGON TYPE
-    } else if (artistGenre.includes("classical")) {
+    } else if (artistGenre.includes("classical") || artistGenre.includes("opera")) {
         yourPkmn = typeInfo.dragon;
         console.log("the pokemon is " + JSON.stringify(typeInfo.dragon));
         appendElements(yourPkmn);
 
         //ELECTRIC TYPE
-    } else if (artistGenre.includes("dance")) {
+    } else if (artistGenre.includes("dance") || artistGenre.includes("electronic")) {
         yourPkmn = typeInfo.electric;
         console.log("the pokemon is " + JSON.stringify(typeInfo.electric));
         appendElements(yourPkmn);
 
         //FAIRY TYPE
-    } else if (artistGenre.includes("pop")) {
+    } else if (artistGenre.includes("pop") || artistGenre.includes("synth")) {
         yourPkmn = typeInfo.fairy;
         console.log("the pokemon is " + JSON.stringify(typeInfo.fairy));
         appendElements(yourPkmn);
@@ -524,19 +524,19 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
         //FIRE TYPE
-    } else if (artistGenre.includes("jazz")) {
+    } else if (artistGenre.includes("jazz") || artistGenre.includes("musical theatre")) {
         yourPkmn = typeInfo.fire;
         console.log("the pokemon is " + JSON.stringify(typeInfo.fire));
         appendElements(yourPkmn);
 
         //FLYING TYPE
-    } else if (artistGenre.includes("orchestra")) {
+    } else if (artistGenre.includes("orchestra") || artistGenre.includes("soundtrack")) {
         yourPkmn = typeInfo.flying;
         console.log("the pokemon is " + JSON.stringify(typeInfo.flying));
         appendElements(yourPkmn);
 
         //GHOST TYPE
-    } else if (artistGenre.includes("soul") || artistGenre.includes("religious")) {
+    } else if (artistGenre.includes("soul") || artistGenre.includes("religious") || artistGenre.includes("worship")) {
         yourPkmn = typeInfo.ghost;
         console.log("the pokemon is " + JSON.stringify(typeInfo.ghost));
         appendElements(yourPkmn);
@@ -548,7 +548,7 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
         //GROUND TYPE
-    } else if (artistGenre.includes("country")) {
+    } else if (artistGenre.includes("country") || artistGenre.includes("indie")) {
         yourPkmn = typeInfo.ground;
         console.log("the pokemon is " + JSON.stringify(typeInfo.ground));
         appendElements(yourPkmn);
@@ -572,7 +572,7 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
         //PSYCHIC TYPE
-    } else if (artistGenre.includes("new age")) {
+    } else if (artistGenre.includes("new age") || artistGenre.includes("techno") || artistGenre.includes("experimental")) {
         yourPkmn = typeInfo.psychic;
         console.log("the pokemon is " + JSON.stringify(typeInfo.psychic));
         appendElements(yourPkmn);
@@ -590,7 +590,7 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
         //WATER TYPE
-    } else if (artistGenre.includes("ambient")) {
+    } else if (artistGenre.includes("ambient") || artistGenre.includes("instrumental")) {
         yourPkmn = typeInfo.water;
         console.log("the pokemon is " + JSON.stringify(typeInfo.water));
         appendElements(yourPkmn);
