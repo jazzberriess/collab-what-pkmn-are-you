@@ -710,6 +710,8 @@ function generatePkmn() {
     } else {
         randomisePokemon();
     }
+
+    //doin a thing
 };
 
 function randomisePokemon(yourPkmn) {
