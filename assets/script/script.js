@@ -171,7 +171,7 @@ function getPokeApi() {
                 pokemon[725], // fire type: torracat
                 pokemon[16], // flying type: pidgeotto
                 pokemon[353], // ghost type: banette
-                pokemon[406], // grass type: roserade
+                pokemon[548], // grass type: lilligant
                 pokemon[220], // ground type: piloswine
                 pokemon[711], // ice type: bergmite
                 pokemon[107], // normal type: lickitung
@@ -294,8 +294,8 @@ function getEntry(typeobj, speciesdata) {
         case "banette":
             typeobj.ghost.entry = entry[3].flavor_text;
             break;
-        case "roserade":
-            typeobj.grass.entry = entry[1].flavor_text;
+        case "lilligant":
+            typeobj.grass.entry = entry[45].flavor_text;
             break;
 
         case "piloswine":
@@ -399,11 +399,11 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
             typeobj.ghost.id = id;
             typeobj.ghost.artwork = artwork;
             break;
-        case "roserade":
-            typeobj.grass.name = capitaliseFirstLetter(name);
-            typeobj.grass.id = id;
-            typeobj.grass.artwork = artwork;
-            break;
+            case "lilligant":
+                typeobj.grass.name = capitaliseFirstLetter(name);
+                typeobj.grass.id = id;
+                typeobj.grass.artwork = artwork;
+                break;
 
         case "piloswine":
             typeobj.ground.name = capitaliseFirstLetter(name);
