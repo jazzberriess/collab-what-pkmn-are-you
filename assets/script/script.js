@@ -619,12 +619,8 @@ function prettify(ability) {
     return prettified;
 }
 
-var testname = "MICHAEL BUBLE";
-
-prettifyInput(testname);
-
-function prettifyInput(testname) {
-    let separateWord = testname.toLowerCase().split(" ");
+function prettifyInput(userinput) {
+    let separateWord = userinput.toLowerCase().split(" ");
     console.log(separateWord);
 
     for (var i = 0; i < separateWord.length; i++) {
@@ -815,7 +811,7 @@ function matchArtistToPokemon(event) {
 function saveResults() {
     // make result object
     var match = {
-        "artist": artistInput,
+        "artist": prettifyInput(artistInput),
         "pokemon": yourPkmn.name,
         "type": yourPkmn.type
     }
