@@ -130,26 +130,27 @@ function getArtistData(accessToken) {
 // POKEMON API functions
 
 // full type list
+// { key: name, id, artwork, entry, type, ability }
 var typeInfo = {
-    "bug": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "dark": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "dragon": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "electric": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "fairy": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "fighting": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "fire": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "flying": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "ghost": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "grass": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "ground": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "ice": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "normal": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "poison": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "psychic": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "rock": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "steel": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "water": { "name": {}, "id": {}, "artwork": {}, "entry": {} },
-    "random": { "name": {}, "id": {}, "artwork": {}, "entry": {} }
+    "bug": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "dark": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "dragon": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "electric": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "fairy": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "fighting": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "fire": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "flying": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "ghost": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "grass": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "ground": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "ice": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "normal": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "poison": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "psychic": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "rock": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "steel": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "water": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
+    "random": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} }
 }
 
 // CONNECT TO pokéAPI
@@ -215,6 +216,7 @@ function getPokemonInfo(url) {
         })
         .then(function (data) {
             // console.log(data);
+
             // get pokemon name
             let name = data.name;
             // get pokemon id number
@@ -225,12 +227,20 @@ function getPokemonInfo(url) {
             // make the url a string
             let artwork = `${artLocation}`;
 
+            // get pokemon type (base array)
+            let type = data.types;
+            // get pokemon abilities (base array)
+            let ability = data.abilities;
+
             // get species data urls
             let species = data.species.url;
 
             // pass specified variables on to populate 'typeInfo' object
-            fillPokemonDetails(typeInfo, name, id, artwork);
+            fillPokemonDetails(typeInfo, name, id, artwork, type, ability);
             getPokemonSpecies(typeInfo, species);
+
+            // console.log(typeInfo);
+
         })
         .catch(function (error) {
             console.log(error);
@@ -342,7 +352,7 @@ function getEntry(typeobj, speciesdata) {
 }
 
 // this will fill 'typeInfo' object with three keys: poké name, poké ID no., poké artwork url
-function fillPokemonDetails(typeobj, name, id, artwork) {
+function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
     let pokemon = name;
     // console.log(pokemon);
 
@@ -354,29 +364,49 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
             typeobj.bug.name = capitaliseFirstLetter(name);
             typeobj.bug.id = id;
             typeobj.bug.artwork = artwork;
+            typeobj.bug.type = capitaliseFirstLetter(type[0].type.name);
+            typeobj.bug.ability = capitaliseFirstLetter(ability[1].ability.name);
+            // console.log(typeobj.bug.ability);
             break;
+
         // for the case of 'zoroark'
         case "zoroark":
             // add to typeInfo object under 'dark' key: name, id, artwork url values of zoroark
             typeobj.dark.name = capitaliseFirstLetter(name);
             typeobj.dark.id = id;
             typeobj.dark.artwork = artwork;
+            typeobj.dark.type = capitaliseFirstLetter(type[0].type.name);
+            typeobj.dark.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.dark.ability);
             break;
+
         // and so on
         case "latios":
             typeobj.dragon.name = capitaliseFirstLetter(name);
             typeobj.dragon.id = id;
             typeobj.dragon.artwork = artwork;
+            typeobj.dragon.type = capitaliseFirstLetter(type[0].type.name);
+            typeobj.dragon.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.dragon.ability);
             break;
+
         case "mareep":
             typeobj.electric.name = capitaliseFirstLetter(name);
             typeobj.electric.id = id;
             typeobj.electric.artwork = artwork;
+            typeobj.electric.type = capitaliseFirstLetter(type[0].type.name);
+            typeobj.electric.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.electric.ability);
             break;
+
         case "sylveon":
             typeobj.fairy.name = capitaliseFirstLetter(name);
             typeobj.fairy.id = id;
             typeobj.fairy.artwork = artwork;
+            typeobj.fairy.type = capitaliseFirstLetter(type[0].type.name);
+            // sylveon's ability is retrieved as "cute-charm"; prettify it
+            typeobj.fairy.ability = prettify(ability[0].ability.name);
+            // console.log(typeobj.fairy.ability);
             break;
 
         // for urshifu's name, need to do some clipping
@@ -387,76 +417,138 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
             typeobj.fighting.name = capitaliseFirstLetter(urshifu);
             typeobj.fighting.id = id;
             typeobj.fighting.artwork = artwork;
+            typeobj.fighting.type = capitaliseFirstLetter(type[0].type.name);
+            // urshifu's ability is retrieved as "unseen-fist"; prettify it
+            typeobj.fighting.ability = prettify(ability[0].ability.name);
+            // console.log(typeobj.fighting.ability);
             break;
+
         case "torracat":
             typeobj.fire.name = capitaliseFirstLetter(name);
             typeobj.fire.id = id;
             typeobj.fire.artwork = artwork;
+            typeobj.fire.type = capitaliseFirstLetter(type[0].type.name);
+            typeobj.fire.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.fire.ability);
             break;
+
         case "pidgeotto":
             typeobj.flying.name = capitaliseFirstLetter(name);
             typeobj.flying.id = id;
             typeobj.flying.artwork = artwork;
+            typeobj.flying.type = capitaliseFirstLetter(type[1].type.name);
+            // pidgeotto's ability is retrieved as "keen-eye"; prettify it
+            typeobj.flying.ability = prettify(ability[0].ability.name);
+            // console.log(typeobj.flying.ability);
             break;
+
         case "banette":
             typeobj.ghost.name = capitaliseFirstLetter(name);
             typeobj.ghost.id = id;
             typeobj.ghost.artwork = artwork;
+            typeobj.ghost.type = capitaliseFirstLetter(type[0].type.name);
+            typeobj.ghost.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.ghost.ability);
             break;
+
         case "lilligant":
             typeobj.grass.name = capitaliseFirstLetter(name);
             typeobj.grass.id = id;
             typeobj.grass.artwork = artwork;
+            typeobj.grass.type = capitaliseFirstLetter(type[0].type.name);
+            // lilligant's ability is retrieved as "own-tempo"; prettify it
+            typeobj.grass.ability = prettify(ability[1].ability.name);
+            // console.log(typeobj.grass.ability);
             break;
 
         case "piloswine":
             typeobj.ground.name = capitaliseFirstLetter(name);
             typeobj.ground.id = id;
             typeobj.ground.artwork = artwork;
+            typeobj.ground.type = capitaliseFirstLetter(type[1].type.name);
+            typeobj.ground.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.ground.ability);
             break;
+
         case "bergmite":
             typeobj.ice.name = capitaliseFirstLetter(name);
             typeobj.ice.id = id;
             typeobj.ice.artwork = artwork;
+            typeobj.ice.type = capitaliseFirstLetter(type[0].type.name);
+            // bergmite's ability is retrieved as "ice-body"; prettify it
+            typeobj.ice.ability = prettify(ability[1].ability.name);
+            // console.log(typeobj.ice.ability);
             break;
+
         case "lickitung":
             typeobj.normal.name = capitaliseFirstLetter(name);
             typeobj.normal.id = id;
             typeobj.normal.artwork = artwork;
+            typeobj.normal.type = capitaliseFirstLetter(type[0].type.name);
+            // lickitung's ability is retrieved as "cloud-nine"; prettify it
+            typeobj.normal.ability = prettify(ability[2].ability.name);
+            // console.log(typeobj.normal.ability);
             break;
+
         case "skuntank":
             typeobj.poison.name = capitaliseFirstLetter(name);
             typeobj.poison.id = id;
             typeobj.poison.artwork = artwork;
+            typeobj.poison.type = capitaliseFirstLetter(type[0].type.name);
+            typeobj.poison.ability = capitaliseFirstLetter(ability[1].ability.name);
+            // console.log(typeobj.poison.ability);
             break;
+
         case "hatterene":
             typeobj.psychic.name = capitaliseFirstLetter(name);
             typeobj.psychic.id = id;
             typeobj.psychic.artwork = artwork;
+            typeobj.psychic.type = capitaliseFirstLetter(type[0].type.name);
+            // hatterene's ability is retrieved as "magic-bounce"; prettify it
+            typeobj.psychic.ability = prettify(ability[2].ability.name);
+            // console.log(typeobj.psychic.ability);
             break;
 
         case "gigalith":
             typeobj.rock.name = capitaliseFirstLetter(name);
             typeobj.rock.id = id;
             typeobj.rock.artwork = artwork;
+            typeobj.rock.type = capitaliseFirstLetter(type[0].type.name);
+            typeobj.rock.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.rock.ability);
             break;
+
         case "aggron":
             typeobj.steel.name = capitaliseFirstLetter(name);
             typeobj.steel.id = id;
             typeobj.steel.artwork = artwork;
+            typeobj.steel.type = capitaliseFirstLetter(type[0].type.name);
+            // aggron's ability is retrieved as "rock-head"; prettify it
+            typeobj.steel.ability = prettify(ability[1].ability.name);
+            // console.log(typeobj.steel.ability);
             break;
+
         case "primarina":
             typeobj.water.name = capitaliseFirstLetter(name);
             typeobj.water.id = id;
             typeobj.water.artwork = artwork;
+            typeobj.water.type = capitaliseFirstLetter(type[0].type.name);
+            // primarina's ability is retrieved as "liquid-voice"; prettify it
+            typeobj.water.ability = prettify(ability[1].ability.name);
+            // console.log(typeobj.water.ability);
             break;
+
         /* silvally as a case is commented out for now (the default case should be silvally) */
         // case "silvally": 
         //     typeobj.random.name = capitaliseFirstLetter(name);
         //     typeobj.random.id = id;
         //     typeobj.random.artwork = artwork;
-        //     // console.log(typeobj);
+        //     typeobj.random.type = capitaliseFirstLetter(type[0].type.name);
+        //     silvally's ability is retrieved as "rks-system"; prettify it
+        //     typeobj.random.ability = prettify(ability[0].ability.name);
+        //     // console.log(typeobj.random.ability);
         //     break;
+
         default:
             // set the default pokemon name to "silvally"
             pokemon = "silvally";
@@ -464,6 +556,10 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
             typeobj.random.name = capitaliseFirstLetter(name);
             typeobj.random.id = id;
             typeobj.random.artwork = artwork;
+            typeobj.random.type = capitaliseFirstLetter(type[0].type.name);
+            // silvally's ability is retrieved as "rks-system"; prettify it
+            typeobj.random.ability = prettify(ability[0].ability.name);
+            // console.log(typeobj.random.ability);
             // console.log("default break at fill-details function");
             break;
     }
@@ -473,6 +569,22 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
 function capitaliseFirstLetter(str) {
     let capitalised = str.charAt(0).toUpperCase() + str.slice(1);
     return capitalised;
+}
+
+// format a two-word ability (phrase) with the first letter of each word capitalised
+function prettify(ability) {
+    // eg. ability = "ice-body": split the phrase into "ice" (partA) and "body" (partB)
+    let partA = ability.split("-")[0];
+    // special condition for silvally's ability "RKS System": all partA must be capitalised
+    if (ability.includes("rks")) {
+        partA = partA.toUpperCase(); // ie. Rks = RKS
+    }
+
+    let partB = ability.split("-")[1];
+
+    // join the phrase back together and capitalise each word eg. "Ice Body"
+    let prettified = `${capitaliseFirstLetter(partA)} ${capitaliseFirstLetter(partB)}`;
+    return prettified;
 }
 
 
