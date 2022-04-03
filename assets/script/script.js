@@ -627,12 +627,15 @@ function generatePkmn() {
     //variable to store the generated pokemon data in so we can then create the elements to display the information
     let yourPkmn = "";
 
+
     //massive if/else statement to cover various generes and decide which type pokemon they are
+
     if (!artistGenre) {
         randomisePokemon();
+    }
+    //BUG TYPE
 
-        //BUG TYPE
-    } else if (artistGenre.includes("blues") || artistGenre.includes("reggae")) {
+    else if (artistGenre.includes("blues") || artistGenre.includes("reggae")) {
         yourPkmn = typeInfo.bug;
         console.log("the pokemon is " + JSON.stringify(typeInfo.bug));
         appendElements(yourPkmn);
@@ -745,7 +748,7 @@ function generatePkmn() {
 
 };
 
-function randomisePokemon(yourPkmn) {
+function randomisePokemon() {
 
     //retrieve a random key value pair from an object: https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object
 
