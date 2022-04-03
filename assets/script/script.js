@@ -597,7 +597,6 @@ function generatePkmn() {
 
     } else {
         randomisePokemon();
-
     }
 };
 
