@@ -39,6 +39,9 @@ let userInput = document.getElementById("user-input");
 
 let artistInput = "";
 
+    //variable to store the generated pokemon data in so we can then create the elements to display the information
+    let yourPkmn = "";
+
 let tempDisplay = document.getElementById("results-display");
 
 //CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
@@ -616,13 +619,22 @@ function prettify(ability) {
     return prettified;
 }
 
+function prettifyInput(userinput) {
+    let separateWord = userinput.toLowerCase().split(" ");
+    console.log(separateWord);
+
+    for (var i = 0; i < separateWord.length; i++) {
+        separateWord[i] = separateWord[i].charAt(0).toUpperCase() + separateWord[i].slice(1);
+    }
+    return separateWord.join(" ");
+}
+
 
 //GENERATE YOUR POKEMON function
 
 function generatePkmn() {
 
-    //variable to store the generated pokemon data in so we can then create the elements to display the information
-    let yourPkmn = "";
+    tempDisplay.innerHTML = "";
 
     //massive if/else statement to cover various generes and decide which type pokemon they are
     if (!artistGenre) {
@@ -686,7 +698,7 @@ function generatePkmn() {
     } else if (artistGenre.includes("folk") || artistGenre.includes("celtic")) {
         yourPkmn = typeInfo.grass;
         console.log("the pokemon is " + JSON.stringify(typeInfo.grass));
-        appendElements(yourPkmn);
+        appendElements();
 
         //GROUND TYPE
     } else if (artistGenre.includes("country")) {
@@ -701,7 +713,7 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
         //NORMAL TYPE
-    } else if (artistGenre.includes("easy") || artistGenre.includes("adult standards")) {
+    } else if (artistGenre.includes("easy") /*|| artistGenre.includes("adult standards")*/ ) {
         yourPkmn = typeInfo.normal;
         console.log("the pokemon is " + JSON.stringify(typeInfo.normal));
         appendElements(yourPkmn);
@@ -739,9 +751,14 @@ function generatePkmn() {
     } else {
         randomisePokemon();
     }
+
+
+    // SAVE TO LOCAL STORAGE
+    saveResults();
+
 };
 
-function randomisePokemon(yourPkmn) {
+function randomisePokemon() {
 
     //retrieve a random key value pair from an object: https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object
 
@@ -756,7 +773,7 @@ function randomisePokemon(yourPkmn) {
 
 // place holder append elements so we could see the javascript in action
 
-function appendElements(yourPkmn) {
+function appendElements() {
 
     let yourPkmnDisplay = document.createElement("div");
     yourPkmnDisplay.innerHTML = yourPkmn.name;
@@ -790,6 +807,31 @@ function matchArtistToPokemon(event) {
 
 }
 
+
+function saveResults() {
+    // make result object
+    var match = {
+        "artist": prettifyInput(artistInput),
+        "pokemon": yourPkmn.name,
+        "type": yourPkmn.type
+    }
+
+    // pull results from local storage
+    let allresults = JSON.parse(localStorage.getItem("Results"));
+    // if there are no results then make a new empty array
+    if (!allresults) {
+        allresults = [];
+    }
+
+    // add the match to allresults
+    allresults.push(match);
+
+    // set to local storage
+    localStorage.setItem("Results", JSON.stringify(allresults));
+
+}
+
+
 // initialise the page
 function init() {
     getPokeApi();
@@ -801,3 +843,17 @@ init();
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", matchArtistToPokemon)
+
+
+/*
+==========
+NOTES FOR THIS BRANCH:
+
+-- moved `let yourPkmn = "";` into the global scope (at top of page)
+-- commented out 'adult standards' genre for testing random output (use louis armstrong)
+-- removed yourPkmn from grass appendElements(__) for testing (use enya) 
+
+
+-- merged with main so at the top, modal js is in there
+
+*/
