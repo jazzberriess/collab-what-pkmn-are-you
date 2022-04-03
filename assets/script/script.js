@@ -44,14 +44,14 @@ function getSpotifyToken() {
 
                 //else return the response as a json file
             } else {
-                console.log(response);
+                // console.log(response);
                 return response.json();
             }
         })
 
         //then take the token from the response data
         .then(function (token) {
-            console.log(token);
+            // console.log(token);
 
             let accessToken = token.access_token;
 
@@ -93,7 +93,7 @@ function getArtistData(accessToken) {
 
                 //else return the response as a json file
             } else {
-                console.log(response);
+                // console.log(response);
                 return response.json();
             }
         })
@@ -102,7 +102,7 @@ function getArtistData(accessToken) {
 
             //save the returned artistData to an empty global object to use in future functions
             savedArtistData = artistData;
-            console.log(savedArtistData);
+            // console.log(savedArtistData);
 
             //save the artistGenre details to an empty global object to use in future functions
             artistGenre = savedArtistData.artists.items[0].genres[0];
@@ -171,7 +171,7 @@ function getPokeApi() {
                 pokemon[725], // fire type: torracat
                 pokemon[16], // flying type: pidgeotto
                 pokemon[353], // ghost type: banette
-                pokemon[406], // grass type: roserade
+                pokemon[548], // grass type: lilligant
                 pokemon[220], // ground type: piloswine
                 pokemon[711], // ice type: bergmite
                 pokemon[107], // normal type: lickitung
@@ -183,16 +183,17 @@ function getPokeApi() {
                 pokemon[772], // random choice: silvally
             ];
 
-            // for each of the above items, grab the pokemon url and pass it on
-            selectedPokemon.forEach(function (pokemon) {
-                getPokemonInfo(pokemon.url);
-            });
+            // using for loop, send each pokemon info on
+            for (var i = 0; i < selectedPokemon.length; i++) {
+                getPokemonInfo(selectedPokemon[i].url);
+            }
         })
         .catch(function (error) {
             console.log(error);
         });
 }
 
+// get the pokemon url
 function getPokemonInfo(url) {
     // console.log(url);
     fetch(url)
@@ -221,12 +222,6 @@ function getPokemonInfo(url) {
             // pass specified variables on to populate 'typeInfo' object
             fillPokemonDetails(typeInfo, name, id, artwork);
             getPokemonSpecies(typeInfo, species);
-
-            console.log(typeInfo);
-
-            // POKEMON LOGIC FUNCTION SHOULD PROBABLY BE ADDED HERE and typeInfo object passed to it
-            // eg. determinePokeArtistMatch(typeInfo);
-
         })
         .catch(function (error) {
             console.log(error);
@@ -294,8 +289,8 @@ function getEntry(typeobj, speciesdata) {
         case "banette":
             typeobj.ghost.entry = entry[3].flavor_text;
             break;
-        case "roserade":
-            typeobj.grass.entry = entry[1].flavor_text;
+        case "lilligant":
+            typeobj.grass.entry = entry[45].flavor_text;
             break;
 
         case "piloswine":
@@ -347,30 +342,30 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
         // for the case of 'kricketune'
         case "kricketune":
             // add to typeInfo object under 'bug' key: name, id, artwork url values of kricketune
-            typeobj.bug.name = name;
+            typeobj.bug.name = capitaliseFirstLetter(name);
             typeobj.bug.id = id;
             typeobj.bug.artwork = artwork;
             break;
         // for the case of 'zoroark'
         case "zoroark":
             // add to typeInfo object under 'dark' key: name, id, artwork url values of zoroark
-            typeobj.dark.name = name;
+            typeobj.dark.name = capitaliseFirstLetter(name);
             typeobj.dark.id = id;
             typeobj.dark.artwork = artwork;
             break;
         // and so on
         case "latios":
-            typeobj.dragon.name = name;
+            typeobj.dragon.name = capitaliseFirstLetter(name);
             typeobj.dragon.id = id;
             typeobj.dragon.artwork = artwork;
             break;
         case "mareep":
-            typeobj.electric.name = name;
+            typeobj.electric.name = capitaliseFirstLetter(name);
             typeobj.electric.id = id;
             typeobj.electric.artwork = artwork;
             break;
         case "sylveon":
-            typeobj.fairy.name = name;
+            typeobj.fairy.name = capitaliseFirstLetter(name);
             typeobj.fairy.id = id;
             typeobj.fairy.artwork = artwork;
             break;
@@ -380,75 +375,75 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
             // first split the name 'urshifu-single-strike' at the "-"
             let urshifu = name.split("-")[0];
             // add to 'fighting' key only the first part of the name (aka 'urshifu')
-            typeobj.fighting.name = urshifu;
+            typeobj.fighting.name = capitaliseFirstLetter(urshifu);
             typeobj.fighting.id = id;
             typeobj.fighting.artwork = artwork;
             break;
         case "torracat":
-            typeobj.fire.name = name;
+            typeobj.fire.name = capitaliseFirstLetter(name);
             typeobj.fire.id = id;
             typeobj.fire.artwork = artwork;
             break;
         case "pidgeotto":
-            typeobj.flying.name = name;
+            typeobj.flying.name = capitaliseFirstLetter(name);
             typeobj.flying.id = id;
             typeobj.flying.artwork = artwork;
             break;
         case "banette":
-            typeobj.ghost.name = name;
+            typeobj.ghost.name = capitaliseFirstLetter(name);
             typeobj.ghost.id = id;
             typeobj.ghost.artwork = artwork;
             break;
-        case "roserade":
-            typeobj.grass.name = name;
-            typeobj.grass.id = id;
-            typeobj.grass.artwork = artwork;
-            break;
+            case "lilligant":
+                typeobj.grass.name = capitaliseFirstLetter(name);
+                typeobj.grass.id = id;
+                typeobj.grass.artwork = artwork;
+                break;
 
         case "piloswine":
-            typeobj.ground.name = name;
+            typeobj.ground.name = capitaliseFirstLetter(name);
             typeobj.ground.id = id;
             typeobj.ground.artwork = artwork;
             break;
         case "bergmite":
-            typeobj.ice.name = name;
+            typeobj.ice.name = capitaliseFirstLetter(name);
             typeobj.ice.id = id;
             typeobj.ice.artwork = artwork;
             break;
         case "lickitung":
-            typeobj.normal.name = name;
+            typeobj.normal.name = capitaliseFirstLetter(name);
             typeobj.normal.id = id;
             typeobj.normal.artwork = artwork;
             break;
         case "skuntank":
-            typeobj.poison.name = name;
+            typeobj.poison.name = capitaliseFirstLetter(name);
             typeobj.poison.id = id;
             typeobj.poison.artwork = artwork;
             break;
         case "hatterene":
-            typeobj.psychic.name = name;
+            typeobj.psychic.name = capitaliseFirstLetter(name);
             typeobj.psychic.id = id;
             typeobj.psychic.artwork = artwork;
             break;
 
         case "gigalith":
-            typeobj.rock.name = name;
+            typeobj.rock.name = capitaliseFirstLetter(name);
             typeobj.rock.id = id;
             typeobj.rock.artwork = artwork;
             break;
         case "aggron":
-            typeobj.steel.name = name;
+            typeobj.steel.name = capitaliseFirstLetter(name);
             typeobj.steel.id = id;
             typeobj.steel.artwork = artwork;
             break;
         case "primarina":
-            typeobj.water.name = name;
+            typeobj.water.name = capitaliseFirstLetter(name);
             typeobj.water.id = id;
             typeobj.water.artwork = artwork;
             break;
         /* silvally as a case is commented out for now (the default case should be silvally) */
         // case "silvally": 
-        //     typeobj.random.name = name;
+        //     typeobj.random.name = capitaliseFirstLetter(name);
         //     typeobj.random.id = id;
         //     typeobj.random.artwork = artwork;
         //     // console.log(typeobj);
@@ -457,7 +452,7 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
             // set the default pokemon name to "silvally"
             pokemon = "silvally";
             // add silvally's name, ID, artwork url values to the 'random' key in typeInfo object
-            typeobj.random.name = name;
+            typeobj.random.name = capitaliseFirstLetter(name);
             typeobj.random.id = id;
             typeobj.random.artwork = artwork;
             // console.log("default break at fill-details function");
@@ -465,7 +460,12 @@ function fillPokemonDetails(typeobj, name, id, artwork) {
     }
 }
 
-getPokeApi();
+// capitalise the first letter of a string
+function capitaliseFirstLetter(str) {
+    let capitalised = str.charAt(0).toUpperCase() + str.slice(1);
+    return capitalised;
+}
+
 
 //GENERATE YOUR POKEMON function
 
@@ -617,6 +617,14 @@ function matchArtistToPokemon(event) {
     }
 
 }
+
+// initialise the page
+function init() {
+    getPokeApi();
+}
+
+// start the app
+init();
 
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
