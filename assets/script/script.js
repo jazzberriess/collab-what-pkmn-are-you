@@ -73,7 +73,7 @@ function getSpotifyToken() {
 function getArtistData(accessToken) {
 
     //FOR THE LOVE OF EVERYTHING CHANGE THIS STRING TO USERINPUT.VALUE
-    artistInput = userInput.value;
+    artistInput = userInput.value.trim();
 
     //URL for the artist search via the spotify API - limit the search query to five results
     let spotifyArtistSearch = "https://api.spotify.com/v1/search?type=artist&q=" + artistInput + "&limit=5";
@@ -592,6 +592,9 @@ function prettify(ability) {
 
 function generatePkmn() {
 
+    //clear the inner HTML if you generate another pokemon 
+    tempDisplay.innerHTML = "";
+
     //variable to store the generated pokemon data in so we can then create the elements to display the information
     let yourPkmn = "";
 
@@ -606,25 +609,25 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
         //DARK TYPE
-    } else if (artistGenre.includes("punk") || artistGenre.includes("emo")) {
+    } else if (artistGenre.includes("grunge") || artistGenre.includes("emo")) {
         yourPkmn = typeInfo.dark;
         console.log("the pokemon is " + JSON.stringify(typeInfo.dark));
         appendElements(yourPkmn);
 
         //DRAGON TYPE
-    } else if (artistGenre.includes("classical") || artistGenre.includes("opera")) {
+    } else if (artistGenre.includes("classical") || artistGenre.includes("dubstep") || artistGenre.includes("synth")) {
         yourPkmn = typeInfo.dragon;
         console.log("the pokemon is " + JSON.stringify(typeInfo.dragon));
         appendElements(yourPkmn);
 
         //ELECTRIC TYPE
-    } else if (artistGenre.includes("dance") || artistGenre.includes("electronic")) {
+    } else if (artistGenre.includes("dance") || artistGenre.includes("electronic") || artistGenre.includes("edm")) {
         yourPkmn = typeInfo.electric;
         console.log("the pokemon is " + JSON.stringify(typeInfo.electric));
         appendElements(yourPkmn);
 
         //FAIRY TYPE
-    } else if (artistGenre.includes("pop") || artistGenre.includes("synth")) {
+    } else if (artistGenre.includes("pop")) {
         yourPkmn = typeInfo.fairy;
         console.log("the pokemon is " + JSON.stringify(typeInfo.fairy));
         appendElements(yourPkmn);
@@ -636,7 +639,7 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
         //FIRE TYPE
-    } else if (artistGenre.includes("jazz") || artistGenre.includes("musical theatre")) {
+    } else if (artistGenre.includes("jazz") || artistGenre.includes("latin")) {
         yourPkmn = typeInfo.fire;
         console.log("the pokemon is " + JSON.stringify(typeInfo.fire));
         appendElements(yourPkmn);
@@ -696,7 +699,7 @@ function generatePkmn() {
         appendElements(yourPkmn);
 
         //METAL TYPE
-    } else if (artistGenre.includes("metal")) {
+    } else if (artistGenre.includes("metal") || artistGenre.includes("hardcore")) {
         yourPkmn = typeInfo.steel;
         console.log("the pokemon is " + JSON.stringify(typeInfo.steel));
         appendElements(yourPkmn);
@@ -711,7 +714,6 @@ function generatePkmn() {
         randomisePokemon();
     }
 
-    //doin a thing
 };
 
 function randomisePokemon(yourPkmn) {
@@ -732,14 +734,23 @@ function randomisePokemon(yourPkmn) {
 function appendElements(yourPkmn) {
 
     let yourPkmnDisplay = document.createElement("div");
-    yourPkmnDisplay.innerHTML = yourPkmn.name;
+    yourPkmnDisplay.innerHTML = yourPkmn.name
+
+    let yourPkmnType = document.createElement("div")
+    yourPkmnType.innerHTML = "Type: " + yourPkmn.type;
+    yourPkmnDisplay.appendChild(yourPkmnType);
 
     let yourPkmnImage = document.createElement("img");
     yourPkmnImage.setAttribute("src", yourPkmn.artwork);
     yourPkmnDisplay.appendChild(yourPkmnImage);
 
-    let yourPkmnInfo = document.createElement('div');
-    yourPkmnInfo.innerHTML = yourPkmn.entry;
+    let yourPkmnInfo = document.createElement("div");
+    yourPkmnInfo.innerHTML = "Description: " + yourPkmn.entry;
+
+
+    let yourPkmnAbility = document.createElement("div");
+    yourPkmnAbility.innerHTML = "Ability: " + yourPkmn.ability;
+    yourPkmnInfo.appendChild(yourPkmnAbility);
 
     tempDisplay.appendChild(yourPkmnDisplay);
     yourPkmnDisplay.appendChild(yourPkmnInfo);
