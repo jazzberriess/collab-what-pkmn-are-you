@@ -620,8 +620,10 @@ function prettify(ability) {
 }
 
 function prettifyInput(userinput) {
+    /* got help for the for-loop part from here: 
+    https://www.tutorialspoint.com/how-to-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript#:~:text=Courses-,How%20to%20capitalize%20the%20first%20letter%20of,in%20a%20string%20using%20JavaScript%3F&text=At%20first%2C%20you%20need%20to,()%20for%20the%20extracted%20character. */
+
     let separateWord = userinput.toLowerCase().split(" ");
-    console.log(separateWord);
 
     for (var i = 0; i < separateWord.length; i++) {
         separateWord[i] = separateWord[i].charAt(0).toUpperCase() + separateWord[i].slice(1);
