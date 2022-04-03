@@ -216,9 +216,9 @@ function getPokemonInfo(url) {
         })
         .then(function (data) {
             // console.log(data);
+
             // get pokemon name
             let name = data.name;
-
             // get pokemon id number
             let id = data.id;
 
@@ -227,8 +227,9 @@ function getPokemonInfo(url) {
             // make the url a string
             let artwork = `${artLocation}`;
 
+            // get pokemon type (base array)
             let type = data.types;
-
+            // get pokemon abilities (base array)
             let ability = data.abilities;
 
             // get species data urls
