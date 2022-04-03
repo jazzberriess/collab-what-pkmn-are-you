@@ -619,13 +619,18 @@ function prettify(ability) {
     return prettified;
 }
 
-let testname = "MICHAEL BUBLE";
+var testname = "MICHAEL BUBLE";
+
 prettifyInput(testname);
 
 function prettifyInput(testname) {
-    let newname = testname.split(" ");
-    newname.toLowerCase();
-    console.log(newname);
+    let separateWord = testname.toLowerCase().split(" ");
+    console.log(separateWord);
+
+    for (var i = 0; i < separateWord.length; i++) {
+        separateWord[i] = separateWord[i].charAt(0).toUpperCase() + separateWord[i].slice(1);
+    }
+    return separateWord.join(" ");
 }
 
 
@@ -855,5 +860,8 @@ NOTES FOR THIS BRANCH:
 -- moved `let yourPkmn = "";` into the global scope (at top of page)
 -- commented out 'adult standards' genre for testing random output (use louis armstrong)
 -- removed yourPkmn from grass appendElements(__) for testing (use enya) 
+
+
+-- merged with main so at the top, modal js is in there
 
 */
