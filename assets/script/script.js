@@ -590,6 +590,15 @@ function prettify(ability) {
     return prettified;
 }
 
+let testname = "MICHAEL BUBLE";
+prettifyInput(testname);
+
+function prettifyInput(testname) {
+    let newname = testname.split(" ");
+    newname.toLowerCase();
+    console.log(newname);
+}
+
 
 //GENERATE YOUR POKEMON function
 
@@ -767,6 +776,7 @@ function matchArtistToPokemon(event) {
     }
 
 }
+
 
 function saveResults() {
     // make result object
