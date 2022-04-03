@@ -71,6 +71,8 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [Stackoverflow](https://stackoverflow.com/)
 
+* Class instructor and TAs, Friday tutor, class notes
+
 ### Sushan
 
 * [pokéAPI Documentation](https://pokeapi.co/docs/v2#pokemon)
