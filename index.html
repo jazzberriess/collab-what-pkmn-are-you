@@ -25,37 +25,36 @@
 <body>
 
   <main>
-
     <div class="main-flex-parent">
       <div class="main-flex-child">
+        <div class="main-content">
 
-        <div class=“main-content”></div>
-
-        <div id="pokeball-splash-screen" class="splash-screen">
-          <div class="splash-screen-content">
-            <button id="modal-button" class="modal-button pokeball"></button>
+          <div id="pokeball-splash-screen" class="splash-screen">
+            <div class="splash-screen-content">
+              <button id="modal-button" class="modal-button pokeball"></button>
+            </div>
           </div>
-        </div>
 
-        <div id="results-display">
           <div id="results-display">
+            <!-- results to be displayed here -->
             <h1>You are...<span id="pokemon-name"></span>
               <h1>
                 <img id="pkmn-image">
                 <p id="pkmn-info"></p>
-                <!-- results to be displayed here -->
-
           </div>
-          <!-- History display section -->
 
           <button id="myBtn">BEGIN!</button>
-          <div id="history-display" class="hidden">
-            <button id="view-retry-button" type="submit">Retry </button>
-            <button id="history-button">Show History</button>
-            <button id="hide-history" class="hidden">Hide History</button>
-            <button id="clear-history" class="hidden">Clear History <i
-                class="fa-solid fa-arrow-rotate-left"></i></button>
+
+          <!-- History display section -->
+          <div id="history-display">
           </div>
+
+          <button id="view-retry-button" type="submit">Retry </button>
+          <button id="history-button">Show History</button>
+          <button id="hide-history-btn" class="hidden">Hide History</button>
+          <button id="clear-history-btn" class="hidden">Clear History <i
+              class="fa-solid fa-arrow-rotate-left"></i></button>
+
           <!-- The modal -->
           <div id="modal-underlay" class="modal">
             <!-- Modal content -->
@@ -69,8 +68,10 @@
               </form>
             </div>
           </div>
+
         </div>
       </div>
+    </div>
 
   </main>
 

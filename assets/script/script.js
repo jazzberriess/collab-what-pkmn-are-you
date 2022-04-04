@@ -837,22 +837,33 @@ function retrieveResults() {
 
     // if there is no data in local storage
     if (!localData) {
-        historyDisplay.removeAttribute("class");
+        //clear the historyDisplay div
+        historyDisplay.innerHTML = "";
+        //show the historyDisplay div
+        historyDisplay.classList.remove("hidden");
+        //create element to display "Nothing here!" msg
         let empty = document.createElement("li");
         empty.textContent = "Nothing here.";
         resultsList.appendChild(empty);
         historyDisplay.appendChild(resultsList);
-        hideHistoryBtn.removeAttribute("class");
+        //hide the Hide History btn and display the Show History Btn
+        hideHistoryBtn.classList.remove("hidden");
+        historyBtn.classList.add("hidden");
 
 
     } else {
         // run through each item in local storage
         for (let i = 0; i < localData.length; i++) {
             // make a list item and add text referencing artist name, pokemon type, and pokemon name
-            historyDisplay.removeAttribute("class");
-            hideHistoryBtn.removeAttribute("class");
-            clearHistoryBtn.removeAttribute("class");
-            historyBtn.setAttribute("class", "hidden");
+
+            //clear the history display area and show history buttons
+
+            historyDisplay.innerHTML = "";
+            historyDisplay.classList.remove("hidden");
+            hideHistoryBtn.classList.remove("hidden");
+            clearHistoryBtn.classList.remove("hidden");
+            historyBtn.classList.add("hidden");
+
             let line = document.createElement("li");
             line.textContent = `Choosing ${localData[i].artist} means you are the ${localData[i].type} type Pokémon, ${localData[i].pokemon}!`;
 
@@ -864,19 +875,26 @@ function retrieveResults() {
 }
 
 function hideHistory() {
+    //clear the history area and show the Show History Button
     historyDisplay.innerHTML = "";
-    historyDisplay.setAttribute("class", "hidden");
-    hideHistoryBtn.setAttribute("class", "hidden");
-    clearHistoryBtn.setAttribute("class", "hidden");
-    historyBtn.removeAttribute("class");
+    historyDisplay.classList.add("hidden");
+    hideHistoryBtn.classList.add("hidden");
+    clearHistoryBtn.classList.add("hidden");
+    historyBtn.classList.remove("hidden");
 }
 
 function clearHistory() {
+    //clear local storage
     localStorage.clear();
+    //clear history display div
     historyDisplay.innerHTML = "";
+    //show message confirming history delete
     let clearMsg = document.createElement("p");
     clearMsg.textContent = "History cleared!";
     historyDisplay.appendChild(clearMsg);
+    //hide clear history bytton
+    clearHistoryBtn.classList.add("hidden");
+
 }
 
 // uncomment this to see the results show up on refresh
