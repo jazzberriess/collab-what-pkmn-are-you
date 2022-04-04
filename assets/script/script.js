@@ -44,8 +44,14 @@ let yourPkmn = "";
 
 let tempDisplay = document.getElementById("results-display");
 
+let historyDisplay = document.getElementById("history-display");
+
 //CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
 let artistBtn = document.getElementById("temporary-start-button");
+
+let historyBtn = document.getElementById("history-btn");
+let hideHistoryBtn = document.getElementById("hide-history-btn");
+let clearHistoryBtn = document.getElementById("clear-history-btn");
 
 
 
@@ -818,10 +824,13 @@ function retrieveResults() {
 
     // if there is no data in local storage
     if (!localData) {
+        historyDisplay.removeAttribute("class");
         let empty = document.createElement("li");
         empty.textContent = "Nothing here.";
         resultsList.appendChild(empty);
-        tempDisplay.appendChild(resultsList);
+        historyDisplay.appendChild(resultsList);
+        hideHistoryBtn.removeAttribute("class");
+
 
     } else {
         // run through each item in local storage
@@ -835,6 +844,22 @@ function retrieveResults() {
             tempDisplay.appendChild(resultsList);
         }
     }
+}
+
+function hideHistory() {
+    historyDisplay.innerHTML = "";
+    historyDisplay.setAttribute("class", "hidden");
+    hideHistoryBtn.setAttribute("class", "hidden");
+    clearHistoryBtn.setAttribute("class", "hidden");
+    historyBtn.removeAttribute("class");
+}
+
+function clearHistory() {
+    localStorage.clear();
+    historyDisplay.innerHTML = "";
+    let clearMsg = document.createElement("p");
+    clearMsg.textContent = "History cleared!";
+    historyDisplay.appendChild(clearMsg);
 }
 
 // uncomment this to see the results show up on refresh
