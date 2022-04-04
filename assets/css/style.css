@@ -3,6 +3,65 @@ body {
   background-color: #393939;
 }
 
+.main-flex-parent {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-flex-child {
+  flex: 0 0 auto;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*Pokeball Splash Screen*/
+
+/* how to make a div a responsive square:
+https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsive-square */
+
+.splash-screen {
+  position: relative;
+  width: 50%;
+  overflow: hidden;
+}
+
+.splash-screen:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.splash-screen-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+
+.modal-button {
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 0;
+  border: none;
+}
+
+.pokeball {
+  background: url("../images/basic-pokeball.png") no-repeat;
+  background-size: contain;
+}
 
 /* The Modal (background) */
 .modal {
@@ -28,15 +87,15 @@ body {
 }
 
 /* The Close Button */
-.close {
+#close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+#close:hover,
+#close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -56,6 +115,7 @@ body {
 }
 
 
-.hiden {
+.hidden {
   display: none;
 }
+
