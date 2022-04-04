@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title></title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <!-- skeleton css -->
+  <link rel="stylesheet" href="./assets/css/normalize.css">
+  <link rel="stylesheet" href="./assets/css/skeleton.css">
+  <!-- custom css -->
   <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
@@ -23,24 +26,35 @@
         </div>
 
         <div id="results-display">
+          <h1>Heading</h1>
+          <img src="">
+          <p1>paragraph</p1>
+          <button id="view-history-button" type="submit">View history</button>
+          <button id="clear-history-button" type="submit">Clear History</button>
           <!-- results to be displayed here -->
+
+        </div>
+        <!-- History display section -->
+        <div>
+          <button id="view-retry-button" type="submit">Retry</button>
         </div>
 
-        <button id="myBtn">Modal Button</button>
-          
+        <button id="myBtn">BEGIN!</button>
+
         <!-- The modal -->
         <div id="myModal" class="modal">
           <!-- Modal content -->
           <div class="modal-content">
             <span class="close">&times;</span>
-            <strong>Input music artist name below</strong>
-            <form action="/action_page.php">
+            <H2>What kind of Pokemon are you?</H2>
+            <p1>Who's your favourite music artist?</p1>
+            <form>
               <input id="user-input" type="field" placeholder="Artist Name" />
-              <button id="temporary-start-button" type="submit">Submit</button>
+              <button id="temporary-start-button" type="submit">Go!</button>
             </form>
           </div>
         </div>
-      
+
       </div>
     </div>
 

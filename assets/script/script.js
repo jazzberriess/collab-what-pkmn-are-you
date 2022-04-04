@@ -10,20 +10,20 @@ var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
+btn.onclick = function () {
+    modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span.onclick = function () {
+    modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 
@@ -38,6 +38,9 @@ let artistGenre = "";
 let userInput = document.getElementById("user-input");
 
 let artistInput = "";
+
+//variable to store the generated pokemon data in so we can then create the elements to display the information
+let yourPkmn = "";
 
 let tempDisplay = document.getElementById("results-display");
 
@@ -158,8 +161,8 @@ function getArtistData(accessToken) {
 
 // POKEMON API functions
 
-// full type list
-// { key: name, id, artwork, entry, type, ability }
+/* full type list
+{ key: name, id, artwork, entry, type, ability } */
 var typeInfo = {
     "bug": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
     "dark": { "name": {}, "id": {}, "artwork": {}, "entry": {}, "type": {}, "ability": {} },
@@ -605,9 +608,9 @@ function prettify(ability) {
     // eg. ability = "ice-body": split the phrase into "ice" (partA) and "body" (partB)
     let partA = ability.split("-")[0];
     // special condition for silvally's ability "RKS System": all partA must be capitalised
-        if (ability.includes("rks")) {
-            partA = partA.toUpperCase(); // ie. Rks = RKS
-        }
+    if (ability.includes("rks")) {
+        partA = partA.toUpperCase(); // ie. Rks = RKS
+    }
 
     let partB = ability.split("-")[1];
 
@@ -616,132 +619,108 @@ function prettify(ability) {
     return prettified;
 }
 
+function prettifyInput(userinput) {
+    /* got help for the for-loop part from here: 
+    https://www.tutorialspoint.com/how-to-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript#:~:text=Courses-,How%20to%20capitalize%20the%20first%20letter%20of,in%20a%20string%20using%20JavaScript%3F&text=At%20first%2C%20you%20need%20to,()%20for%20the%20extracted%20character. */
+
+    let separateWord = userinput.toLowerCase().split(" ");
+
+    for (var i = 0; i < separateWord.length; i++) {
+        separateWord[i] = separateWord[i].charAt(0).toUpperCase() + separateWord[i].slice(1);
+    }
+    return separateWord.join(" ");
+}
+
 
 //GENERATE YOUR POKEMON function
 
 function generatePkmn() {
 
-    //variable to store the generated pokemon data in so we can then create the elements to display the information
-    let yourPkmn = "";
-
-    //massive if/else statement to cover various generes and decide which type pokemon they are
     if (!artistGenre) {
         randomisePokemon();
-
         //BUG TYPE
-    } else if (artistGenre.includes("blues")) {
+    } else if (artistGenre.includes("blues") || artistGenre.includes("reggae")) {
         yourPkmn = typeInfo.bug;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.bug));
+        // console.log("the pokemon is " + JSON.stringify(typeInfo.bug));
         appendElements(yourPkmn);
-
         //DARK TYPE
-    } else if (artistGenre.includes("punk")) {
+    } else if (artistGenre.includes("dubstep") || artistGenre.includes("emo")) {
         yourPkmn = typeInfo.dark;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.dark));
         appendElements(yourPkmn);
-
         //DRAGON TYPE
-    } else if (artistGenre.includes("classical")) {
+    } else if (artistGenre.includes("classical") || artistGenre.includes("opera") || artistGenre.includes("synth")) {
         yourPkmn = typeInfo.dragon;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.dragon));
         appendElements(yourPkmn);
-
         //ELECTRIC TYPE
-    } else if (artistGenre.includes("dance")) {
+    } else if (artistGenre.includes("dance") || artistGenre.includes("electronic") || artistGenre.includes("edm")) {
         yourPkmn = typeInfo.electric;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.electric));
         appendElements(yourPkmn);
-
         //FAIRY TYPE
     } else if (artistGenre.includes("pop")) {
         yourPkmn = typeInfo.fairy;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.fairy));
         appendElements(yourPkmn);
-
         //FIGHTING TYPE
     } else if (artistGenre.includes("R&B") || artistGenre.includes("rhythm") || artistGenre.includes("hip hop")) {
         yourPkmn = typeInfo.fighting;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.fighting));
         appendElements(yourPkmn);
-
         //FIRE TYPE
-    } else if (artistGenre.includes("jazz")) {
+    } else if (artistGenre.includes("jazz") || artistGenre.includes("musical theatre") || artistGenre.includes("latin")) {
         yourPkmn = typeInfo.fire;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.fire));
         appendElements(yourPkmn);
-
         //FLYING TYPE
-    } else if (artistGenre.includes("orchestra")) {
+    } else if (artistGenre.includes("orchestra") || artistGenre.includes("soundtrack") || artistGenre.includes("world")) {
         yourPkmn = typeInfo.flying;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.flying));
         appendElements(yourPkmn);
-
         //GHOST TYPE
-    } else if (artistGenre.includes("soul") || artistGenre.includes("religious")) {
+    } else if (artistGenre.includes("soul") || artistGenre.includes("religious") || artistGenre.includes("worship")) {
         yourPkmn = typeInfo.ghost;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.ghost));
         appendElements(yourPkmn);
-
         //GRASS TYPE
-    } else if (artistGenre.includes("folk") || artistGenre.includes("celtic")) {
+    } else if (artistGenre.includes("folk") || artistGenre.includes("celtic") || artistGenre.includes("psychedelic")) {
         yourPkmn = typeInfo.grass;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.grass));
         appendElements(yourPkmn);
-
         //GROUND TYPE
-    } else if (artistGenre.includes("country")) {
+    } else if (artistGenre.includes("country") || artistGenre.includes("indie")) {
         yourPkmn = typeInfo.ground;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.ground));
         appendElements(yourPkmn);
-
         //ICE TYPE
-    } else if (artistGenre.includes("chill-out") || artistGenre.includes("lo-fi")) {
+    } else if (artistGenre.includes("chill-out") || artistGenre.includes("lo-fi") || artistGenre.includes("alternative")) {
         yourPkmn = typeInfo.ice;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.ice));
         appendElements(yourPkmn);
-
         //NORMAL TYPE
     } else if (artistGenre.includes("easy") || artistGenre.includes("adult standards")) {
         yourPkmn = typeInfo.normal;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.normal));
         appendElements(yourPkmn);
-
         //POISON TYPE
     } else if (artistGenre.includes("punk") || artistGenre.includes("rap")) {
         yourPkmn = typeInfo.poison;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.poison));
         appendElements(yourPkmn);
-
         //PSYCHIC TYPE
-    } else if (artistGenre.includes("new age")) {
+    } else if (artistGenre.includes("new age") || artistGenre.includes("techno") || artistGenre.includes("experimental")) {
         yourPkmn = typeInfo.psychic;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.psychic));
         appendElements(yourPkmn);
-
         //ROCK TYPE
     } else if (artistGenre.includes("rock")) {
         yourPkmn = typeInfo.rock;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.rock));
         appendElements(yourPkmn);
-
         //METAL TYPE
-    } else if (artistGenre.includes("metal")) {
+    } else if (artistGenre.includes("metal") || artistGenre.includes("hardcore")) {
         yourPkmn = typeInfo.steel;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.steel));
         appendElements(yourPkmn);
-
         //WATER TYPE
-    } else if (artistGenre.includes("ambient")) {
+    } else if (artistGenre.includes("ambient") || artistGenre.includes("instrumental")) {
         yourPkmn = typeInfo.water;
-        console.log("the pokemon is " + JSON.stringify(typeInfo.water));
         appendElements(yourPkmn);
-
     } else {
         randomisePokemon();
     }
+
+    // SAVE TO LOCAL STORAGE
+    saveResults();
+
 };
 
-function randomisePokemon(yourPkmn) {
+function randomisePokemon() {
 
     //retrieve a random key value pair from an object: https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object
 
@@ -750,28 +729,46 @@ function randomisePokemon(yourPkmn) {
     yourPkmn = typeInfo[types[randomise]];
     console.log("the pokemon is " + JSON.stringify(yourPkmn));
 
-    appendElements(yourPkmn);
+    appendElements();
 
 }
 
 // place holder append elements so we could see the javascript in action
 
-function appendElements(yourPkmn) {
+function appendElements() {
 
-    let yourPkmnDisplay = document.createElement("div");
-    yourPkmnDisplay.innerHTML = yourPkmn.name;
+    //display Pokémon name
+    // let yourPkmnDisplay = document.createElement("div");
+    tempDisplay.innerHTML = "You are " + yourPkmn.name + "!";
+    // tempDisplay.appendChild(yourPkmnDisplay);
 
+    //display Pokémon type
+    let yourPkmnType = document.createElement("div");
+    yourPkmnType.innerHTML = "Type: " + yourPkmn.type;
+    // yourPkmnDisplay.appendChild(yourPkmnType);
+    tempDisplay.appendChild(yourPkmnType);
+
+    //display Pokémon image
     let yourPkmnImage = document.createElement("img");
     yourPkmnImage.setAttribute("src", yourPkmn.artwork);
-    yourPkmnDisplay.appendChild(yourPkmnImage);
+    yourPkmnImage.setAttribute("alt", "Official artwork of the Pokémon.");
+    // yourPkmnDisplay.appendChild(yourPkmnImage);
+    tempDisplay.appendChild(yourPkmnImage);
 
+    //display Pokémon info
     let yourPkmnInfo = document.createElement('div');
-    yourPkmnInfo.innerHTML = yourPkmn.entry;
+    yourPkmnInfo.innerHTML = "Info: " + yourPkmn.entry;
+    // yourPkmnDisplay.appendChild(yourPkmnInfo);
+    tempDisplay.appendChild(yourPkmnInfo);
 
-    tempDisplay.appendChild(yourPkmnDisplay);
-    yourPkmnDisplay.appendChild(yourPkmnInfo);
+    //display Pokémon ability
+    let yourPkmnAbility = document.createElement("div");
+    yourPkmnAbility.innerHTML = "Ability: " + yourPkmn.ability;
+    yourPkmnInfo.appendChild(yourPkmnAbility);
+
 
 }
+
 
 //place holder script so we could ensure the functionality for userInput form was working
 
@@ -789,6 +786,65 @@ function matchArtistToPokemon(event) {
     }
 
 }
+
+// save to local storage
+function saveResults() {
+    // make result object
+    var match = {
+        "artist": prettifyInput(artistInput),
+        "pokemon": yourPkmn.name,
+        "type": yourPkmn.type
+    }
+
+    // pull results from local storage
+    let allresults = JSON.parse(localStorage.getItem("Results"));
+    // if there are no results then make a new empty array
+    if (!allresults) {
+        allresults = [];
+    }
+
+    // add the match to allresults
+    allresults.push(match);
+    // set to local storage
+    localStorage.setItem("Results", JSON.stringify(allresults));
+}
+
+// retrieve from local storage
+function retrieveResults() {
+    let localData = JSON.parse(localStorage.getItem("Results"));
+    // console.log(localData);
+
+    // clear the results-display area
+    tempDisplay.innerHTML = "";
+
+    // make an ordered list to hold the results
+    let resultsList = document.createElement("ol");
+    tempDisplay.appendChild(resultsList);
+
+    // if there is no data in local storage
+    if (!localData) {
+        let empty = document.createElement("li");
+        empty.textContent = "Nothing here.";
+        resultsList.appendChild(empty);
+        tempDisplay.appendChild(resultsList);
+
+    } else {
+        // run through each item in local storage
+        for (let i = 0; i < localData.length; i++) {
+            // make a list item and add text referencing artist name, pokemon type, and pokemon name
+            let line = document.createElement("li");
+            line.textContent = `Choosing ${localData[i].artist} means you are the ${localData[i].type} type Pokémon, ${localData[i].pokemon}!`;
+
+            // append the elements to each other
+            resultsList.appendChild(line)
+            tempDisplay.appendChild(resultsList);
+        }
+    }
+}
+
+// uncomment this to see the results show up on refresh
+// retrieveResults();
+
 
 // initialise the page
 function init() {

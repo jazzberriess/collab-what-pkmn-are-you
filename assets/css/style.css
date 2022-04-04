@@ -1,3 +1,8 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+}
+
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
