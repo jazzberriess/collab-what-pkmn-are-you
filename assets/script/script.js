@@ -738,29 +738,34 @@ function randomisePokemon() {
 function appendElements() {
 
     //display Pokémon name
-    let yourPkmnDisplay = document.createElement("div");
-    yourPkmnDisplay.innerHTML = "You are " + yourPkmn.name + "!";
-    tempDisplay.appendChild(yourPkmnDisplay);
+    // let yourPkmnDisplay = document.createElement("div");
+    tempDisplay.innerHTML = "You are " + yourPkmn.name + "!";
+    // tempDisplay.appendChild(yourPkmnDisplay);
 
     //display Pokémon type
     let yourPkmnType = document.createElement("div");
     yourPkmnType.innerHTML = "Type: " + yourPkmn.type;
-    yourPkmnDisplay.appendChild(yourPkmnType);
+    // yourPkmnDisplay.appendChild(yourPkmnType);
+    tempDisplay.appendChild(yourPkmnType);
 
     //display Pokémon image
     let yourPkmnImage = document.createElement("img");
     yourPkmnImage.setAttribute("src", yourPkmn.artwork);
-    yourPkmnDisplay.appendChild(yourPkmnImage);
+    yourPkmnImage.setAttribute("alt", "Official artwork of the Pokémon.");
+    // yourPkmnDisplay.appendChild(yourPkmnImage);
+    tempDisplay.appendChild(yourPkmnImage);
 
     //display Pokémon info
     let yourPkmnInfo = document.createElement('div');
     yourPkmnInfo.innerHTML = "Info: " + yourPkmn.entry;
-    yourPkmnDisplay.appendChild(yourPkmnInfo);
+    // yourPkmnDisplay.appendChild(yourPkmnInfo);
+    tempDisplay.appendChild(yourPkmnInfo);
 
     //display Pokémon ability
     let yourPkmnAbility = document.createElement("div");
     yourPkmnAbility.innerHTML = "Ability: " + yourPkmn.ability;
     yourPkmnInfo.appendChild(yourPkmnAbility);
+
 
 }
 
