@@ -28,7 +28,6 @@ window.onclick = function (event) {
     }
 }
 
-
 //SPOTIFY API functions
 
 //setting global varaibles for the SpotifyAPI so we can access the retrieved json data in other functions
