@@ -44,10 +44,16 @@ let artistInput = "";
 //variable to store the generated pokemon data in so we can then create the elements to display the information
 let yourPkmn = "";
 
-let tempDisplay = document.getElementById("results-display");
+let resultsDisplay = document.getElementById("results-display");
+
+let historyDisplay = document.getElementById("history-display");
 
 //CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
-let artistBtn = document.getElementById("temporary-start-button");
+let artistBtn = document.getElementById("start-button");
+
+let historyBtn = document.getElementById("history-button");
+let hideHistoryBtn = document.getElementById("hide-history-btn");
+let clearHistoryBtn = document.getElementById("clear-history-btn");
 
 
 
@@ -155,7 +161,7 @@ function getArtistData(accessToken) {
             //display please try again message to user
             let errorText = document.createElement("p");
             errorText.textContent = "Sorry! We couldn't find that artist. Try again."
-            tempDisplay.appendChild(errorText);
+            resultsDisplay.appendChild(errorText);
 
         });
 
@@ -741,27 +747,32 @@ function appendElements() {
 
     //display Pokémon name
     // let yourPkmnDisplay = document.createElement("div");
-    tempDisplay.innerHTML = "You are " + yourPkmn.name + "!";
-    // tempDisplay.appendChild(yourPkmnDisplay);
-
-    //display Pokémon type
-    let yourPkmnType = document.createElement("div");
-    yourPkmnType.innerHTML = "Type: " + yourPkmn.type;
-    // yourPkmnDisplay.appendChild(yourPkmnType);
-    tempDisplay.appendChild(yourPkmnType);
+    // resultsDisplay.innerHTML = "You are " + yourPkmn.name + "!";
+    // resultsDisplay.appendChild(yourPkmnDisplay);
+    let pokemonName = document.getElementById("pokemon-name");
+    pokemonName.textContent = yourPkmn.name + "!";
+    resultsDisplay.append(pokemonName);
 
     //display Pokémon image
-    let yourPkmnImage = document.createElement("img");
+    let yourPkmnImage = document.getElementById("pkmn-image");
     yourPkmnImage.setAttribute("src", yourPkmn.artwork);
     yourPkmnImage.setAttribute("alt", "Official artwork of the Pokémon.");
     // yourPkmnDisplay.appendChild(yourPkmnImage);
-    tempDisplay.appendChild(yourPkmnImage);
+    resultsDisplay.append(yourPkmnImage);
 
     //display Pokémon info
-    let yourPkmnInfo = document.createElement('div');
-    yourPkmnInfo.innerHTML = "Info: " + yourPkmn.entry;
+    let yourPkmnInfo = document.getElementById("pkmn-info");
+    yourPkmnInfo.textContent = "Type: " + yourPkmn.type + ". Info: " + yourPkmn.entry;
     // yourPkmnDisplay.appendChild(yourPkmnInfo);
-    tempDisplay.appendChild(yourPkmnInfo);
+    resultsDisplay.append(yourPkmnInfo);
+
+    //display Pokémon type
+    //  let yourPkmnType = document.createElement("div");
+    //  yourPkmnType.innerHTML = "Type: " + yourPkmn.type;
+    // yourPkmnDisplay.appendChild(yourPkmnType);
+    //  resultsDisplay.appendChild(yourPkmnType);
+
+
 
     //display Pokémon ability
     let yourPkmnAbility = document.createElement("div");
@@ -818,31 +829,72 @@ function retrieveResults() {
     // console.log(localData);
 
     // clear the results-display area
-    tempDisplay.innerHTML = "";
+    resultsDisplay.innerHTML = "";
 
     // make an ordered list to hold the results
     let resultsList = document.createElement("ol");
-    tempDisplay.appendChild(resultsList);
+    resultsDisplay.appendChild(resultsList);
 
     // if there is no data in local storage
     if (!localData) {
+        //clear the historyDisplay div
+        historyDisplay.innerHTML = "";
+        //show the historyDisplay div
+        historyDisplay.classList.remove("hidden");
+        //create element to display "Nothing here!" msg
         let empty = document.createElement("li");
         empty.textContent = "Nothing here.";
         resultsList.appendChild(empty);
-        tempDisplay.appendChild(resultsList);
+        historyDisplay.appendChild(resultsList);
+        //hide the Hide History btn and display the Show History Btn
+        hideHistoryBtn.classList.remove("hidden");
+        historyBtn.classList.add("hidden");
+
 
     } else {
         // run through each item in local storage
         for (let i = 0; i < localData.length; i++) {
             // make a list item and add text referencing artist name, pokemon type, and pokemon name
+
+            //clear the history display area and show history buttons
+
+            historyDisplay.innerHTML = "";
+            historyDisplay.classList.remove("hidden");
+            hideHistoryBtn.classList.remove("hidden");
+            clearHistoryBtn.classList.remove("hidden");
+            historyBtn.classList.add("hidden");
+
             let line = document.createElement("li");
             line.textContent = `Choosing ${localData[i].artist} means you are the ${localData[i].type} type Pokémon, ${localData[i].pokemon}!`;
 
             // append the elements to each other
             resultsList.appendChild(line)
-            tempDisplay.appendChild(resultsList);
+            historyDisplay.appendChild(resultsList);
         }
     }
+}
+
+function hideHistory() {
+    //clear the history area and show the Show History Button
+    historyDisplay.innerHTML = "";
+    historyDisplay.classList.add("hidden");
+    hideHistoryBtn.classList.add("hidden");
+    clearHistoryBtn.classList.add("hidden");
+    historyBtn.classList.remove("hidden");
+}
+
+function clearHistory() {
+    //clear local storage
+    localStorage.clear();
+    //clear history display div
+    historyDisplay.innerHTML = "";
+    //show message confirming history delete
+    let clearMsg = document.createElement("p");
+    clearMsg.textContent = "History cleared!";
+    historyDisplay.appendChild(clearMsg);
+    //hide clear history bytton
+    clearHistoryBtn.classList.add("hidden");
+
 }
 
 // uncomment this to see the results show up on refresh
@@ -860,3 +912,9 @@ init();
 
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", matchArtistToPokemon)
+
+historyBtn.addEventListener("click", retrieveResults);
+
+hideHistoryBtn.addEventListener("click", hideHistory);
+
+clearHistoryBtn.addEventListener("click", clearHistory);
