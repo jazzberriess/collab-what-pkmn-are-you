@@ -21,25 +21,40 @@
     <div class="flex-parent">
       <div class="flex-child">
 
-        <div id="pokeball-splash-screen">
-          <!-- pokéball img goes here -->
+        <div id="pokeball-splash-screen" class="splash-screen">
+          <div class="splash-screen-content">
+            <button id="modal-button" class="modal-button pokeball"></button>
+          </div>
         </div>
 
         <div id="results-display">
+          <h1>Heading</h1>
+          <img src="">
+          <p1>paragraph</p1>
+          <button id="view-history-button" type="submit">View history</button>
+          <button id="clear-history-button" type="submit">Clear History</button>
           <!-- results to be displayed here -->
+
         </div>
-
-        <button id="myBtn">Modal Button</button>
-
+        <!-- History display section -->
+        
+        <button id="myBtn">BEGIN!</button>
+        <div id="history-display" class="hidden">
+          <button id="view-retry-button" type="submit">Retry</button>
+          <button id="history-button" >Show History</button>
+          <button id="hide-history" class="hidden">Hide History</button>
+          <button id="clear-history" class="hidden">Clear History</button>
+        </div>
         <!-- The modal -->
-        <div id="myModal" class="modal">
+        <div id="modal-underlay" class="modal">
           <!-- Modal content -->
-          <div class="modal-content">
+          <div id="modal-content" class="modal-content">
             <span class="close">&times;</span>
-            <strong>Input music artist name below</strong>
-            <form>
-              <input id="user-input" type="field" placeholder="Artist Name" />
-              <button id="temporary-start-button" type="submit">Submit</button>
+            <H2>What kind of Pokemon are you?</H2>
+            <p1>Who's your favourite music artist?</p1>
+            <form id="artist-input-form">
+              <input id="user-input" type="text" placeholder="Artist Name" />
+              <button id="start-button" type="submit">Go!</button>
             </form>
           </div>
         </div>

@@ -1,10 +1,10 @@
 // MODAL functions
 
 // Get the modal
-var modal = document.getElementById("myModal");
+var modal = document.getElementById("modal-underlay");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn = document.getElementById("modal-button");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -16,12 +16,14 @@ btn.onclick = function () {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
+    userInput.value = "";
     modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
+        userInput.value = "";
         modal.style.display = "none";
     }
 }
@@ -744,29 +746,34 @@ function randomisePokemon() {
 function appendElements() {
 
     //display Pokémon name
-    let yourPkmnDisplay = document.createElement("div");
-    yourPkmnDisplay.innerHTML = "You are " + yourPkmn.name + "!";
-    tempDisplay.appendChild(yourPkmnDisplay);
+    // let yourPkmnDisplay = document.createElement("div");
+    tempDisplay.innerHTML = "You are " + yourPkmn.name + "!";
+    // tempDisplay.appendChild(yourPkmnDisplay);
 
     //display Pokémon type
     let yourPkmnType = document.createElement("div");
     yourPkmnType.innerHTML = "Type: " + yourPkmn.type;
-    yourPkmnDisplay.appendChild(yourPkmnType);
+    // yourPkmnDisplay.appendChild(yourPkmnType);
+    tempDisplay.appendChild(yourPkmnType);
 
     //display Pokémon image
     let yourPkmnImage = document.createElement("img");
     yourPkmnImage.setAttribute("src", yourPkmn.artwork);
-    yourPkmnDisplay.appendChild(yourPkmnImage);
+    yourPkmnImage.setAttribute("alt", "Official artwork of the Pokémon.");
+    // yourPkmnDisplay.appendChild(yourPkmnImage);
+    tempDisplay.appendChild(yourPkmnImage);
 
     //display Pokémon info
     let yourPkmnInfo = document.createElement('div');
     yourPkmnInfo.innerHTML = "Info: " + yourPkmn.entry;
-    yourPkmnDisplay.appendChild(yourPkmnInfo);
+    // yourPkmnDisplay.appendChild(yourPkmnInfo);
+    tempDisplay.appendChild(yourPkmnInfo);
 
     //display Pokémon ability
     let yourPkmnAbility = document.createElement("div");
     yourPkmnAbility.innerHTML = "Ability: " + yourPkmn.ability;
     yourPkmnInfo.appendChild(yourPkmnAbility);
+
 
 }
 
@@ -808,6 +815,7 @@ function saveResults() {
     allresults.push(match);
     // set to local storage
     localStorage.setItem("Results", JSON.stringify(allresults));
+    userInput.value = "";
 }
 
 // retrieve from local storage
