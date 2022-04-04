@@ -743,42 +743,30 @@ function randomisePokemon() {
 // place holder append elements so we could see the javascript in action
 
 function appendElements() {
-
     //display Pokémon name
-    // let yourPkmnDisplay = document.createElement("div");
-    // resultsDisplay.innerHTML = "You are " + yourPkmn.name + "!";
-    // resultsDisplay.appendChild(yourPkmnDisplay);
     let pokemonName = document.getElementById("pokemon-name");
     pokemonName.textContent = yourPkmn.name + "!";
-    resultsDisplay.append(pokemonName);
 
     //display Pokémon image
     let yourPkmnImage = document.getElementById("pkmn-image");
     yourPkmnImage.setAttribute("src", yourPkmn.artwork);
-    yourPkmnImage.setAttribute("alt", "Official artwork of the Pokémon.");
-    // yourPkmnDisplay.appendChild(yourPkmnImage);
+    yourPkmnImage.setAttribute("alt", "Official artwork of the Pokémon, " + yourPkmn.name + ".");
     resultsDisplay.append(yourPkmnImage);
+
+    //display Pokémon type + info
+    let yourPkmnType = document.getElementById("pkmn-type");
+    yourPkmnType.textContent = "Type: " + yourPkmn.type + ".";
+    resultsDisplay.append(yourPkmnType);
 
     //display Pokémon info
     let yourPkmnInfo = document.getElementById("pkmn-info");
-    yourPkmnInfo.textContent = "Type: " + yourPkmn.type + ". Info: " + yourPkmn.entry;
-    // yourPkmnDisplay.appendChild(yourPkmnInfo);
+    yourPkmnInfo.textContent = "Info: " + yourPkmn.entry; + ".";
     resultsDisplay.append(yourPkmnInfo);
 
-    //display Pokémon type
-    //  let yourPkmnType = document.createElement("div");
-    //  yourPkmnType.innerHTML = "Type: " + yourPkmn.type;
-    // yourPkmnDisplay.appendChild(yourPkmnType);
-    //  resultsDisplay.appendChild(yourPkmnType);
-
-
-
     //display Pokémon ability
-    let yourPkmnAbility = document.createElement("div");
-    yourPkmnAbility.innerHTML = "Ability: " + yourPkmn.ability;
-    yourPkmnInfo.appendChild(yourPkmnAbility);
-
-
+    let yourPkmnAbility = document.getElementById("pkmn-ability");
+    yourPkmnAbility.textContent = "Ability: " + yourPkmn.ability + ".";
+    resultsDisplay.appendChild(yourPkmnAbility);
 }
 
 
