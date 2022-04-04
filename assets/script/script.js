@@ -1,10 +1,10 @@
 // MODAL functions
 
 // Get the modal
-var modal = document.getElementById("myModal");
+var modal = document.getElementById("modal-underlay");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn = document.getElementById("modal-button");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -16,12 +16,14 @@ btn.onclick = function () {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
+    userInput.value = "";
     modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
+        userInput.value = "";
         modal.style.display = "none";
     }
 }
@@ -807,6 +809,7 @@ function saveResults() {
     allresults.push(match);
     // set to local storage
     localStorage.setItem("Results", JSON.stringify(allresults));
+    userInput.value = "";
 }
 
 // retrieve from local storage
