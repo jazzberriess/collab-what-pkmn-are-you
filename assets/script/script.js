@@ -44,14 +44,14 @@ let artistInput = "";
 //variable to store the generated pokemon data in so we can then create the elements to display the information
 let yourPkmn = "";
 
-let tempDisplay = document.getElementById("results-display");
+let resultsDisplay = document.getElementById("results-display");
 
 let historyDisplay = document.getElementById("history-display");
 
 //CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
-let artistBtn = document.getElementById("temporary-start-button");
+let artistBtn = document.getElementById("start-button");
 
-let historyBtn = document.getElementById("history-btn");
+let historyBtn = document.getElementById("history-button");
 let hideHistoryBtn = document.getElementById("hide-history-btn");
 let clearHistoryBtn = document.getElementById("clear-history-btn");
 
@@ -161,7 +161,7 @@ function getArtistData(accessToken) {
             //display please try again message to user
             let errorText = document.createElement("p");
             errorText.textContent = "Sorry! We couldn't find that artist. Try again."
-            tempDisplay.appendChild(errorText);
+            resultsDisplay.appendChild(errorText);
 
         });
 
@@ -747,27 +747,27 @@ function appendElements() {
 
     //display Pokémon name
     // let yourPkmnDisplay = document.createElement("div");
-    tempDisplay.innerHTML = "You are " + yourPkmn.name + "!";
-    // tempDisplay.appendChild(yourPkmnDisplay);
+    resultsDisplay.innerHTML = "You are " + yourPkmn.name + "!";
+    // resultsDisplay.appendChild(yourPkmnDisplay);
 
     //display Pokémon type
     let yourPkmnType = document.createElement("div");
     yourPkmnType.innerHTML = "Type: " + yourPkmn.type;
     // yourPkmnDisplay.appendChild(yourPkmnType);
-    tempDisplay.appendChild(yourPkmnType);
+    resultsDisplay.appendChild(yourPkmnType);
 
     //display Pokémon image
     let yourPkmnImage = document.createElement("img");
     yourPkmnImage.setAttribute("src", yourPkmn.artwork);
     yourPkmnImage.setAttribute("alt", "Official artwork of the Pokémon.");
     // yourPkmnDisplay.appendChild(yourPkmnImage);
-    tempDisplay.appendChild(yourPkmnImage);
+    resultsDisplay.appendChild(yourPkmnImage);
 
     //display Pokémon info
     let yourPkmnInfo = document.createElement('div');
     yourPkmnInfo.innerHTML = "Info: " + yourPkmn.entry;
     // yourPkmnDisplay.appendChild(yourPkmnInfo);
-    tempDisplay.appendChild(yourPkmnInfo);
+    resultsDisplay.appendChild(yourPkmnInfo);
 
     //display Pokémon ability
     let yourPkmnAbility = document.createElement("div");
@@ -824,11 +824,11 @@ function retrieveResults() {
     // console.log(localData);
 
     // clear the results-display area
-    tempDisplay.innerHTML = "";
+    resultsDisplay.innerHTML = "";
 
     // make an ordered list to hold the results
     let resultsList = document.createElement("ol");
-    tempDisplay.appendChild(resultsList);
+    resultsDisplay.appendChild(resultsList);
 
     // if there is no data in local storage
     if (!localData) {
@@ -849,7 +849,7 @@ function retrieveResults() {
 
             // append the elements to each other
             resultsList.appendChild(line)
-            tempDisplay.appendChild(resultsList);
+            resultsDisplay.appendChild(resultsList);
         }
     }
 }
