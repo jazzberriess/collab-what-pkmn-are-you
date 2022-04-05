@@ -50,9 +50,15 @@ let historyDisplay = document.getElementById("history-display");
 //CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
 let artistBtn = document.getElementById("start-button");
 
-let historyBtn = document.getElementById("history-button");
+let historyBtn = document.getElementById("show-history-button");
 let hideHistoryBtn = document.getElementById("hide-history-btn");
 let clearHistoryBtn = document.getElementById("clear-history-btn");
+
+
+// SHOW AND HIDE SCREENS
+let splashScreen = document.getElementById("pokeball-splash-screen");
+let resultsScreen = document.getElementById("results-display-screen");
+let historyScreen = document.getElementById("history-display-screen");
 
 
 
@@ -835,7 +841,7 @@ function retrieveResults() {
         historyDisplay.appendChild(resultsList);
         //hide the Hide History btn and display the Show History Btn
         hideHistoryBtn.classList.remove("hidden");
-        historyBtn.classList.add("hidden");
+        showhistoryBtn.classList.add("hidden");
 
 
     } else {
@@ -849,7 +855,7 @@ function retrieveResults() {
             historyDisplay.classList.remove("hidden");
             hideHistoryBtn.classList.remove("hidden");
             clearHistoryBtn.classList.remove("hidden");
-            historyBtn.classList.add("hidden");
+            showhistoryBtn.classList.add("hidden");
 
             let line = document.createElement("li");
             line.textContent = `Choosing ${localData[i].artist} means you are the ${localData[i].type} type Pokémon, ${localData[i].pokemon}!`;
@@ -867,7 +873,7 @@ function hideHistory() {
     historyDisplay.classList.add("hidden");
     hideHistoryBtn.classList.add("hidden");
     clearHistoryBtn.classList.add("hidden");
-    historyBtn.classList.remove("hidden");
+    showhistoryBtn.classList.remove("hidden");
 }
 
 function clearHistory() {
