@@ -37,7 +37,7 @@ function openModal() {
 
     // if the modal's close button ('x') is pressed, close and reset the modal
     closeModalButton.addEventListener("click", function(event) {
-        if (event.target === closeModal) {
+        if (event.target === closeModalButton) {
             closeModal();
         }
     });
@@ -100,7 +100,7 @@ let historyDisplay = document.getElementById("history-display");
 
 let artistBtn = document.getElementById("start-button");
 let showHistoryBtn = document.getElementById("show-history-button");
-let clearHistoryBtn = document.getElementById("clear-history-btn");
+let clearHistoryBtn = document.getElementById("clear-history-button");
 
 let playAgainButton = document.getElementById("play-again-button");
 let goBackButton = document.getElementById("go-back-button");
@@ -975,3 +975,8 @@ init();
 
 artistBtn.addEventListener("click", matchArtistToPokemon)
 
+function backToStart() {
+    showScreens("splashscreen");
+}
+
+playAgainButton.addEventListener("click", backToStart);
