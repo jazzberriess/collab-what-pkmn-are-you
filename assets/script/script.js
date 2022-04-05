@@ -61,12 +61,14 @@ function resetUserInputs() {
 function missingInput() {
     modalContent.classList.add("hidden");
     modalError.classList.remove("hidden");
+    modalNoArtist.classList.add("hidden");
     // try again button will open modal back up
     tryAgainButton.addEventListener("click", openModal);
 }
 
 function noArtistModal() {
     modalContent.classList.add("hidden");
+    modalError.classList.add("hidden");
     modalNoArtist.classList.remove("hidden");
     // try again button will open modal back up
     tryAgainButtonArtist.addEventListener("click", openModal);
@@ -74,6 +76,7 @@ function noArtistModal() {
 
 // button submit 
 function matchArtistToPokemon(event) {
+    modalNoArtist.classList.add("hidden");
     event.preventDefault();
     // make the user input a variable for later use
     artistInput = userInput.value.trim();
@@ -229,27 +232,34 @@ function getArtistData(accessToken) {
         //then take the artistData from the response data
         .then(function (artistData) {
             //save the returned artistData to an empty global object to use in future functions
-            savedArtistData = artistData;
+
             // console.log(savedArtistData);
-            //save the artistGenre details to an empty global object to use in future functions
-            artistGenre = savedArtistData.artists.items[0].genres[0];
-            // console.log(artistGenre);
-            generatePkmn();
+
+            //display please try again message to user
+            console.log(artistData);
+            console.log(artistData.artists.items);
+            if (artistData.artists.items.length === 0) {
+
+                openModal();
+                noArtistModal();
+
+                //save the artistGenre details to an empty global object to use in future functions
+            } else {
+                savedArtistData = artistData;
+                artistGenre = savedArtistData.artists.items[0].genres[0];
+
+                // console.log(artistGenre);
+                generatePkmn();
+            }
         })
+
         //catch any errors and console log them
         .catch(function (error) {
             console.log(error);
 
-            //display please try again message to user
-            noArtistModal();
-
         });
     // after all music data has been retrieved, then close and reset the modal. If the modal is reset before this point, Spotify API won't work because the user input gets cleared, and everything needs the user input
-    if (!savedArtistData.artists || !savedArtistData.artists.items[0]) {
-        noArtistModal();
-    } else {
-        closeModal();
-    }
+    closeModal();
 }
 
 // POKEMON API functions
