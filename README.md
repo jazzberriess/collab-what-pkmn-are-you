@@ -45,7 +45,32 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 ### Glenn
 
-* [resource description - fill me in](url)
+
+* [W3.CSS Modal](https://www.w3schools.com/w3css/w3css_modal.asp)
+
+* [HTML Headings](https://www.w3schools.com/html/html_headings.asp)
+
+* [HTML <p> Tag](https://www.w3schools.com/tags/tag_p.asp)
+
+* [HTML <input> Tag](https://www.w3schools.com/tags/tag_input.asp)
+
+* [HTML <div> Tag](https://www.w3schools.com/tags/tag_div.asp#:~:text=The%20tag%20defines%20a,inside%20the%20tag!)
+
+* [HTML <label> Tag](https://www.w3schools.com/tags/tag_label.asp)
+
+* [HTML <form> Tag](https://www.w3schools.com/tags/tag_form.asp)
+
+* [HTML <button> Tag](https://www.w3schools.com/tags/tag_button.asp)
+
+* [HTML <link> Tag](https://www.w3schools.com/tags/tag_link.asp#:~:text=The%20tag%20defines%20the,element%2C%20it%20contains%20attributes%20only.)
+
+* [HTML <head> Tag](https://www.w3schools.com/tags/tag_head.asp)
+
+* [HTML <body> Tag](https://www.w3schools.com/tags/tag_body.asp#:~:text=The%20tag%20defines%20the,element%20in%20an%20HTML%20document.)
+
+* [HTML <!DOCTYPE> Declaration](https://www.w3schools.com/tags/tag_doctype.asp)
+
+* [HTML<meta>tag](https://www.w3schools.com/tags/tag_meta.asp)
 
 ### Vicky
 
