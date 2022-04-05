@@ -52,7 +52,6 @@ let artistBtn = document.getElementById("start-button");
 
 // renamed historyBtn to showHistoryBtn 
 let showHistoryBtn = document.getElementById("show-history-button");
-// let hideHistoryBtn = document.getElementById("hide-history-btn");
 let clearHistoryBtn = document.getElementById("clear-history-btn");
 
 // added return buttons
@@ -606,7 +605,7 @@ function prettify(ability) {
     return prettified;
 }
 
-function prettifyInput(userinput) {
+function prettifyArtist(userinput) {
     /* got help for the for-loop part from here: 
     https://www.tutorialspoint.com/how-to-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript#:~:text=Courses-,How%20to%20capitalize%20the%20first%20letter%20of,in%20a%20string%20using%20JavaScript%3F&text=At%20first%2C%20you%20need%20to,()%20for%20the%20extracted%20character. */
 
@@ -726,7 +725,6 @@ function generatePkmn() {
 
     // SAVE TO LOCAL STORAGE
     saveResults();
-
 };
 
 function randomisePokemon() {
@@ -738,37 +736,33 @@ function randomisePokemon() {
     console.log("the pokemon is " + JSON.stringify(yourPkmn));
 }
 
-// place holder append elements so we could see the javascript in action
-
 function appendElements() {
-    //display Pokémon name
-    let pokemonName = document.getElementById("pokemon-name");
-    pokemonName.textContent = yourPkmn.name + "!";
-
+    // display Pokémon name
+    // NB: since there are two instances of pokemon name appearing, grab by class name instead
+    let pokemonName = document.getElementsByClassName("pokemon-name");
+    // pokemonName will be an array now. Use a for loop to loop through each DOM instance of pokemonName and append the text to each case
+    if (pokemonName.length > 0) {
+        for (var i = 0; i < pokemonName.length; i++) {
+            pokemonName[i].textContent = yourPkmn.name;
+        }
+    }
     //display Pokémon image
     let yourPkmnImage = document.getElementById("pkmn-image");
     yourPkmnImage.setAttribute("src", yourPkmn.artwork);
     yourPkmnImage.setAttribute("alt", "Official artwork of the Pokémon, " + yourPkmn.name + ".");
-    resultsDisplay.append(yourPkmnImage);
 
     //display Pokémon type + info
     let yourPkmnType = document.getElementById("pkmn-type");
-    yourPkmnType.textContent = "Type: " + yourPkmn.type + ".";
-    resultsDisplay.append(yourPkmnType);
-
-    //display Pokémon info
-    let yourPkmnInfo = document.getElementById("pkmn-info");
-    yourPkmnInfo.textContent = "Info: " + yourPkmn.entry; + ".";
-    resultsDisplay.append(yourPkmnInfo);
+    yourPkmnType.textContent = yourPkmn.type;
 
     //display Pokémon ability
     let yourPkmnAbility = document.getElementById("pkmn-ability");
-    yourPkmnAbility.textContent = "Ability: " + yourPkmn.ability + ".";
-    resultsDisplay.appendChild(yourPkmnAbility);
+    yourPkmnAbility.textContent = yourPkmn.ability + "!";
+
+    //display Pokémon info
+    let yourPkmnInfo = document.getElementById("pkmn-info");
+    yourPkmnInfo.textContent = yourPkmn.entry;
 }
-
-
-//place holder script so we could ensure the functionality for userInput form was working
 
 // button submit 
 function matchArtistToPokemon(event) {
@@ -789,7 +783,7 @@ function matchArtistToPokemon(event) {
 function saveResults() {
     // make result object
     var match = {
-        "artist": prettifyInput(artistInput),
+        "artist": prettifyArtist(artistInput),
         "pokemon": yourPkmn.name,
         "type": yourPkmn.type
     }
