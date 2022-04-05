@@ -42,8 +42,8 @@
                         <h1>You are... <span class="pokemon-name"></span>!</h1>
                         <img id="pkmn-image" />
                         <p>The <span id="pkmn-type">???</span> type Pokémon!</p>
-                        <p><span class="pokemon-name">???</span>'s ability is <span id="pkmn-ability">???</span></p>
                         <p id="pkmn-info"></p>
+                        <p><span class="pokemon-name">???</span>'s ability is <span id="pkmn-ability">???</span></p>
                     </div>
                 </div>
 
@@ -63,44 +63,51 @@
                     <button id="play-again-button">
                         Play Again?
                     </button>
-                    <button id="return-button">
+                    <button id="go-back-button">
                         Return
                     </button>
                     <button id="show-history-button">
                         Show History
                     </button>
-                    <!-- hide history button not really needed but keeping here for now
-                    <button id="hide-history-btn">
-                        Hide History
-                    </button> 
-                    -->
                     <button id="clear-history-btn">
                         Clear History <i class="fa-solid fa-arrow-rotate-left"></i>
                     </button>
                 </div>
 
                 <!-- The modal -->
-                <div id="modal-underlay" class="modal">
+                <div id="modal-underlay" class="modal-underlay">
                     <!-- Modal content -->
-                    <div id="modal-content" class="modal-content">
+                    <div id="modal" class="modal">
                         <!-- close button "x" -->
                         <span id="close">&times;</span>
 
-                        <h2>What kind of Pokemon are you?</h2>
+                        <div id="modal-content">
+                            <h3>What kind of Pokémon are you?</h3>
 
-                        <form id="artist-input-form">
-                            <label for="user-input">Who's your favourite music artist?</label>
-                            <input id="user-input" type="text" placeholder="Artist Name" />
+                            <p>Let's use your fabulous taste in music to find out!</p>
 
-                            <button id="start-button" type="submit">Go! <i class="fa-solid fa-gamepad"></i></button>
-                        </form>
+                            <form>
+                                <label for="user-name" class="user-name">Enter your name:</label>
+                                <input id="user-name" type="text" placeholder="Ash Ketchum" />
+
+                                <label for="user-input" class="user-input">Enter your fave artist or music group:</label>
+                                <input id="user-input" type="text" placeholder="Spice Girls!" />
+
+                                <button id="start-button" type="submit">Go! <i class="fa-solid fa-gamepad"></i></button>
+                            </form>
+                        </div>
+
+                        <div id="modal-error">
+                            <p>Oops, something went wrong! Remember to enter both your name and your fave artist's name.</p>
+                            <button id="try-again-button" type="button">Try Again</button>
+                        </div>
+                        
                     </div>
                 </div>
 
-            </div>
+            </div> <!-- main content ending tag -->
         </div>
-    </div>
-
+    </div>    
 </main>
 
 <script src="./assets/script/script.js"></script>
