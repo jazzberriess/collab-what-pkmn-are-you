@@ -53,18 +53,24 @@
                 <!-- history display screen containing card for storage data and history viewing buttons -->
                 <div id="history-display-screen">
                     <!-- where any saved data from local storage will show up -->
-                    <div id="history-display">
+                    <div id="history-display-screen">
+                        <!-- where any saved data from local storage will show up -->
+                        <div id="history-display">
+                        </div>
+                        <!-- buttons for retry, and show, hide, clear history -->
+                        <button id="view-retry-button" type="submit">
+                            Retry
+                        </button>
+                        <button id="show-history-button">
+                            Show History
+                        </button>
+                        <button id="hide-history-btn" class="hidden">
+                            Hide History
+                        </button>
+                        <button id="clear-history-btn" class="hidden">
+                            Clear History <i class="fa-solid fa-arrow-rotate-left"></i>
+                        </button>
                     </div>
-
-                    <!-- retry button -->
-                    <button id="view-retry-button" type="submit">Retry </button>
-                    <!-- show history button -->
-                    <button id="show-history-button">Show History</button>
-                    <!-- hide history button -->
-                    <button id="hide-history-btn" class="hidden">Hide History</button>
-                    <!-- clear history button -->
-                    <button id="clear-history-btn" class="hidden">Clear History <i
-                        class="fa-solid fa-arrow-rotate-left"></i></button>
                 </div>
 
                 <!-- The modal -->
@@ -79,7 +85,7 @@
                         <form id="artist-input-form">
                             <label for="user-input">Who's your favourite music artist?</label>
                             <input id="user-input" type="text" placeholder="Artist Name" />
-                            
+
                             <button id="start-button" type="submit">Go! <i class="fa-solid fa-gamepad"></i></button>
                         </form>
                     </div>
