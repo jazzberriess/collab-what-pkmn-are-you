@@ -3,9 +3,17 @@ body {
     background-color: #393939;
 }
 
-/* Main section */
+h3 {
+    color: #d64d5a;
+    font-size: 35px;
+    text-align: center;
+}
 
-/* main bounding div to get everything centered vertically and horizontally on screen */
+.user-name, .user-input {
+    color: #465da5;
+}
+
+
 .main-flex-parent {
     width: 100%;
     min-height: 100vh;
@@ -20,21 +28,20 @@ body {
     flex: 0 0 auto;
 }
 
-/* make all the page content itself be centered vertically */
 .main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Pokeball Splash Screen */
+/*Pokeball Splash Screen*/
 
 /* how to make a div a responsive square:
 https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsive-square */
 
 .splash-screen {
     position: relative;
-    min-width: 50vh; /* make sure to always have a height */
+    min-width: 50vh;
     width: 50%;
     overflow: hidden;
 }
@@ -70,18 +77,17 @@ https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsi
     /* pokeball shake animation reference:
     https://codepen.io/ronniemon/pen/YXQVJZ */
 
-    /* for browser compatibility (short-hand form) */
+    /* for browser compatibility */
     --webkit-animation: shake 3.5s 0.5s ease-in-out infinite alternate;
     /* long-hand form to remember animation properties */
     animation-name: shake;
     animation-duration: 3.5s;
-    animation-delay: 0.5s; /* give it a bit of a start delay */
+    animation-delay: 0.5s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-/* the animation itself uses rotation (shake) and translation (bounce) */
 @keyframes shake {
     0%, 40% {
         transform: rotate(0deg) translateY(0);
@@ -100,33 +106,43 @@ https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsi
     }
 }
 
-
 /* The Modal (background) */
-.modal {
+.modal-underlay {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
+    z-index: 30; /* Sit on top */
     top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
-.modal-content {
+/* Modal box */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
+    padding: 1rem;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    min-width: 250px;
+    max-height: 50vh;
+    overflow: auto;
+}
+  
+/* Modal Content */
+.modal-content {
+    overflow: auto;
 }
 
 /* The Close Button */
 #close {
-    color: #aaa;
+    color: #465da5;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -134,29 +150,12 @@ https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsi
 
 #close:hover,
 #close:focus {
-    color: black;
+    color: #f1cb31;
     text-decoration: none;
     cursor: pointer;
 }
 
-/* make the input text field expand to full width of enclosing */
-input {
-    width: 100%;
-}
-
-
-/* hide class for javascript */
-.hidden {
-    display: none;
-}
-
-
-
-
-
-/* myBtn styling is not needed atm because the myBtn button is commented out in HTML
-uncomment all of this to show the colours again */
-
+/* these not really needed, were just for testing */
 /* #myBtn {
     background-color: #d64d5a;
     border-radius: 20px;
@@ -171,4 +170,92 @@ uncomment all of this to show the colours again */
 } */
 
 
+.hidden {
+    display: none;
+}
 
+
+
+
+/* input field for modal form */
+input {
+    width: 100%;
+}
+
+
+/* for testing purposes */
+.border-orange {
+    border: 1px solid orange;
+    background-color: rgb(255, 239, 209);
+}
+
+.border-blue {
+    border: 1px solid blue;
+    background-color: rgb(188, 188, 222);
+}
+
+.border-red {
+    border: 1px solid red;
+    background-color: rgb(255, 215, 215);
+}
+
+.border-green {
+    border: 1px solid green;
+    background-color: rgb(188, 217, 146);
+}
+
+
+/* media queries */
+
+/* Larger than tiny mobile */
+@media (min-width: 300px) {
+    .modal-content {
+        padding: 2rem;
+        max-width: 50%;
+    }
+}
+
+/* Larger than mobile */
+@media (min-width: 400px) {
+    .modal-content {
+        padding: 3rem;
+    }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+    .splash-screen {
+        min-width: 46vw;
+    }
+
+    .modal-content {
+        padding: 5%;
+    }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+}  
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {
+
+}
+
+#start-button {
+    background-color: #d64d5a;
+    border-radius: 20px;
+    color: #fefefe;
+    border: #d64d5a 2px solid;
+}
+
+#start-button:hover {
+    background-color: #f1cb31;
+    color: #465da5;
+    border: #f1cb31 2px solid;
+}

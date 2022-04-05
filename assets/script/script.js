@@ -1,32 +1,82 @@
 // MODAL functions
 
 // Get the modal
-var modal = document.getElementById("modal-underlay");
+var modalUnderlay = document.getElementById("modal-underlay");
+var modal = document.getElementById("modal");
+var modalContent = document.getElementById("modal-content");
+var modalError = document.getElementById("modal-error");
 
 // Get the button that opens the modal
-var btn = document.getElementById("modal-button");
+var modalButton = document.getElementById("modal-button");
+var tryAgainButton = document.getElementById("try-again-button");
 
 // Get the <span> element that closes the modal
-var span = document.getElementById("close");
+var closeModalButton = document.getElementById("close");
 
-// When the user clicks on the button, open the modal
-btn.onclick = function () {
-    modal.style.display = "block";
+// button submit to activate modal
+modalButton.addEventListener("click", openModal);
+
+// open the modal
+function openModal() {
+    // every time this functin is called, reset the user input first
+    resetUserInputs();
+
+    // show the modal contents (form) and hide the "missing input" error message
+    modalContent.classList.remove("hidden");
+    modalError.classList.add("hidden");
+
+    // set the modal underlay to show
+    modalUnderlay.style.display = "block";
+
+    // if anywhere on the modal underlay (black bit) is clicked, close and reset modal
+    window.addEventListener("click", function(event) {
+        if (event.target === modalUnderlay) {
+            closeModal();
+        }
+    });
+
+    // if the modal's close button ('x') is pressed, close and reset the modal
+    closeModalButton.addEventListener("click", function(event) {
+        if (event.target === closeModal) {
+            closeModal();
+        }
+    });
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+// close and reset the modal by resetting user input
+function closeModal() {
+    modalUnderlay.style.display = "none";
+}
+
+// reset the user input value
+function resetUserInputs() {
     userInput.value = "";
-    modal.style.display = "none";
+    userNameInput.value = "";
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        userInput.value = "";
-        modal.style.display = "none";
+// if no user input, then hide the form and show the error message
+function missingInput() {
+    modalContent.classList.add("hidden");
+    modalError.classList.remove("hidden");
+    // try again button will open modal back up
+    tryAgainButton.addEventListener("click", openModal);
+}
+
+// button submit 
+function matchArtistToPokemon(event) {
+    event.preventDefault();
+    // make the user input a variable for later use
+    artistInput = userInput.value.trim();
+    userName = userNameInput.value.trim();
+
+    // if user doesn't input anything, 
+    if (!artistInput || !userName) {
+        missingInput();
+    } else {
+        getSpotifyToken();
     }
 }
+
 
 //SPOTIFY API functions
 
@@ -37,6 +87,7 @@ let savedArtistData = [];
 let artistGenre = "";
 
 let userInput = document.getElementById("user-input");
+let userNameInput = document.getElementById("user-name");
 
 let artistInput = "";
 
@@ -47,16 +98,12 @@ let resultsDisplay = document.getElementById("results-display");
 
 let historyDisplay = document.getElementById("history-display");
 
-//CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
 let artistBtn = document.getElementById("start-button");
-
-// renamed historyBtn to showHistoryBtn 
 let showHistoryBtn = document.getElementById("show-history-button");
 let clearHistoryBtn = document.getElementById("clear-history-btn");
 
-// added return buttons
 let playAgainButton = document.getElementById("play-again-button");
-let returnButton = document.getElementById("return-button");
+let goBackButton = document.getElementById("go-back-button");
 
 // SHOW AND HIDE SCREENS
 
@@ -76,20 +123,15 @@ var screens = {
 function showScreens(name) {
     for (key in screens) {
         var currentscreen = screens[key];
-        // if the key matches the name
         if (key === name) {
-            // then show the corresponding div element
             currentscreen.classList.remove("hidden");
-            clearHistoryBtn.classList.add("hidden");
-            // if current screen is the "results display" then show "play again" button, hide "return" button
             if (name === "resultsscreen") {
                 playAgainButton.classList.remove("hidden");
-                returnButton.classList.add("hidden");
+                goBackButton.classList.add("hidden");
                 clearHistoryBtn.classList.add("hidden");
-            // but if current screen is the "history display" then hide "play again" button, show "return" button
             } else if (name === "historyscreen") {
                 playAgainButton.classList.add("hidden");
-                returnButton.classList.remove("hidden");
+                goBackButton.classList.remove("hidden");
                 clearHistoryBtn.classList.remove("hidden");
             }
         } else {
@@ -97,7 +139,6 @@ function showScreens(name) {
         }
     }
 }
-
 
 //SPOTIFY API function to obtain authorisation token
 
@@ -151,8 +192,7 @@ function getSpotifyToken() {
 
 function getArtistData(accessToken) {
 
-    //FOR THE LOVE OF EVERYTHING CHANGE THIS STRING TO USERINPUT.VALUE
-    artistInput = userInput.value;
+    // artistInput = userInput.value;
 
     //URL for the artist search via the spotify API - limit the search query to five results
     let spotifyArtistSearch = "https://api.spotify.com/v1/search?type=artist&q=" + artistInput + "&limit=5";
@@ -167,11 +207,9 @@ function getArtistData(accessToken) {
     })
         //retrieve the API response
         .then(function (response) {
-
             //if there is an error, throw the response
             if (!response.ok) {
                 throw response.json();
-
                 //else return the response as a json file
             } else {
                 // console.log(response);
@@ -180,17 +218,13 @@ function getArtistData(accessToken) {
         })
         //then take the artistData from the response data
         .then(function (artistData) {
-
             //save the returned artistData to an empty global object to use in future functions
             savedArtistData = artistData;
             // console.log(savedArtistData);
-
             //save the artistGenre details to an empty global object to use in future functions
             artistGenre = savedArtistData.artists.items[0].genres[0];
-            console.log(artistGenre);
-
+            // console.log(artistGenre);
             generatePkmn();
-
         })
         //catch any errors and console log them
         .catch(function (error) {
@@ -202,7 +236,8 @@ function getArtistData(accessToken) {
             resultsDisplay.appendChild(errorText);
 
         });
-
+        // after all music data has been retrieved, then close and reset the modal. If the modal is reset before this point, Spotify API won't work because the user input gets cleared, and everything needs the user input
+        closeModal();
 }
 
 // POKEMON API functions
@@ -316,6 +351,9 @@ function getPokemonInfo(url) {
             // pass specified variables on to populate 'typeInfo' object
             fillPokemonDetails(typeInfo, name, id, artwork, type, ability);
             getPokemonSpecies(typeInfo, species);
+
+            // console.log(typeInfo);
+
         })
         .catch(function (error) {
             console.log(error);
@@ -370,6 +408,7 @@ function getEntry(typeobj, speciesdata) {
         case "sylveon":
             typeobj.fairy.entry = entry[6].flavor_text;
             break;
+
         case "urshifu":
             typeobj.fighting.entry = entry[7].flavor_text;
             break;
@@ -385,6 +424,7 @@ function getEntry(typeobj, speciesdata) {
         case "lilligant":
             typeobj.grass.entry = entry[45].flavor_text;
             break;
+
         case "piloswine":
             typeobj.ground.entry = entry[6].flavor_text;
             break;
@@ -400,6 +440,7 @@ function getEntry(typeobj, speciesdata) {
         case "hatterene":
             typeobj.psychic.entry = entry[7].flavor_text;
             break;
+
         case "gigalith":
             typeobj.rock.entry = entry[1].flavor_text;
             break;
@@ -409,11 +450,16 @@ function getEntry(typeobj, speciesdata) {
         case "primarina":
             typeobj.water.entry = entry[37].flavor_text;
             break;
+        /* silvally as a case is commented out for now (the default case should be silvally) */
+        // case "silvally": 
+        //     typeobj.random.entry = entry[7].flavor_text;
+        //     break;
         default:
             // the default case will use the pokemon Silvally
             pokemon = "silvally";
             // set value of 'random' key in object 'typeInfo' with flavour text entry #8
             typeobj.random.entry = entry[7].flavor_text;
+            // console.log("default break at get-entry function");
             break;
     }
 }
@@ -433,7 +479,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.bug.artwork = artwork;
             typeobj.bug.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.bug.ability = capitaliseFirstLetter(ability[1].ability.name);
+            // console.log(typeobj.bug.ability);
             break;
+
         // for the case of 'zoroark'
         case "zoroark":
             // add to typeInfo object under 'dark' key: name, id, artwork url values of zoroark
@@ -442,7 +490,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.dark.artwork = artwork;
             typeobj.dark.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.dark.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.dark.ability);
             break;
+
         // and so on
         case "latios":
             typeobj.dragon.name = capitaliseFirstLetter(name);
@@ -450,14 +500,18 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.dragon.artwork = artwork;
             typeobj.dragon.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.dragon.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.dragon.ability);
             break;
+
         case "mareep":
             typeobj.electric.name = capitaliseFirstLetter(name);
             typeobj.electric.id = id;
             typeobj.electric.artwork = artwork;
             typeobj.electric.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.electric.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.electric.ability);
             break;
+
         case "sylveon":
             typeobj.fairy.name = capitaliseFirstLetter(name);
             typeobj.fairy.id = id;
@@ -465,7 +519,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.fairy.type = capitaliseFirstLetter(type[0].type.name);
             // sylveon's ability is retrieved as "cute-charm"; prettify it
             typeobj.fairy.ability = prettify(ability[0].ability.name);
+            // console.log(typeobj.fairy.ability);
             break;
+
         // for urshifu's name, need to do some clipping
         case "urshifu-single-strike":
             // first split the name 'urshifu-single-strike' at the "-"
@@ -477,14 +533,18 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.fighting.type = capitaliseFirstLetter(type[0].type.name);
             // urshifu's ability is retrieved as "unseen-fist"; prettify it
             typeobj.fighting.ability = prettify(ability[0].ability.name);
+            // console.log(typeobj.fighting.ability);
             break;
+
         case "torracat":
             typeobj.fire.name = capitaliseFirstLetter(name);
             typeobj.fire.id = id;
             typeobj.fire.artwork = artwork;
             typeobj.fire.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.fire.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.fire.ability);
             break;
+
         case "pidgeotto":
             typeobj.flying.name = capitaliseFirstLetter(name);
             typeobj.flying.id = id;
@@ -492,14 +552,18 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.flying.type = capitaliseFirstLetter(type[1].type.name);
             // pidgeotto's ability is retrieved as "keen-eye"; prettify it
             typeobj.flying.ability = prettify(ability[0].ability.name);
+            // console.log(typeobj.flying.ability);
             break;
+
         case "banette":
             typeobj.ghost.name = capitaliseFirstLetter(name);
             typeobj.ghost.id = id;
             typeobj.ghost.artwork = artwork;
             typeobj.ghost.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.ghost.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.ghost.ability);
             break;
+
         case "lilligant":
             typeobj.grass.name = capitaliseFirstLetter(name);
             typeobj.grass.id = id;
@@ -507,14 +571,18 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.grass.type = capitaliseFirstLetter(type[0].type.name);
             // lilligant's ability is retrieved as "own-tempo"; prettify it
             typeobj.grass.ability = prettify(ability[1].ability.name);
+            // console.log(typeobj.grass.ability);
             break;
+
         case "piloswine":
             typeobj.ground.name = capitaliseFirstLetter(name);
             typeobj.ground.id = id;
             typeobj.ground.artwork = artwork;
             typeobj.ground.type = capitaliseFirstLetter(type[1].type.name);
             typeobj.ground.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.ground.ability);
             break;
+
         case "bergmite":
             typeobj.ice.name = capitaliseFirstLetter(name);
             typeobj.ice.id = id;
@@ -522,7 +590,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.ice.type = capitaliseFirstLetter(type[0].type.name);
             // bergmite's ability is retrieved as "ice-body"; prettify it
             typeobj.ice.ability = prettify(ability[1].ability.name);
+            // console.log(typeobj.ice.ability);
             break;
+
         case "lickitung":
             typeobj.normal.name = capitaliseFirstLetter(name);
             typeobj.normal.id = id;
@@ -530,14 +600,18 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.normal.type = capitaliseFirstLetter(type[0].type.name);
             // lickitung's ability is retrieved as "cloud-nine"; prettify it
             typeobj.normal.ability = prettify(ability[2].ability.name);
+            // console.log(typeobj.normal.ability);
             break;
+
         case "skuntank":
             typeobj.poison.name = capitaliseFirstLetter(name);
             typeobj.poison.id = id;
             typeobj.poison.artwork = artwork;
             typeobj.poison.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.poison.ability = capitaliseFirstLetter(ability[1].ability.name);
+            // console.log(typeobj.poison.ability);
             break;
+
         case "hatterene":
             typeobj.psychic.name = capitaliseFirstLetter(name);
             typeobj.psychic.id = id;
@@ -545,14 +619,18 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.psychic.type = capitaliseFirstLetter(type[0].type.name);
             // hatterene's ability is retrieved as "magic-bounce"; prettify it
             typeobj.psychic.ability = prettify(ability[2].ability.name);
+            // console.log(typeobj.psychic.ability);
             break;
+
         case "gigalith":
             typeobj.rock.name = capitaliseFirstLetter(name);
             typeobj.rock.id = id;
             typeobj.rock.artwork = artwork;
             typeobj.rock.type = capitaliseFirstLetter(type[0].type.name);
             typeobj.rock.ability = capitaliseFirstLetter(ability[0].ability.name);
+            // console.log(typeobj.rock.ability);
             break;
+
         case "aggron":
             typeobj.steel.name = capitaliseFirstLetter(name);
             typeobj.steel.id = id;
@@ -560,7 +638,9 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.steel.type = capitaliseFirstLetter(type[0].type.name);
             // aggron's ability is retrieved as "rock-head"; prettify it
             typeobj.steel.ability = prettify(ability[1].ability.name);
+            // console.log(typeobj.steel.ability);
             break;
+
         case "primarina":
             typeobj.water.name = capitaliseFirstLetter(name);
             typeobj.water.id = id;
@@ -568,7 +648,20 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.water.type = capitaliseFirstLetter(type[0].type.name);
             // primarina's ability is retrieved as "liquid-voice"; prettify it
             typeobj.water.ability = prettify(ability[1].ability.name);
+            // console.log(typeobj.water.ability);
             break;
+
+        /* silvally as a case is commented out for now (the default case should be silvally) */
+        // case "silvally": 
+        //     typeobj.random.name = capitaliseFirstLetter(name);
+        //     typeobj.random.id = id;
+        //     typeobj.random.artwork = artwork;
+        //     typeobj.random.type = capitaliseFirstLetter(type[0].type.name);
+        //     silvally's ability is retrieved as "rks-system"; prettify it
+        //     typeobj.random.ability = prettify(ability[0].ability.name);
+        //     // console.log(typeobj.random.ability);
+        //     break;
+
         default:
             // set the default pokemon name to "silvally"
             pokemon = "silvally";
@@ -579,6 +672,8 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.random.type = capitaliseFirstLetter(type[0].type.name);
             // silvally's ability is retrieved as "rks-system"; prettify it
             typeobj.random.ability = prettify(ability[0].ability.name);
+            // console.log(typeobj.random.ability);
+            // console.log("default break at fill-details function");
             break;
     }
 }
@@ -617,11 +712,10 @@ function prettifyArtist(userinput) {
     return separateWord.join(" ");
 }
 
-
 //GENERATE YOUR POKEMON function
 
 function generatePkmn() {
-    
+
     if (!artistGenre) {
         randomisePokemon();
         appendElements();
@@ -728,6 +822,7 @@ function generatePkmn() {
 };
 
 function randomisePokemon() {
+
     //retrieve a random key value pair from an object: https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object
 
     types = Object.keys(typeInfo);
@@ -764,45 +859,29 @@ function appendElements() {
     yourPkmnInfo.textContent = yourPkmn.entry;
 }
 
-// button submit 
-function matchArtistToPokemon(event) {
-    event.preventDefault();
-
-    //FOR THE LOVE OF EVERYTHING CHANGE THIS STRING TO USERINPUT.VALUE
-    artistInput = userInput.value.trim();
-
-    if (!artistInput) {
-        alert("WRITE AN ARTIST");
-    } else {
-        getSpotifyToken();
-    }
-
-}
 
 // save to local storage
 function saveResults() {
     // make result object
     var match = {
+        "user": prettifyArtist(userName),
         "artist": prettifyArtist(artistInput),
         "pokemon": yourPkmn.name,
         "type": yourPkmn.type
     }
-
     // pull results from local storage
     let allresults = JSON.parse(localStorage.getItem("Results"));
     // if there are no results then make a new empty array
     if (!allresults) {
         allresults = [];
     }
-
     // add the match to allresults
     allresults.push(match);
     // set to local storage
     localStorage.setItem("Results", JSON.stringify(allresults));
-    userInput.value = "";
+    // resetUserInputs();
 }
 
-// retrieve from local storage
 function retrieveResults() {
     let localData = JSON.parse(localStorage.getItem("Results"));
     // console.log(localData);
@@ -816,20 +895,19 @@ function retrieveResults() {
     if (!localData) {
         //create element to display "Nothing here!" msg
         let empty = document.createElement("li");
-        empty.textContent = "Oops, nothing here.";
+        empty.textContent = "Oops, no one here.";
         resultsList.appendChild(empty);
         // if there's no data then remove the "clear history" button
         clearHistoryBtn.classList.add("hidden");
+
     } else {
         // run through each item in local storage
         for (let i = 0; i < localData.length; i++) {
             // make a list item and add text referencing artist name, pokemon type, and pokemon name
-
-            //clear the history display area and show history buttons
             let line = document.createElement("li");
-            line.textContent = `Choosing ${localData[i].artist} means you are the ${localData[i].type} type Pokémon, ${localData[i].pokemon}!`;
+            line.textContent = `${localData[i].user} loves ${localData[i].artist} so they are the ${localData[i].type} type Pokémon, ${localData[i].pokemon}!`;
 
-            // append the elements to each other
+            // append the list item to the list
             resultsList.appendChild(line)
         }
     }
@@ -838,7 +916,6 @@ function retrieveResults() {
 // this function is called in generatePkmn
 function displayResults() {
     showScreens("resultsscreen");
-
     showHistoryButtons();
 }
 
@@ -846,8 +923,12 @@ function displayHistory() {
     showScreens("historyscreen");
     historyDisplay.innerHTML = "";
 
-    retrieveResults();
+    // create the heading and append to document
+    var historyTitle = document.createElement("h2");
+    historyTitle.textContent = "People who are now Pokémon"
+    historyDisplay.appendChild(historyTitle);
 
+    retrieveResults();
     showHistoryButtons();
 }
 
@@ -858,11 +939,10 @@ function showHistoryButtons() {
     
     showHistoryBtn.addEventListener("click", displayHistory);
     clearHistoryBtn.addEventListener("click", clearHistory);
-    returnButton.addEventListener("click", goBack);
+    goBackButton.addEventListener("click", goBack);
 }
 
 function goBack() {
-    console.log("go-back");
     displayResults();
 }
 
@@ -886,19 +966,12 @@ function clearHistory() {
 // initialise the page
 function init() {
     getPokeApi();
-    // showScreens("splashscreen");
-    // displayResults();
+    showScreens("splashscreen");
 }
 
 // start the app
 init();
 
 
-//THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", matchArtistToPokemon)
 
-// showHistoryBtn.addEventListener("click", displayHistory);
-
-// hideHistoryBtn.addEventListener("click", hideHistory);
-
-// clearHistoryBtn.addEventListener("click", clearHistory);
