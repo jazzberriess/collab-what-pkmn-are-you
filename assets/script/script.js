@@ -81,14 +81,17 @@ function showScreens(name) {
         if (key === name) {
             // then show the corresponding div element
             currentscreen.classList.remove("hidden");
+            clearHistoryBtn.classList.add("hidden");
             // if current screen is the "results display" then show "play again" button, hide "return" button
             if (name === "resultsscreen") {
                 playAgainButton.classList.remove("hidden");
                 returnButton.classList.add("hidden");
+                clearHistoryBtn.classList.add("hidden");
             // but if current screen is the "history display" then hide "play again" button, show "return" button
             } else if (name === "historyscreen") {
                 playAgainButton.classList.add("hidden");
                 returnButton.classList.remove("hidden");
+                clearHistoryBtn.classList.remove("hidden");
             }
         } else {
             currentscreen.classList.add("hidden");
@@ -813,15 +816,16 @@ function retrieveResults() {
     // make an ordered list to hold the results
     let resultsList = document.createElement("ol");
     resultsList.setAttribute("id", "results-list");
-    resultsDisplay.appendChild(resultsList);
+    historyDisplay.appendChild(resultsList);
 
     // if there is no data in local storage
     if (!localData) {
         //create element to display "Nothing here!" msg
         let empty = document.createElement("li");
-        empty.textContent = "Nothing here.";
+        empty.textContent = "Oops, nothing here.";
         resultsList.appendChild(empty);
-
+        // if there's no data then remove the "clear history" button
+        clearHistoryBtn.classList.add("hidden");
     } else {
         // run through each item in local storage
         for (let i = 0; i < localData.length; i++) {
