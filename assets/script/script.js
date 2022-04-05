@@ -231,21 +231,17 @@ function getArtistData(accessToken) {
         })
         //then take the artistData from the response data
         .then(function (artistData) {
-            //save the returned artistData to an empty global object to use in future functions
 
             // console.log(savedArtistData);
 
-            //display please try again message to user
-            console.log(artistData);
-            console.log(artistData.artists.items);
+            //if there's no artist data, display please try again message to user
             if (artistData.artists.items.length === 0) {
-
                 openModal();
                 noArtistModal();
-
-                //save the artistGenre details to an empty global object to use in future functions
             } else {
+                //save the returned artistData to an empty global object to use in future functions
                 savedArtistData = artistData;
+                //save the artistGenre details to an empty global object to use in future functions
                 artistGenre = savedArtistData.artists.items[0].genres[0];
 
                 // console.log(artistGenre);
