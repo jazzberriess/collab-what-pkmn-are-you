@@ -5,10 +5,12 @@ var modalUnderlay = document.getElementById("modal-underlay");
 var modal = document.getElementById("modal");
 var modalContent = document.getElementById("modal-content");
 var modalError = document.getElementById("modal-error");
+var modalNoArtist = document.getElementById("modal-no-artist");
 
 // Get the button that opens the modal
 var modalButton = document.getElementById("modal-button");
 var tryAgainButton = document.getElementById("try-again-button");
+var tryAgainButtonArtist = document.getElementById("try-again-button-artist");
 
 // Get the <span> element that closes the modal
 var closeModalButton = document.getElementById("close");
@@ -24,19 +26,20 @@ function openModal() {
     // show the modal contents (form) and hide the "missing input" error message
     modalContent.classList.remove("hidden");
     modalError.classList.add("hidden");
+    modalNoArtist.classList.add("hidden");
 
     // set the modal underlay to show
     modalUnderlay.style.display = "block";
 
     // if anywhere on the modal underlay (black bit) is clicked, close and reset modal
-    window.addEventListener("click", function(event) {
+    window.addEventListener("click", function (event) {
         if (event.target === modalUnderlay) {
             closeModal();
         }
     });
 
     // if the modal's close button ('x') is pressed, close and reset the modal
-    closeModalButton.addEventListener("click", function(event) {
+    closeModalButton.addEventListener("click", function (event) {
         if (event.target === closeModalButton) {
             closeModal();
         }
@@ -60,6 +63,13 @@ function missingInput() {
     modalError.classList.remove("hidden");
     // try again button will open modal back up
     tryAgainButton.addEventListener("click", openModal);
+}
+
+function noArtistModal() {
+    modalContent.classList.add("hidden");
+    modalNoArtist.classList.remove("hidden");
+    // try again button will open modal back up
+    tryAgainButtonArtist.addEventListener("click", openModal);
 }
 
 // button submit 
@@ -231,13 +241,15 @@ function getArtistData(accessToken) {
             console.log(error);
 
             //display please try again message to user
-            let errorText = document.createElement("p");
-            errorText.textContent = "Sorry! We couldn't find that artist. Try again."
-            resultsDisplay.appendChild(errorText);
+            noArtistModal();
 
         });
-        // after all music data has been retrieved, then close and reset the modal. If the modal is reset before this point, Spotify API won't work because the user input gets cleared, and everything needs the user input
+    // after all music data has been retrieved, then close and reset the modal. If the modal is reset before this point, Spotify API won't work because the user input gets cleared, and everything needs the user input
+    if (!savedArtistData.artists || !savedArtistData.artists.items[0]) {
+        noArtistModal();
+    } else {
         closeModal();
+    }
 }
 
 // POKEMON API functions
@@ -936,7 +948,7 @@ function showHistoryButtons() {
     console.log("display history buttons");
     // unhide the container with all the buttons
     historyButtonContainer.classList.remove("hidden");
-    
+
     showHistoryBtn.addEventListener("click", displayHistory);
     clearHistoryBtn.addEventListener("click", clearHistory);
     goBackButton.addEventListener("click", goBack);
