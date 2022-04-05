@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
 body {
     font-family: 'Press Start 2P', cursive;
     background-color: #393939;
@@ -11,6 +12,85 @@ h3 {
 
 .user-name, .user-input {
     color: #465da5;
+}
+
+
+.clear-history-button, .go-back-button {
+    background-color: #727272;
+    color: white;
+    border-radius: 20px;
+    border: #727272 2px solid;
+}
+
+#start-button {
+    background-color: #d64d5a;
+    border-radius: 20px;
+    color: #fefefe;
+    border: #d64d5a 2px solid;
+}
+
+#start-button:hover {
+    background-color: #f1cb31;
+    color: #465da5;
+    border: #f1cb31 2px solid;
+}
+
+.results-display {
+    background-color: #717272;
+    width: 60vw; 
+    max-width: 500px;
+    text-align: center;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    border-radius: 13px;
+}
+
+#play-again-button {
+    background-color: #f1cb31;
+    border-radius: 20px;
+    border: #f1cb31 2px solid;
+    color: #393939;
+
+}
+
+#play-again-button:hover {
+    background-color: #fb9925;
+    border: #fb9925 2px solid;
+
+}
+
+#show-history-button {
+    background-color: #d64d5a;
+    border-radius: 20px;
+    border: #d64d5a;
+    color: white;
+}
+
+#show-history-button:hover {
+    background-color: #ba1f2d;
+    border: #ba1f2d 2px solid;
+}
+
+
+#history-display {
+    background-color: #393939;
+}
+
+#results-list {
+    list-style-type: numbered;
+    list-style-position: inside;
+    width: 100%;
+}
+
+#results-list li{
+    background-color: #d64d5a;
+    padding: 0.4rem 1.5rem;
+}
+
+/* make high score list display different bg colour for the even-numbered items  */
+#results-list li:nth-child(even) {
+    background-color: #f1cb31;
 }
 
 
@@ -141,16 +221,26 @@ https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsi
 }
 
 /* The Close Button */
-#close {
+.close {
+    position: relative;
     color: #465da5;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-#close:hover,
-#close:focus {
-    color: #f1cb31;
+.close:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    bottom: -20px; 
+    left: -20px;
+    right: -20px; 
+}
+
+.close:hover,
+.close:focus {
+    color: black;
     text-decoration: none;
     cursor: pointer;
 }
@@ -245,17 +335,4 @@ input {
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {
 
-}
-
-#start-button {
-    background-color: #d64d5a;
-    border-radius: 20px;
-    color: #fefefe;
-    border: #d64d5a 2px solid;
-}
-
-#start-button:hover {
-    background-color: #f1cb31;
-    color: #465da5;
-    border: #f1cb31 2px solid;
 }
