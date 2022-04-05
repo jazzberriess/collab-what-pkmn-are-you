@@ -603,84 +603,106 @@ function prettifyInput(userinput) {
 //GENERATE YOUR POKEMON function
 
 function generatePkmn() {
-
+    
     if (!artistGenre) {
         randomisePokemon();
+        appendElements();
+        displayResults();
         //BUG TYPE
     } else if (artistGenre.includes("blues") || artistGenre.includes("reggae")) {
         yourPkmn = typeInfo.bug;
         // console.log("the pokemon is " + JSON.stringify(typeInfo.bug));
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //DARK TYPE
     } else if (artistGenre.includes("dubstep") || artistGenre.includes("emo")) {
         yourPkmn = typeInfo.dark;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //DRAGON TYPE
     } else if (artistGenre.includes("classical") || artistGenre.includes("opera") || artistGenre.includes("synth")) {
         yourPkmn = typeInfo.dragon;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //ELECTRIC TYPE
     } else if (artistGenre.includes("dance") || artistGenre.includes("electronic") || artistGenre.includes("edm")) {
         yourPkmn = typeInfo.electric;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //FAIRY TYPE
     } else if (artistGenre.includes("pop")) {
         yourPkmn = typeInfo.fairy;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //FIGHTING TYPE
     } else if (artistGenre.includes("R&B") || artistGenre.includes("rhythm") || artistGenre.includes("hip hop")) {
         yourPkmn = typeInfo.fighting;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //FIRE TYPE
     } else if (artistGenre.includes("jazz") || artistGenre.includes("musical theatre") || artistGenre.includes("latin")) {
         yourPkmn = typeInfo.fire;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //FLYING TYPE
     } else if (artistGenre.includes("orchestra") || artistGenre.includes("soundtrack") || artistGenre.includes("world")) {
         yourPkmn = typeInfo.flying;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //GHOST TYPE
     } else if (artistGenre.includes("soul") || artistGenre.includes("religious") || artistGenre.includes("worship")) {
         yourPkmn = typeInfo.ghost;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //GRASS TYPE
     } else if (artistGenre.includes("folk") || artistGenre.includes("celtic") || artistGenre.includes("psychedelic")) {
         yourPkmn = typeInfo.grass;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //GROUND TYPE
     } else if (artistGenre.includes("country") || artistGenre.includes("indie")) {
         yourPkmn = typeInfo.ground;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //ICE TYPE
     } else if (artistGenre.includes("chill-out") || artistGenre.includes("lo-fi") || artistGenre.includes("alternative")) {
         yourPkmn = typeInfo.ice;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //NORMAL TYPE
     } else if (artistGenre.includes("easy") || artistGenre.includes("adult standards")) {
         yourPkmn = typeInfo.normal;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //POISON TYPE
     } else if (artistGenre.includes("punk") || artistGenre.includes("rap")) {
         yourPkmn = typeInfo.poison;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //PSYCHIC TYPE
     } else if (artistGenre.includes("new age") || artistGenre.includes("techno") || artistGenre.includes("experimental")) {
         yourPkmn = typeInfo.psychic;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //ROCK TYPE
     } else if (artistGenre.includes("rock")) {
         yourPkmn = typeInfo.rock;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //METAL TYPE
     } else if (artistGenre.includes("metal") || artistGenre.includes("hardcore")) {
         yourPkmn = typeInfo.steel;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
         //WATER TYPE
     } else if (artistGenre.includes("ambient") || artistGenre.includes("instrumental")) {
         yourPkmn = typeInfo.water;
-        appendElements(yourPkmn);
+        appendElements();
+        displayResults();
     } else {
         randomisePokemon();
+        appendElements();
+        displayResults();
     }
 
     // SAVE TO LOCAL STORAGE
@@ -689,16 +711,12 @@ function generatePkmn() {
 };
 
 function randomisePokemon() {
-
     //retrieve a random key value pair from an object: https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object
 
     types = Object.keys(typeInfo);
     randomise = Math.floor(Math.random() * types.length);
     yourPkmn = typeInfo[types[randomise]];
     console.log("the pokemon is " + JSON.stringify(yourPkmn));
-
-    appendElements();
-
 }
 
 // place holder append elements so we could see the javascript in action
