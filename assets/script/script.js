@@ -876,7 +876,7 @@ function clearHistory() {
 // initialise the page
 function init() {
     getPokeApi();
-    showScreens("splashscreen");
+    // showScreens("splashscreen");
 }
 
 // start the app
