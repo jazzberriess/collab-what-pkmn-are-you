@@ -3,6 +3,9 @@ body {
     background-color: #393939;
 }
 
+/* Main section */
+
+/* main bounding div to get everything centered vertically and horizontally on screen */
 .main-flex-parent {
     width: 100%;
     min-height: 100vh;
@@ -17,13 +20,14 @@ body {
     flex: 0 0 auto;
 }
 
+/* make all the page content itself be centered vertically */
 .main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/*Pokeball Splash Screen*/
+/* Pokeball Splash Screen */
 
 /* how to make a div a responsive square:
 https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsive-square */
@@ -135,7 +139,25 @@ https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsi
     cursor: pointer;
 }
 
-#myBtn {
+/* make the input text field expand to full width of enclosing */
+input {
+    width: 100%;
+}
+
+
+/* hide class for javascript */
+.hidden {
+    display: none;
+}
+
+
+
+
+
+/* myBtn styling is not needed atm because the myBtn button is commented out in HTML
+uncomment all of this to show the colours again */
+
+/* #myBtn {
     background-color: #d64d5a;
     border-radius: 20px;
     color: #fefefe;
@@ -146,10 +168,7 @@ https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsi
     background-color: #f1cb31;
     color: #465da5;
     border: 1px solid #f1cb31;
-}
+} */
 
 
-.hidden {
-    display: none;
-}
 
