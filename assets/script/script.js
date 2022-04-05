@@ -50,30 +50,46 @@ let historyDisplay = document.getElementById("history-display");
 //CHANGE THIS TO THE USERINPUT FORM SUBMIT BUTTON - THIS IS ONLY TEMPORARY TO INITIATE THE SPOTIFY API CALL
 let artistBtn = document.getElementById("start-button");
 
-let historyBtn = document.getElementById("show-history-button");
-let hideHistoryBtn = document.getElementById("hide-history-btn");
+// renamed historyBtn to showHistoryBtn 
+let showHistoryBtn = document.getElementById("show-history-button");
+// let hideHistoryBtn = document.getElementById("hide-history-btn");
 let clearHistoryBtn = document.getElementById("clear-history-btn");
 
+// added return buttons
+let playAgainButton = document.getElementById("play-again-button");
+let returnButton = document.getElementById("return-button");
 
 // SHOW AND HIDE SCREENS
+
 let splashScreen = document.getElementById("pokeball-splash-screen");
 let resultsScreen = document.getElementById("results-display-screen");
 let historyScreen = document.getElementById("history-display-screen");
 
+let historyButtonContainer = document.getElementById("history-button-container");
 
-// object for show and hide screens
+// show and hide screens
 var screens = {
     "splashscreen": splashScreen,
     "resultsscreen": resultsScreen,
     "historyscreen": historyScreen
 }
 
-// function for showing and hiding the screens based off name
 function showScreens(name) {
     for (key in screens) {
         var currentscreen = screens[key];
+        // if the key matches the name
         if (key === name) {
+            // then show the corresponding div element
             currentscreen.classList.remove("hidden");
+            // if current screen is the "results display" then show "play again" button, hide "return" button
+            if (name === "resultsscreen") {
+                playAgainButton.classList.remove("hidden");
+                returnButton.classList.add("hidden");
+            // but if current screen is the "history display" then hide "play again" button, show "return" button
+            } else if (name === "historyscreen") {
+                playAgainButton.classList.add("hidden");
+                returnButton.classList.remove("hidden");
+            }
         } else {
             currentscreen.classList.add("hidden");
         }
@@ -821,62 +837,59 @@ function retrieveResults() {
     }
 }
 
-
+// this function is called in generatePkmn
 function displayResults() {
-    console.log("results screen");
     showScreens("resultsscreen");
 
-    console.log("results screen after clear");
     showHistoryButtons();
 }
 
 function displayHistory() {
+    showScreens("historyscreen");
     historyDisplay.innerHTML = "";
 
-    showScreens("historyscreen");
+    retrieveResults();
 
-    historyDisplay.classList.remove("hidden");
-    hideHistoryBtn.classList.remove("hidden");
-    clearHistoryBtn.classList.remove("hidden");
-    historyBtn.classList.add("hidden");
+    showHistoryButtons();
 }
 
 function showHistoryButtons() {
-
+    console.log("display history buttons");
+    // unhide the container with all the buttons
+    historyButtonContainer.classList.remove("hidden");
+    
+    showHistoryBtn.addEventListener("click", displayHistory);
+    clearHistoryBtn.addEventListener("click", clearHistory);
+    returnButton.addEventListener("click", goBack);
 }
 
-
-function hideHistory() {
-    //clear the history area and show the Show History Button
-    historyDisplay.innerHTML = "";
-    historyDisplay.classList.add("hidden");
-    hideHistoryBtn.classList.add("hidden");
-    clearHistoryBtn.classList.add("hidden");
-    showhistoryBtn.classList.remove("hidden");
+function goBack() {
+    console.log("go-back");
+    displayResults();
 }
 
 function clearHistory() {
     //clear local storage
     localStorage.clear();
+
     //clear history display div
     historyDisplay.innerHTML = "";
+
     //show message confirming history delete
     let clearMsg = document.createElement("p");
     clearMsg.textContent = "History cleared!";
     historyDisplay.appendChild(clearMsg);
+
     //hide clear history bytton
     clearHistoryBtn.classList.add("hidden");
-
 }
-
-// uncomment this to see the results show up on refresh
-// retrieveResults();
 
 
 // initialise the page
 function init() {
     getPokeApi();
     // showScreens("splashscreen");
+    // displayResults();
 }
 
 // start the app
@@ -886,8 +899,8 @@ init();
 //THIS EVENT LISTENER WILL NEED TO CHANGE TO THE FORM SUBMIT BUTTON WHEN WE CREATE THE USER INPUT FIELD
 artistBtn.addEventListener("click", matchArtistToPokemon)
 
-historyBtn.addEventListener("click", retrieveResults);
+// showHistoryBtn.addEventListener("click", displayHistory);
 
-hideHistoryBtn.addEventListener("click", hideHistory);
+// hideHistoryBtn.addEventListener("click", hideHistory);
 
-clearHistoryBtn.addEventListener("click", clearHistory);
+// clearHistoryBtn.addEventListener("click", clearHistory);

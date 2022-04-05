@@ -53,24 +53,30 @@
                 <!-- history display screen containing card for storage data and history viewing buttons -->
                 <div id="history-display-screen">
                     <!-- where any saved data from local storage will show up -->
-                    <div id="history-display-screen">
-                        <!-- where any saved data from local storage will show up -->
-                        <div id="history-display">
-                        </div>
-                        <!-- buttons for retry, and show, hide, clear history -->
-                        <button id="view-retry-button" type="submit">
-                            Retry
-                        </button>
-                        <button id="show-history-button">
-                            Show History
-                        </button>
-                        <button id="hide-history-btn" class="hidden">
-                            Hide History
-                        </button>
-                        <button id="clear-history-btn" class="hidden">
-                            Clear History <i class="fa-solid fa-arrow-rotate-left"></i>
-                        </button>
+                    <div id="history-display">
                     </div>
+                </div>
+
+                <!-- container for all history buttons -->
+                <div id="history-button-container" class="hidden">
+                    <!-- buttons for play again, return, show history, clear history -->
+                    <button id="play-again-button">
+                        Play Again
+                    </button>
+                    <button id="return-button">
+                        Return
+                    </button>
+                    <button id="show-history-button">
+                        Show History
+                    </button>
+                    <!-- hide history button not really needed but keeping here for now
+                    <button id="hide-history-btn">
+                        Hide History
+                    </button> 
+                    -->
+                    <button id="clear-history-btn">
+                        Clear History <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </button>
                 </div>
 
                 <!-- The modal -->
