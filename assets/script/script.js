@@ -61,6 +61,25 @@ let resultsScreen = document.getElementById("results-display-screen");
 let historyScreen = document.getElementById("history-display-screen");
 
 
+// object for show and hide screens
+var screens = {
+    "splashscreen": splashScreen,
+    "resultsscreen": resultsScreen,
+    "historyscreen": historyScreen
+}
+
+// function for showing and hiding the screens based off name
+function showScreens(name) {
+    for (key in screens) {
+        var currentscreen = screens[key];
+        if (key === name) {
+            currentscreen.classList.remove("hidden");
+        } else {
+            currentscreen.classList.add("hidden");
+        }
+    }
+}
+
 
 //SPOTIFY API function to obtain authorisation token
 
