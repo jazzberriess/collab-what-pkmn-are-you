@@ -1,26 +1,26 @@
 body {
-  font-family: 'Press Start 2P', cursive;
-  background-color: #393939;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #393939;
 }
 
 .main-flex-parent {
-  width: 100%;
-  min-height: 100vh;
+    width: 100%;
+    min-height: 100vh;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-flex-child {
-  flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 
 .main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /*Pokeball Splash Screen*/
@@ -29,93 +29,127 @@ body {
 https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsive-square */
 
 .splash-screen {
-  position: relative;
-  width: 50%;
-  overflow: hidden;
+    position: relative;
+    min-width: 50vh; /* make sure to always have a height */
+    width: 50%;
+    overflow: hidden;
 }
 
 .splash-screen:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
+    content: "";
+    display: block;
+    padding-top: 100%;
 }
 
 .splash-screen-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
 }
 
 .modal-button {
-  width: auto;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
-  padding: 0;
-  border: none;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    padding: 0;
+    border: none;
 }
 
 .pokeball {
-  background: url("../images/basic-pokeball.png") no-repeat;
-  background-size: contain;
+    background: url("../images/basic-pokeball.png") no-repeat;
+    background-size: contain;
+
+    /* pokeball shake animation reference:
+    https://codepen.io/ronniemon/pen/YXQVJZ */
+
+    /* for browser compatibility (short-hand form) */
+    --webkit-animation: shake 3.5s 0.5s ease-in-out infinite alternate;
+    /* long-hand form to remember animation properties */
+    animation-name: shake;
+    animation-duration: 3.5s;
+    animation-delay: 0.5s; /* give it a bit of a start delay */
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
+
+/* the animation itself uses rotation (shake) and translation (bounce) */
+@keyframes shake {
+    0%, 40% {
+        transform: rotate(0deg) translateY(0);
+    }
+    43% {
+        transform: rotate(7deg) translateY(-1%);
+    }
+    46% {
+        transform: rotate(0deg) translateY(0);
+    }
+    49% {
+        transform: rotate(-7deg) translateY(-1%);
+    }
+    52%, 100% {
+        transform: rotate(0deg) translateY(0);
+    }
+}
+
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 #close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 #close:hover,
 #close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 #myBtn {
-  background-color: #d64d5a;
-  border-radius: 20px;
-  color: #fefefe;
-  border: 1px solid #d64d5a;
+    background-color: #d64d5a;
+    border-radius: 20px;
+    color: #fefefe;
+    border: 1px solid #d64d5a;
 }
 
 #myBtn:hover { 
-  background-color: #f1cb31;
-  color: #465da5;
-  border: 1px solid #f1cb31;
+    background-color: #f1cb31;
+    color: #465da5;
+    border: 1px solid #f1cb31;
 }
 
 
 .hidden {
-  display: none;
+    display: none;
 }
 
