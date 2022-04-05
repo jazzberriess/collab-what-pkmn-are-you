@@ -2,82 +2,108 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What Kind of Pokémon Are You?</title>
-  <!-- Fonts Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.0/css/all.css"
-    integrity="sha384-eLT4eRYPHTmTsFGFAzjcCWX+wHfUInVWNm9YnwpiatljsZOwXtwV2Hh6sHM6zZD9" crossorigin="anonymous">
-  <!--Font-->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <!-- favicon -->
-  <link
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- favicon -->
+    <link
     href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAx8f/AMzMzAD///8AHR21ACIi4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMzMzMzIiIzMzMzMzMyIjMzMzMzMzIiMzMzMAMzMyIzMzMAADMzIjMzMAMwAzMiAAAAMAMAAAAAAAAwAwAAAFVVUAMwBVVEVVVVAABVVURVVVVQBVVVRFFVVVVVVVVEUVVVVVVVVURVFVVVVVVURFVRFVVVVUREVVVVVVVUREQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     rel="icon" type="image/x-icon" />
-  <!-- skeleton css -->
-  <link rel="stylesheet" href="./assets/css/normalize.css">
-  <link rel="stylesheet" href="./assets/css/skeleton.css">
-  <!-- custom css -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
+    <!-- Font Awesome icons  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.0/css/all.css"
+    integrity="sha384-eLT4eRYPHTmTsFGFAzjcCWX+wHfUInVWNm9YnwpiatljsZOwXtwV2Hh6sHM6zZD9" crossorigin="anonymous">
+    <!--Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- skeleton css framework -->
+    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link rel="stylesheet" href="./assets/css/skeleton.css">
+    <!-- custom css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>What Kind of Pokémon Are You?</title>
 </head>
 
 <body>
 
-  <main>
+<main>
     <div class="main-flex-parent">
-      <div class="main-flex-child">
-        <div class="main-content">
+        <div class="main-flex-child">
+            <div class="main-content">
 
-          <div id="pokeball-splash-screen" class="splash-screen">
-            <div class="splash-screen-content">
-              <button id="modal-button" class="modal-button pokeball"></button>
+                <!-- splash screen with the shaking pokeball -->
+                <div id="pokeball-splash-screen" class="splash-screen">
+                    <div class="splash-screen-content">
+                        <button id="modal-button" class="modal-button pokeball"></button>
+                    </div>
+                </div>
+
+                <!-- results display screen containing card for results to show up in -->
+                <div id="results-display-screen">
+                    <div id="results-display">
+                        <!-- results to be displayed here -->
+                        <h1>You are... <span class="pokemon-name"></span>!</h1>
+                        <img id="pkmn-image" />
+                        <p>The <span id="pkmn-type">???</span> type Pokémon!</p>
+                        <p><span class="pokemon-name">???</span>'s ability is <span id="pkmn-ability">???</span></p>
+                        <p id="pkmn-info"></p>
+                    </div>
+                </div>
+
+                <!-- we don't need the following button but I'm keeping it in for now -->
+                <!-- <button id="myBtn">BEGIN!</button> -->
+
+                <!-- history display screen containing card for storage data and history viewing buttons -->
+                <div id="history-display-screen">
+                    <!-- where any saved data from local storage will show up -->
+                    <div id="history-display">
+                    </div>
+                </div>
+
+                <!-- container for all history buttons -->
+                <div id="history-button-container" class="hidden">
+                    <!-- buttons for play again, return, show history, clear history -->
+                    <button id="play-again-button">
+                        Play Again?
+                    </button>
+                    <button id="return-button">
+                        Return
+                    </button>
+                    <button id="show-history-button">
+                        Show History
+                    </button>
+                    <!-- hide history button not really needed but keeping here for now
+                    <button id="hide-history-btn">
+                        Hide History
+                    </button> 
+                    -->
+                    <button id="clear-history-btn">
+                        Clear History <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </button>
+                </div>
+
+                <!-- The modal -->
+                <div id="modal-underlay" class="modal">
+                    <!-- Modal content -->
+                    <div id="modal-content" class="modal-content">
+                        <!-- close button "x" -->
+                        <span id="close">&times;</span>
+
+                        <h2>What kind of Pokemon are you?</h2>
+
+                        <form id="artist-input-form">
+                            <label for="user-input">Who's your favourite music artist?</label>
+                            <input id="user-input" type="text" placeholder="Artist Name" />
+
+                            <button id="start-button" type="submit">Go! <i class="fa-solid fa-gamepad"></i></button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
-          </div>
-
-          <div id="results-display">
-            <!-- results to be displayed here -->
-            <h1>You are...<span id="pokemon-name"></span></h1>
-            <img id="pkmn-image">
-            <p id="pkmn-type"></p>
-            <p id="pkmn-info"></p>
-            <p id="pkmn-ability"></p>
-          </div>
-
-          <button id="myBtn">BEGIN!</button>
-
-          <!-- History display section -->
-          <div id="history-display">
-          </div>
-
-          <button id="view-retry-button" type="submit">Retry </button>
-          <button id="history-button">Show History</button>
-          <button id="hide-history-btn" class="hidden">Hide History</button>
-          <button id="clear-history-btn" class="hidden">Clear History <i
-              class="fa-solid fa-arrow-rotate-left"></i></button>
-
-          <!-- The modal -->
-          <div id="modal-underlay" class="modal">
-            <!-- Modal content -->
-            <div id="modal-content" class="modal-content">
-              <span id="close">&times;</span>
-              <h2>What kind of Pokemon are you?</h2>
-
-              <form id="artist-input-form">
-                <label for="user-input">Who's your favourite music artist?</label>
-                <input id="user-input" type="text" placeholder="Artist Name" />
-                <button id="start-button" type="submit">Go! <i class="fa-solid fa-gamepad"></i></button>
-              </form>
-            </div>
-          </div>
-
         </div>
-      </div>
     </div>
 
-  </main>
+</main>
 
-  <script src="./assets/script/script.js"></script>
+<script src="./assets/script/script.js"></script>
 </body>
 
 </html>
