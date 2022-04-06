@@ -72,35 +72,31 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 ### Vicky
 
-* [resource description - fill me in](url)
-
 ### Glenn
 
-* [W3.CSS Modal](https://www.w3schools.com/w3css/w3css_modal.asp)
+* [HTML: HyperText Markup Language](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
-* [HTML Headings](https://www.w3schools.com/html/html_headings.asp)
+* [HTML DOCTYPE Declaration](https://www.w3schools.com/tags/tag_doctype.asp)
 
-* [HTML <p> Tag](https://www.w3schools.com/tags/tag_p.asp)
+* [Head Tag - Container for Metadata](https://www.w3schools.com/tags/tag_head.asp)
 
-* [HTML <input> Tag](https://www.w3schools.com/tags/tag_input.asp)
+* [Meta tag - Defines Metadata](https://www.w3schools.com/tags/tag_meta.asp)
 
-* [HTML <div> Tag](https://www.w3schools.com/tags/tag_div.asp#:~:text=The%20tag%20defines%20a,inside%20the%20tag!)
+* [Link Tag - Linking the CSS](https://www.w3schools.com/tags/tag_link.asp#:~:text=The%20tag%20defines%20the,element%2C%20it%20contains%20attributes%20only.)
 
-* [HTML <label> Tag](https://www.w3schools.com/tags/tag_label.asp)
+* [Body Tag - Define Main Content](https://www.w3schools.com/tags/tag_body.asp#:~:text=The%20tag%20defines%20the,element%20in%20an%20HTML%20document.)
 
-* [HTML <form> Tag](https://www.w3schools.com/tags/tag_form.asp)
+* [Div Tag - Defining Divisions](https://www.w3schools.com/tags/tag_div.asp#:~:text=The%20tag%20defines%20a,inside%20the%20tag!)
 
-* [HTML <button> Tag](https://www.w3schools.com/tags/tag_button.asp)
+* [W3.CSS Modal - HTML/CSS/Javascript](https://www.w3schools.com/w3css/w3css_modal.asp)
 
-* [HTML <link> Tag](https://www.w3schools.com/tags/tag_link.asp#:~:text=The%20tag%20defines%20the,element%2C%20it%20contains%20attributes%20only.)
+* [Paragraph Tag - Defining a Paragraph](https://www.w3schools.com/tags/tag_p.asp)
 
-* [HTML <head> Tag](https://www.w3schools.com/tags/tag_head.asp)
+* [Form Tag - Creating Form in Conjunction with Input Tag](https://www.w3schools.com/tags/tag_form.asp)
 
-* [HTML <body> Tag](https://www.w3schools.com/tags/tag_body.asp#:~:text=The%20tag%20defines%20the,element%20in%20an%20HTML%20document.)
+* [Input Tag - Inputting Information](https://www.w3schools.com/tags/tag_input.asp)
 
-* [HTML <!DOCTYPE> Declaration](https://www.w3schools.com/tags/tag_doctype.asp)
-
-* [HTML<meta>tag](https://www.w3schools.com/tags/tag_meta.asp)
+* [Button Tag - Defines a Clickable Button](https://www.w3schools.com/tags/tag_button.asp)
 
 ### Christi
 
