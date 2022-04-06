@@ -12,11 +12,13 @@ Utilises the [Spotify Web API](https://developer.spotify.com/documentation/web-a
 
 * [Acceptance Criteria](#acceptance-criteria)
 
-* [Project Contributors](#project-contributors)
-
 * [Usage](#usage)
 
+* [Live Demo]
+
 * [Future Dev Plans](#future-dev-plans)
+
+* [Project Contributors](#project-contributors)
 
 * [Resources](#resources)
     - [Vicky](#vicky)
@@ -50,6 +52,9 @@ Next, enter your name and favourite artist into the corresponding input fields a
 [Check out the GitHub repo](https://github.com/jazzberriess/collab-what-pkmn-are-you)
 
 Built using HTML, CSS, JavaScript and the [Skeleton responsive CSS boilerplate](http://getskeleton.com/)
+
+## Live Demo
+---
 
 ## Future Dev Plans
 ---
@@ -88,8 +93,6 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [Div Tag - Defining Divisions](https://www.w3schools.com/tags/tag_div.asp#:~:text=The%20tag%20defines%20a,inside%20the%20tag!)
 
-* [W3.CSS Modal - HTML/CSS/Javascript](https://www.w3schools.com/w3css/w3css_modal.asp)
-
 * [Paragraph Tag - Defining a Paragraph](https://www.w3schools.com/tags/tag_p.asp)
 
 * [Form Tag - Creating Form in Conjunction with Input Tag](https://www.w3schools.com/tags/tag_form.asp)
@@ -97,6 +100,8 @@ Listed below are the resources each collaborator has used to bring this applicat
 * [Input Tag - Inputting Information](https://www.w3schools.com/tags/tag_input.asp)
 
 * [Button Tag - Defines a Clickable Button](https://www.w3schools.com/tags/tag_button.asp)
+
+* [W3.CSS Modal - HTML/CSS/Javascript](https://www.w3schools.com/w3css/w3css_modal.asp)
 
 ### Christi
 
@@ -124,9 +129,9 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 ### Sushan
 
-* [pokéAPI Documentation](https://pokeapi.co/docs/v2#pokemon)
+* [PokéAPI Documentation](https://pokeapi.co/docs/v2#pokemon)
 
-* [Fetching the original Pokémon using pokéAPI](https://medium.com/@sergio13prez/fetching-them-all-poke-api-62ca580981a2)
+* [Fetching the original Pokémon using PokéAPI](https://medium.com/@sergio13prez/fetching-them-all-poke-api-62ca580981a2)
 
 * [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page)
 
