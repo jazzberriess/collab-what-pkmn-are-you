@@ -77,6 +77,20 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 ### Vicky
 
+* [CSS Tricks: Considerations for Styling a Modal](https://css-tricks.com/considerations-styling-modal/)
+
+* [Stack Overflow - How to center a modal](https://stackoverflow.com/questions/20944334/how-to-center-a-modal-window-on-a-page)
+
+* [Stack Overflow - How to keep close button in place](https://stackoverflow.com/questions/68270999/keep-close-button-in-upper-right-corner-even-when-modal-scales)
+
+* [Microsoft Developer Network - Dynamically changing background color based on date](https://social.msdn.microsoft.com/Forums/en-US/b3e8cce2-8932-4f40-8304-d935e823c179/dynamically-changing-background-color-of-web-page-based-on-date?forum=aspgettingstarted)
+
+* [W3 Schools - HTML Color Picker](https://www.w3schools.com/colors/colors_picker.asp)
+
+* [Skeleton: Responsive CSS Boilerplate Docs](http://getskeleton.com/)
+
+* [Google Fonts - Press Start 2P](https://www.cufonfonts.com/font/press-start-2p)
+
 ### Glenn
 
 * [HTML: HyperText Markup Language](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -113,6 +127,8 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [How to use Spotify API with JavaScript](https://www.youtube.com/watch?v=0dmS0He_czs)
 
+* [Music Genre List](https://www.musicgenreslist.com/)
+
 * [MDN Docs - Array.includes()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
 
 * [Stackoverflow - How to get a random key value](https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object)
@@ -146,6 +162,12 @@ Listed below are the resources each collaborator has used to bring this applicat
 * [Stack Overflow - How to shake HTML elements using Javascript](https://stackoverflow.com/questions/36962903/javascript-shake-html-element/37142149)
 
 * [Pokéball Shaking Animation](https://codepen.io/ronniemon/pen/YXQVJZ)
+
+* [PNG All - Pokéball PNG](https://www.pngall.com/pokeball-png/download/40310)
+
+* [CSS Tricks - Animation](https://css-tricks.com/almanac/properties/a/animation/)
+
+* [Skeleton: Responsive CSS Boilerplate Docs](http://getskeleton.com/)
 
 * [MDN Docs](https://developer.mozilla.org/en-US/docs/Web)
 
