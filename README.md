@@ -1,10 +1,30 @@
 # What Kind of Pokémon Are You?
-A collaborative project to discover kind of Pokémon you are based on music preference.
+A collaborative project to discover what kind of Pokémon you are based on music preference.
 
 ## About
 ---
 
-Utilises the [Spotify Web API](https://developer.spotify.com/documentation/web-api/) and [pokéAPI](https://pokeapi.co/) to discover what type of Pokémon you are based on musical preferences. The user inputs a musician/artist and the app generates your Pokémon based on the artist's genre. Details about the Pokémon will emerge after you click the submit button, which pairs the genre of your artist with a corresponding Pokémon type — or random Pokémon in some instances, such as when no genre is listed.
+Utilises the [Spotify Web API](https://developer.spotify.com/documentation/web-api/) and [PokéAPI](https://pokeapi.co/) to discover what type of Pokémon you are based on musical preferences. The user inputs a musician/artist and the app generates your Pokémon based on the artist's genre. Details about the Pokémon will emerge after you click the submit button, which pairs the genre of your artist with a corresponding Pokémon type — or random Pokémon in some instances, such as when no genre is listed for the artist.
+
+## Table of Contents
+
+* [User Story](#user-story)
+
+* [Acceptance Criteria](#acceptance-criteria)
+
+* [Project Contributors](#project-contributors)
+
+* [Usage](#usage)
+
+* [Future Dev Plans](#future-dev-plans)
+
+* [Resources](#resources)
+    - [Vicky](#vicky)
+    - [Glenn](#glenn)
+    - [Christi](#vicky)
+    - [Sushan](#sushan)
+
+* [License](#license) 
 
 ## User Story
 ---
@@ -19,8 +39,24 @@ SO THAT I can tell all my friends and live out my dream to become the very best 
 ```
 GIVEN I want to know what type of Pokémon I am
 WHEN I input my favourite artist 
-THEN I expect to be paired with a pokémon and shown that result
+THEN I expect to be paired with a Pokémon and shown that result
 ```
+
+## Usage
+---
+To use the application, [head on over to the deployed GitHub Page](https://jazzberriess.github.io/collab-what-pkmn-are-you/) and click on the Pokéball! 
+Next, enter your name and favourite artist into the corresponding input fields and submit your response to discover What Kind of Pokémon Are You?
+
+[Check out the GitHub repo](https://github.com/jazzberriess/collab-what-pkmn-are-you)
+
+Built using HTML, CSS, JavaScript and the [Skeleton responsive CSS boilerplate](http://getskeleton.com/)
+
+## Future Dev Plans
+---
+* Include a wider variety of Pokémon per type to pull results from
+* Allow for “cross-genre” results such as alternative rock, folk punk etc
+* Include a ‘Light Mode’ colour palette option
+* Add unique backgrounds to the individual Pokémon results
 
 ## Project Contributors
 ---
@@ -29,22 +65,16 @@ THEN I expect to be paired with a pokémon and shown that result
 * Christi Scappatura
 * Sushan Yue
 
-## Usage
----
-
-Built using HTML, CSS and JavaScript
-
-[Check out the deployed GitHub Page](https://jazzberriess.github.io/collab-what-pkmn-are-you/)
-
-[Check out the GitHub repo](https://github.com/jazzberriess/collab-what-pkmn-are-you)
-
 ## Resources
 ---
 
 Listed below are the resources each collaborator has used to bring this application to life.
 
-### Glenn
+### Vicky
 
+* [resource description - fill me in](url)
+
+### Glenn
 
 * [W3.CSS Modal](https://www.w3schools.com/w3css/w3css_modal.asp)
 
@@ -72,10 +102,6 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [HTML<meta>tag](https://www.w3schools.com/tags/tag_meta.asp)
 
-### Vicky
-
-* [resource description - fill me in](url)
-
 ### Christi
 
 * [Spotify Web API Authorisation Guides: Client Credentials Flow](https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/)
@@ -92,11 +118,13 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [Git Branch](https://sydney.bootcampcontent.com/university-of-sydney/USYD-VIRT-FSF-PT-02-2022-U-LOL/-/tree/main/03-JavaScript/01-Activities/27-Evr_Git-Branch)
 
+* [Manually create a Markdown table of contents](https://www.setcorrect.com/portfolio/work11/)
+
 * [MDN Docs](https://developer.mozilla.org/en-US/docs/Web)
 
 * [Stackoverflow](https://stackoverflow.com/)
 
-* Class instructor and TAs, Friday tutor, class notes
+* Class instructor and TAs, Friday tutor, class notes and class recordings
 
 ### Sushan
 
@@ -123,3 +151,10 @@ Listed below are the resources each collaborator has used to bring this applicat
 * [W3 Schools](https://www.w3schools.com/)
 
 * Class instructor and TAs, Friday tutor, class notes
+
+## License 
+---
+
+&copy; 2022 Vicky Castro, Glenn Digal, Christi Scappatura and Sushan Yue
+
+[MIT License](/LICENSE)
