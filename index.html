@@ -31,58 +31,20 @@
                     <!-- splash screen with the shaking pokeball -->
                     <div id="pokeball-splash-screen" class="splash-screen">
                         <div class="splash-screen-content">
-                            <button id="modal-button" class="modal-button pokeball"></button>
+                            <button id="modal-button" class="modal-button pokeball" aria-labelledby="modal-button"></button>
                         </div>
                     </div>
 
-                    <!-- results display screen containing card for results to show up in -->
-                    <div id="results-display-screen">
-                        <div id="results-display" class="results-display">
-                            <!-- results to be displayed here -->
-                            <h1>You are... <span class="pokemon-name"></span>!</h1>
-                            <img id="pkmn-image" />
-                            <p>The <span id="pkmn-type">???</span> type Pokémon!</p>
-                            <p id="pkmn-info"></p>
-                            <p><span class="pokemon-name">???</span>'s ability is <span id="pkmn-ability">???</span></p>
-                        </div>
-                    </div>
-
-                    <!-- we don't need the following button but I'm keeping it in for now -->
-                    <!-- <button id="myBtn">BEGIN!</button> -->
-
-                    <!-- history display screen containing card for storage data and history viewing buttons -->
-                    <div id="history-display-screen">
-                        <!-- where any saved data from local storage will show up -->
-                        <div id="history-display">
-                        </div>
-                    </div>
-
-                    <!-- container for all history buttons -->
-                    <div id="history-button-container" class="hidden">
-                        <!-- buttons for play again, return, show history, clear history -->
-                        <button id="play-again-button">
-                            Play Again?
-                        </button>
-                        <button id="go-back-button" class="go-back-button">
-                            Return
-                        </button>
-                        <button id="show-history-button" class="show-history-button">
-                            Show History
-                        </button>
-                        <button id="clear-history-button" class="clear-history-button">
-                            Clear History <i class="fa-solid fa-arrow-rotate-left"></i>
-                        </button>
-                    </div>
-
-                    <!-- The modal -->
+                    <!-- modal section -->
                     <div id="modal-underlay" class="modal-underlay">
-                        <!-- Modal content -->
+                        <!-- modal bounding box -->
                         <div id="modal" class="modal">
-                            <!-- close button "x" -->
+                            <!-- modal close button "x" -->
                             <span id="close" class="close">&times;</span>
 
-                            <div id="modal-content">
-                                <h3>What kind of Pokémon are you?</h3>
+                            <!-- main content for modal -->
+                            <div id="modal-content" class="modal-content">
+                                <h3 class="modal-heading">What kind of Pokémon are you?</h3>
 
                                 <p>Let's use your fabulous taste in music to find out!</p>
 
@@ -90,29 +52,77 @@
                                     <label for="user-name" class="user-name">Enter your name:</label>
                                     <input id="user-name" type="text" placeholder="Ash Ketchum" />
 
-                                    <label for="user-input" class="user-input">Enter your fave artist or music
-                                        group:</label>
+                                    <label for="user-input" class="user-input">Enter your fave artist or music group:</label>
                                     <input id="user-input" type="text" placeholder="Spice Girls!" />
 
-                                    <button id="start-button" type="submit">Go! <i
-                                            class="fa-solid fa-gamepad"></i></button>
+                                    <button id="start-button" type="submit">Go! <i class="fa-solid fa-gamepad"></i></button>
                                 </form>
                             </div>
 
-                            <div id="modal-error">
-                                <p>Oops, something went wrong! Remember to enter both your name and your fave artist's
-                                    name.</p>
+                            <!-- error msg for missing user name or artist -->
+                            <div id="modal-no-input">
+                                <p>Uh oh, something went wrong!</p>
+                                <p>Remember to enter both your name and your fave artist's name.</p>
                                 <button id="try-again-button" type="button">Try Again</button>
                             </div>
+
+                            <!-- error msg for missing artist (incorrectly spelt or doesn't exist, etc) -->
                             <div id="modal-no-artist">
-                                <p>Oops, sorry about this! We couldn't find that artist. Please try again.</p>
+                                <p>Oops, we couldn't find that artist!</p>
+                                <p>Please try again.</p>
                                 <button id="try-again-button-artist" type="button">Try Again</button>
                             </div>
 
                         </div>
                     </div>
 
-                </div> <!-- main content ending tag -->
+                    <!-- results display screen containing card for results to show up in -->
+                    <div id="results-display-screen">
+                        <div id="results-display" class="results-display">
+                            <!-- results to be displayed here -->
+                            <h1>You are
+                                <span id="pokemon-heading" class="pokemon-name">...</span>
+                            </h1>
+                            <img id="pokemon-image" />
+                            <p>The <span id="pokemon-type">???</span> type Pokémon!</p>
+                            <p id="pokemon-info"></p>
+                            <p><span class="pokemon-name">???</span>'s ability is <span id="pokemon-ability">???</span></p>
+                        </div>
+                    </div>
+
+                    <!-- history display screen containing card for storage data -->
+                    <div id="history-display-screen">
+                        <!-- where any saved data from local storage will show up -->
+                        <div id="history-display" class="history-display">
+                        </div>
+                    </div>
+
+                    <!-- container for all history buttons -->
+                    <div id="history-button-container" class="history-button-container hidden">
+                        <div class="history-button-card">
+                            <!-- buttons for play again, return, show history, clear history -->
+                            <button id="play-again-button">
+                                Play Again?
+                            </button>
+                        </div>
+                        <div class="history-button-card">
+                            <button id="go-back-button" class="go-back-button">
+                                Return
+                            </button>
+                        </div>
+                        <div class="history-button-card">
+                            <button id="clear-history-button" class="clear-history-button">
+                                Clear History <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </button>
+                        </div>                        
+                        <div class="history-button-card">
+                            <button id="show-history-button" class="show-history-button">
+                                Show History
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </main>

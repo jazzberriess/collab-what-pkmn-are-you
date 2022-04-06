@@ -115,6 +115,10 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [Pokéball Shaking Animation](https://codepen.io/ronniemon/pen/YXQVJZ)
 
+* [MDN - Using CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)
+
+* [Stack Overflow - How to remove outline from inset box shadow and border radius](https://stackoverflow.com/questions/27383957/how-to-remove-the-outline-when-using-inset-box-shadow-and-border-radius)
+
 * [MDN Docs](https://developer.mozilla.org/en-US/docs/Web)
 
 * [W3 Schools](https://www.w3schools.com/)
