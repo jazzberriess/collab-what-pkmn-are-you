@@ -518,7 +518,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.bug.type = prettifyName(type[0].type.name);
             typeobj.bug.ability = prettifyName(ability[1].ability.name);
             // also add a background colour for use in results card later
-            typeobj.bug.bgcolour = "#e6ffcc";
+            typeobj.bug.bgcolour = "#C3EB98";
             break;
         // for the case of 'zoroark'
         case "zoroark":
@@ -529,7 +529,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.dark.type = prettifyName(type[0].type.name);
             typeobj.dark.ability = prettifyName(ability[0].ability.name);
             // also add a background colour for use in results card later
-            typeobj.dark.bgcolour = "#bfbfbf";
+            typeobj.dark.bgcolour = "#726C82";
             break;
         // and so on
         case "latios":
@@ -538,7 +538,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.dragon.artwork = artwork;
             typeobj.dragon.type = prettifyName(type[0].type.name);
             typeobj.dragon.ability = prettifyName(ability[0].ability.name);
-            typeobj.dragon.bgcolour = "#b3b3ff";
+            typeobj.dragon.bgcolour = "#C0BFD1";
             break;
         case "mareep":
             typeobj.electric.name = prettifyName(name);
@@ -546,7 +546,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.electric.artwork = artwork;
             typeobj.electric.type = prettifyName(type[0].type.name);
             typeobj.electric.ability = prettifyName(ability[0].ability.name);
-            typeobj.electric.bgcolour = "#ffffcc";
+            typeobj.electric.bgcolour = "#F8EC30";
             break;
         case "sylveon":
             typeobj.fairy.name = prettifyName(name);
@@ -555,7 +555,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.fairy.type = prettifyName(type[0].type.name);
             // sylveon's ability is retrieved as "cute-charm"; prettify it
             typeobj.fairy.ability = prettify(ability[0].ability.name);
-            typeobj.fairy.bgcolour = "#ffe6ff";
+            typeobj.fairy.bgcolour = "#FDE7F5";
             break;
         // for urshifu's name, need to do some clipping
         case "urshifu-single-strike":
@@ -568,7 +568,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.fighting.type = prettifyName(type[0].type.name);
             // urshifu's ability is retrieved as "unseen-fist"; prettify it
             typeobj.fighting.ability = prettify(ability[0].ability.name);
-            typeobj.fighting.bgcolour = "#d1d1e0";
+            typeobj.fighting.bgcolour = "#FED198";
             break;
         case "torracat":
             typeobj.fire.name = prettifyName(name);
@@ -576,7 +576,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.fire.artwork = artwork;
             typeobj.fire.type = prettifyName(type[0].type.name);
             typeobj.fire.ability = prettifyName(ability[0].ability.name);
-            typeobj.fire.bgcolour = "#ffb3b3";
+            typeobj.fire.bgcolour = "#FFC4B3";
             break;
         case "pidgeotto":
             typeobj.flying.name = prettifyName(name);
@@ -585,7 +585,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.flying.type = prettifyName(type[1].type.name);
             // pidgeotto's ability is retrieved as "keen-eye"; prettify it
             typeobj.flying.ability = prettify(ability[0].ability.name);
-            typeobj.flying.bgcolour = "#e6f2ff";
+            typeobj.flying.bgcolour = "#9CDAFE";
             break;
         case "banette":
             typeobj.ghost.name = prettifyName(name);
@@ -593,7 +593,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.ghost.artwork = artwork;
             typeobj.ghost.type = prettifyName(type[0].type.name);
             typeobj.ghost.ability = prettifyName(ability[0].ability.name);
-            typeobj.ghost.bgcolour = "#ecc6ec";
+            typeobj.ghost.bgcolour = "#D4BDF8";
             break;
         case "lilligant":
             typeobj.grass.name = prettifyName(name);
@@ -602,7 +602,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.grass.type = prettifyName(type[0].type.name);
             // lilligant's ability is retrieved as "own-tempo"; prettify it
             typeobj.grass.ability = prettify(ability[1].ability.name);
-            typeobj.grass.bgcolour = "#c6ecd9";
+            typeobj.grass.bgcolour = "#93D784";
             break;
         case "piloswine":
             typeobj.ground.name = prettifyName(name);
@@ -610,7 +610,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.ground.artwork = artwork;
             typeobj.ground.type = prettifyName(type[1].type.name);
             typeobj.ground.ability = prettifyName(ability[0].ability.name);
-            typeobj.ground.bgcolour = "#ffd9b3";
+            typeobj.ground.bgcolour = "#F1CD97";
             break;
         case "bergmite":
             typeobj.ice.name = prettifyName(name);
@@ -619,7 +619,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.ice.type = prettifyName(type[0].type.name);
             // bergmite's ability is retrieved as "ice-body"; prettify it
             typeobj.ice.ability = prettify(ability[1].ability.name);
-            typeobj.ice.bgcolour = "#e6ffff";
+            typeobj.ice.bgcolour = "#BFFFFF";
             break;
         case "lickitung":
             typeobj.normal.name = prettifyName(name);
@@ -636,7 +636,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.poison.artwork = artwork;
             typeobj.poison.type = prettifyName(type[0].type.name);
             typeobj.poison.ability = prettifyName(ability[1].ability.name);
-            typeobj.poison.bgcolour = "#f2ccff";
+            typeobj.poison.bgcolour = "#D2BDDF";
             break;
         case "hatterene":
             typeobj.psychic.name = prettifyName(name);
@@ -645,7 +645,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.psychic.type = prettifyName(type[0].type.name);
             // hatterene's ability is retrieved as "magic-bounce"; prettify it
             typeobj.psychic.ability = prettify(ability[2].ability.name);
-            typeobj.psychic.bgcolour = "#fae6ff";
+            typeobj.psychic.bgcolour = "#ECBAF8";
             break;
         case "gigalith":
             typeobj.rock.name = prettifyName(name);
@@ -653,7 +653,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.rock.artwork = artwork;
             typeobj.rock.type = prettifyName(type[0].type.name);
             typeobj.rock.ability = prettifyName(ability[0].ability.name);
-            typeobj.rock.bgcolour = "#e6ccb3";
+            typeobj.rock.bgcolour = "#D1C2A5";
             break;
         case "aggron":
             typeobj.steel.name = prettifyName(name);
@@ -662,7 +662,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.steel.type = prettifyName(type[0].type.name);
             // aggron's ability is retrieved as "rock-head"; prettify it
             typeobj.steel.ability = prettify(ability[1].ability.name);
-            typeobj.steel.bgcolour = "#d1e0e0";
+            typeobj.steel.bgcolour = "#C9D8D8";
             break;
         case "primarina":
             typeobj.water.name = prettifyName(name);
@@ -671,7 +671,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.water.type = prettifyName(type[0].type.name);
             // primarina's ability is retrieved as "liquid-voice"; prettify it
             typeobj.water.ability = prettify(ability[1].ability.name);
-            typeobj.water.bgcolour = "#ccddff";
+            typeobj.water.bgcolour = "#9AC3FF";
             break;
         default:
             break;
