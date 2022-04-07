@@ -71,7 +71,19 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 ### Vicky
 
-* [resource description - fill me in](url)
+* [Pokeball Favicon - How to create a Pokeball Favicon for the title](https://www.favicon.cc/?action=icon&file_id=953164)
+
+* [Colour Scheme - Defining the colour pallete for project ](https://coolors.co/)
+
+* [Icons for Buttons - Personalising the buttons adding an icon to it](https://fontawesome.com/)
+
+* [Font Choice - Defining fonts for the project](https://fonts.google.com/)
+
+* [Hover Effects for buttons and clickable items](https://www.w3schools.com/css/css3_buttons.asp)
+
+* [MDN Docs](https://developer.mozilla.org/en-US/docs/Web)
+
+
 
 ### Christi
 
