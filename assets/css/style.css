@@ -19,6 +19,16 @@ h3 {
     text-align: center;
 }
 
+/* hiding the header and footer visually, but retaining the content for accessibility */
+header, footer {
+    position: absolute;
+    left: -10000px;
+    top:auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 
 /* === MAIN SECTION ===  */
 /* for overall layout control */
