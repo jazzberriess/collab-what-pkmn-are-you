@@ -14,7 +14,7 @@ Utilises the [Spotify Web API](https://developer.spotify.com/documentation/web-a
 
 * [Usage](#usage)
 
-* [Live Demo]
+* [Live Demo](#live-demo)
 
 * [Future Dev Plans](#future-dev-plans)
 
