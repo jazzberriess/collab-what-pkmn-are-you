@@ -23,17 +23,24 @@
 
 <body>
 
+    <header>
+        <h1>A fun little game to help you discover what kind of Pokémon you are!</h1>
+    </header>
+
     <main>
+        <section class="content">
         <div class="main-flex-parent">
             <div class="main-flex-child">
                 <div class="main-content">
 
                     <!-- splash screen with the shaking pokeball -->
+                    <section class="initial-page"></section>
                     <div id="pokeball-splash-screen" class="splash-screen">
                         <div class="splash-screen-content">
                             <button id="modal-button" class="modal-button pokeball"
-                                aria-labelledby="modal-button"></button>
+                                aria-labelledby="start-button"></button>
                         </div>
+                    </section>
                     </div>
 
                     <!-- modal section -->
@@ -41,9 +48,10 @@
                         <!-- modal bounding box -->
                         <div id="modal" class="modal">
                             <!-- modal close button "x" -->
-                            <span id="close" class="close">&times;</span>
+                            <span id="close" class="close" aria-label="close">&times;</span>
 
                             <!-- main content for modal -->
+                            <section class="input-window">
                             <div id="modal-content" class="modal-content">
                                 <h3 class="modal-heading">What kind of Pokémon are you?</h3>
 
@@ -60,26 +68,30 @@
                                     <button id="start-button" type="submit">Go! <i
                                             class="fa-solid fa-gamepad"></i></button>
                                 </form>
+                            </section>
                             </div>
 
                             <!-- error msg for missing user name or artist -->
                             <div id="modal-no-input">
                                 <p>Uh oh, something went wrong!</p>
                                 <p>Remember to enter both your name and your fave artist's name.</p>
-                                <button id="try-again-button" type="button" class="try-again-button">Try Again <i class="fa-solid fa-arrow-rotate-left"></i></button>
+                                <button id="try-again-button" type="button" class="try-again-button">Try Again <i
+                                        class="fa-solid fa-arrow-rotate-left"></i></button>
                             </div>
 
                             <!-- error msg for missing artist (incorrectly spelt or doesn't exist, etc) -->
                             <div id="modal-no-artist">
                                 <p>Oops, we couldn't find that artist!</p>
                                 <p>Please try again.</p>
-                                <button id="try-again-button-artist" type="button" class="try-again-button">Try Again <i class="fa-solid fa-arrow-rotate-left"></i></button>
+                                <button id="try-again-button-artist" type="button" class="try-again-button">Try Again <i
+                                        class="fa-solid fa-arrow-rotate-left"></i></button>
                             </div>
 
                         </div>
                     </div>
 
                     <!-- results display screen containing card for results to show up in -->
+                   <section class="results">
                     <div id="results-display-screen">
                         <div id="results-display" class="results-display">
                             <div class="results-display-text">
@@ -100,13 +112,16 @@
                             </div>
                         </div>
                     </div>
+                    </section>
 
                     <!-- history display screen containing card for storage data -->
+                    <section class="history-display">
                     <div id="history-display-screen">
                         <!-- where any saved data from local storage will show up -->
                         <div id="history-display" class="history-display">
                         </div>
                     </div>
+                </section>
 
                     <!-- container for all history buttons -->
                     <div id="history-button-container" class="history-button-container hidden">
@@ -136,7 +151,12 @@
                 </div>
             </div>
         </div>
+        </section>
     </main>
+
+    <footer>
+        <h4>&copy; 2022 Vicky Castro, Gelnn Digal, Christi Scappatura and Sushan Yue</h4>
+    </footer>
 
     <script src="./assets/script/script.js"></script>
 </body>
