@@ -55,6 +55,7 @@ Built using HTML, CSS, JavaScript and the [Skeleton responsive CSS boilerplate](
 
 ## Live Demo
 ---
+![Final web app demo](/assets/images/What%20Kind%20of%20Pok%C3%A9mon%20Are%20You_.gif)
 
 ## Future Dev Plans
 ---
