@@ -23,7 +23,7 @@ Utilises the [Spotify Web API](https://developer.spotify.com/documentation/web-a
 * [Resources](#resources)
     - [Vicky](#vicky)
     - [Glenn](#glenn)
-    - [Christi](#vicky)
+    - [Christi](#christi)
     - [Sushan](#sushan)
 
 * [License](#license) 
@@ -91,6 +91,18 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [Google Fonts - Press Start 2P](https://www.cufonfonts.com/font/press-start-2p)
 
+* [Pokeball Favicon - How to create a Pokeball Favicon for the title](https://www.favicon.cc/?action=icon&file_id=953164)
+
+* [Colour Scheme - Defining the colour pallete for project ](https://coolors.co/)
+
+* [Icons for Buttons - Personalising the buttons adding an icon to it](https://fontawesome.com/)
+
+* [Font Choice - Defining fonts for the project](https://fonts.google.com/)
+
+* [Hover Effects for buttons and clickable items](https://www.w3schools.com/css/css3_buttons.asp)
+
+* [MDN Docs](https://developer.mozilla.org/en-US/docs/Web)
+
 ### Glenn
 
 * [HTML: HyperText Markup Language](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -115,22 +127,6 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [Button Tag - Defines a Clickable Button](https://www.w3schools.com/tags/tag_button.asp)
 
-### Vicky
-
-* [Pokeball Favicon - How to create a Pokeball Favicon for the title](https://www.favicon.cc/?action=icon&file_id=953164)
-
-* [Colour Scheme - Defining the colour pallete for project ](https://coolors.co/)
-
-* [Icons for Buttons - Personalising the buttons adding an icon to it](https://fontawesome.com/)
-
-* [Font Choice - Defining fonts for the project](https://fonts.google.com/)
-
-* [Hover Effects for buttons and clickable items](https://www.w3schools.com/css/css3_buttons.asp)
-
-* [MDN Docs](https://developer.mozilla.org/en-US/docs/Web)
-
-
-
 ### Christi
 
 * [Spotify Web API Authorisation Guides: Client Credentials Flow](https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/)
@@ -148,6 +144,10 @@ Listed below are the resources each collaborator has used to bring this applicat
 * [Stackoverflow - How to get a random key value](https://stackoverflow.com/questions/61042479/how-to-get-a-random-key-value-from-a-javascript-object)
 
 * [Git Branch](https://sydney.bootcampcontent.com/university-of-sydney/USYD-VIRT-FSF-PT-02-2022-U-LOL/-/tree/main/03-JavaScript/01-Activities/27-Evr_Git-Branch)
+
+* [WebAim Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+* [Accessibility Developer Guide - Hiding elements visually by moving them off screen](https://www.accessibility-developer-guide.com/examples/hiding-elements/visually/)
 
 * [Manually create a Markdown table of contents](https://www.setcorrect.com/portfolio/work11/)
 
@@ -180,6 +180,14 @@ Listed below are the resources each collaborator has used to bring this applicat
 * [MDN - Using CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)
 
 * [Stack Overflow - How to remove outline from inset box shadow and border radius](https://stackoverflow.com/questions/27383957/how-to-remove-the-outline-when-using-inset-box-shadow-and-border-radius)
+
+* [CSS tricks - :not](https://css-tricks.com/almanac/selectors/n/not/)
+
+* [MDN Web Docs :not()](https://developer.mozilla.org/en-US/docs/Web/CSS/:not)
+
+* [Stack Overflow - What is this CSS selector? [class*="span"]](https://stackoverflow.com/questions/9836151/what-is-this-css-selector-class-span)
+
+* [MDN Attribute Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors)
 
 * [Skeleton: Responsive CSS Boilerplate Docs](http://getskeleton.com/)
 
