@@ -152,6 +152,8 @@ Listed below are the resources each collaborator has used to bring this applicat
 
 * [Manually create a Markdown table of contents](https://www.setcorrect.com/portfolio/work11/)
 
+* [WebAim - invisible content](https://webaim.org/techniques/css/invisiblecontent/)
+
 * [MDN Docs](https://developer.mozilla.org/en-US/docs/Web)
 
 * [Stackoverflow](https://stackoverflow.com/)

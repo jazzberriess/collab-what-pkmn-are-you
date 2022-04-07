@@ -538,7 +538,7 @@ function fillPokemonDetails(typeobj, name, id, artwork, type, ability) {
             typeobj.dragon.artwork = artwork;
             typeobj.dragon.type = prettifyName(type[0].type.name);
             typeobj.dragon.ability = prettifyName(ability[0].ability.name);
-            typeobj.dragon.bgcolour = "#C0BFD1";
+            typeobj.dragon.bgcolour = "#D1D8FF";
             break;
         case "mareep":
             typeobj.electric.name = prettifyName(name);
@@ -834,9 +834,15 @@ function appendElements() {
     let pokemonName = document.getElementsByClassName("pokemon-name");
     // pokemonName will be an array now. Use a for loop to loop through each DOM instance of pokemonName and append the text to each case
     if (pokemonName.length > 0) {
+        // the first instance of the pokemon name will get special treatment
         pokemonName[0].textContent = yourPkmn.name + "!";
         for (var i = 1; i < pokemonName.length; i++) {
-            pokemonName[i].textContent = yourPkmn.name;
+            // the second instance of the pokemon name will get special treatment
+            if (i = 1) {
+                pokemonName[i].textContent = yourPkmn.name + `'s`;
+            } else {
+                pokemonName[i].textContent = yourPkmn.name;
+            }
         }
     }
     //display Pokémon image
